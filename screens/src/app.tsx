@@ -11,7 +11,7 @@ export function App() {
   }, [])
   return (
     <ThemeProvider theme={THEME.LIGHT} themes={THEMES} autoSwitchTheme={false}>
-      <StatusBar barStyle='dark-content' animated />
+      <StatusBar barStyle='light-content' animated translucent />
       <RootStack />
     </ThemeProvider>
   )
