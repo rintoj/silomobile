@@ -1,5 +1,9 @@
-require_relative '../node_modules/react-native/scripts/react_native_pods'
-require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+# require_relative '../node_modules/react-native/scripts/react_native_pods'
+# require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+
+require File.join(File.dirname(`node --print "require.resolve('react-native/package.json')"`), "scripts/react_native_pods")
+require File.join(File.dirname(`node --print "require.resolve('@react-native-community/cli-platform-ios/package.json')"`), "native_modules")
+
 
 platform :ios, '11.0'
 
@@ -16,6 +20,10 @@ target 'Silo' do
     inherit! :complete
     # Pods for testing
   end
+
+  permissions_path = '../../node_modules/react-native-permissions/ios'
+  # pod 'Permission-Microphone', :path => "#{permissions_path}/Microphone"
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
 
   # Enables Flipper.
   #
