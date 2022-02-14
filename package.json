@@ -17,6 +17,7 @@
     "android": "yarn workspace @silo/mobile android",
     "ios": "yarn workspace @silo/mobile ios",
     "lint": "tsc -p . --noEmit && eslint . --ext .js,.ts,.tsx  --fix &&  yarn prettier",
+    "cli": "yarn workspace @silo/devops cli",
     "pod:install": "npx pod-install mobile/ios",
     "prettier": "prettier --write \"**/**/*.{ts,tsx,json}\" -c",
     "start": "yarn workspace @silo/mobile start"
