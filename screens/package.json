@@ -1,0 +1,16 @@
+{
+  "name": "@silo/screens",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "private": true,
+  "scripts": {},
+  "dependencies": {
+    "graphql-tag": "^2.12.4",
+    "name-util": "^1.1.0",
+    "react-native-gesture-handler": "^2.0.0",
+    "react-native-reanimated": "^2.2.4",
+    "react-native-tab-view": "^3.1.1",
+    "react-native-web": "^0.17.5"
+  }
+}
