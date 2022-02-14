@@ -148,7 +148,7 @@ export function Button<T>(props: ButtonProps<T>) {
             <View style={[s.pa1]} />
           </>
         ) : null}
-        <Text bold fontSize='normal' style={contentStyle as any}>{` ${children} `}</Text>
+        <Text fontSize='normal' style={contentStyle as any}>{` ${children} `}</Text>
         {loading ? (
           <>
             <View style={[s.pa1]} />
