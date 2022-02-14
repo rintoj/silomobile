@@ -23,7 +23,7 @@ const iosDir = resolve(appDir, 'ios')
 
 export async function configureEnvironment(environment: 'local' | 'dev' | 'prod') {
   const localIP = getLocalIP(environment)
-  const configDir = resolve(__dirname, '..', '..', 'features', 'config', 'src')
+  const configDir = resolve(__dirname, '..', '..', 'feature', 'config', 'src')
   const configFile = resolve(configDir, `${environment}.json`)
   const targetFile = resolve(configDir, 'config.json')
   await writeFileWithTemplate(configFile, targetFile, { localIP })

@@ -18,8 +18,8 @@
   "exclude": ["node_modules"],
   "paths": {
     "@silo-frontend/util": ["./util/src"],
-    "@silo-component/*": ["./components/*/src"],
-    "@silo-feature/*": ["./features/*/src"],
+    "@silo-component/*": ["./component/*/src"],
+    "@silo-feature/*": ["./feature/*/src"],
     "@silo-screen/*": ["./screens/*/src"]
   }
 }
