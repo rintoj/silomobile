@@ -1,5 +1,5 @@
 {
-  "name": "silomobile",
+  "name": "silo",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/rintoj/silomobile.git",
@@ -13,6 +13,14 @@
     "screens",
     "util"
   ],
+  "scripts": {
+    "android": "yarn workspace @silo/mobile android",
+    "ios": "yarn workspace @silo/mobile ios",
+    "lint": "tsc -p . --noEmit && eslint . --ext .js,.ts,.tsx  --fix &&  yarn prettier",
+    "pod:install": "npx pod-install mobile/ios",
+    "prettier": "prettier --write \"**/**/*.{ts,tsx,json}\" -c",
+    "start": "yarn workspace @silo/mobile start"
+  },
   "devDependencies": {
     "@react-native-community/eslint-config": "^3.0.1",
     "@typescript-eslint/eslint-plugin": "^5.7.0",

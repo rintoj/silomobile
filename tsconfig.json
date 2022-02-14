@@ -17,9 +17,9 @@
   },
   "exclude": ["node_modules"],
   "paths": {
-    "@gm-frontend/util": ["./util/src"],
-    "@gm-component/*": ["./components/*/src"],
-    "@gm-feature/*": ["./features/*/src"],
-    "@gm-screen/*": ["./screens/*/src"]
+    "@silo-frontend/util": ["./util/src"],
+    "@silo-component/*": ["./components/*/src"],
+    "@silo-feature/*": ["./features/*/src"],
+    "@silo-screen/*": ["./screens/*/src"]
   }
 }
