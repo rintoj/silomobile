@@ -14,6 +14,11 @@
 
 #import "RNSplashScreen.h"
 
+#if RCT_DEV
+#import <React/RCTDevLoadingView.h>
+#import <RNGestureHandlerModule.h>
+#endif
+
 static void InitializeFlipper(UIApplication *application) {
   FlipperClient *client = [FlipperClient sharedClient];
   SKDescriptorMapper *layoutDescriptorMapper = [[SKDescriptorMapper alloc] initWithDefaults];
@@ -34,6 +39,12 @@ static void InitializeFlipper(UIApplication *application) {
 #endif
 
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
+
+  #if RCT_DEV
+  [bridge moduleForClass:[RCTDevLoadingView class]];
+  [bridge moduleForClass:[RNGestureHandlerModule class]];
+  #endif
+
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"Silo"
                                             initialProperties:nil];
