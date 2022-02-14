@@ -1,11 +1,6 @@
-/**
- * @format
- */
-
-import 'react-native'
+import { App } from '@silo/screens'
 import React from 'react'
-import App from '../src/App'
-
+import 'react-native'
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
 
