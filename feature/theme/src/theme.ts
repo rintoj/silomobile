@@ -11,7 +11,7 @@ export enum COLOR_X {
 export const THEMES = {
   [THEME.LIGHT]: {
     [COLOR.PRIMARY]: '#FFFFFF',
-    [COLOR.SECONDARY]: '#202D42',
+    [COLOR.SECONDARY]: '#235039',
     [COLOR.TERTIARY]: '#86929E',
     [COLOR.ACCENT]: '#00A3FF',
     [COLOR_X.ACCENT_LIGHT]: '#DEEAF8',
