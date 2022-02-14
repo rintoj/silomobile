@@ -1,9 +1,10 @@
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack'
 import React from 'react'
-import { SplashScreen } from '../splash/splash-screen'
+import { MainStack } from './main-stack'
+import { Screens } from './screens'
 
-const { Navigator, Screen } = createStackNavigator()
+const { Navigator, Screen, Group } = createStackNavigator()
 const screenOptions: StackNavigationOptions = {
   headerShown: false,
   cardStyle: { backgroundColor: 'transparent' },
@@ -16,7 +17,9 @@ export function RootStack() {
   return (
     <NavigationContainer>
       <Navigator>
-        <Screen name='splash' component={SplashScreen} options={screenOptions} />
+        <Group screenOptions={screenOptions}>
+          <Screen name={Screens.Main} component={MainStack} />
+        </Group>
       </Navigator>
     </NavigationContainer>
   )

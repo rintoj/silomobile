@@ -23,7 +23,7 @@ export function LoginScreen() {
       <Screen backgroundColor={COLOR.TRANSPARENT} withSafeArea>
         <KeyboardAvoidingView style={styles.container}>
           <Stack fill alignCenter padding='normal'>
-            <Spacer />
+            <Spacer size='large' />
             <Logo />
             <Spacer />
             <LoginForm onSuccess={navigateToHome} />
