@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { Storage } from './async-storage'
+import Storage from '@react-native-community/async-storage'
 
 export function usePersistedState<T>(
   key: string,
