@@ -1,0 +1,47 @@
+{
+  "name": "silo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/rintoj/silomobile.git",
+  "private": true,
+  "author": "Rinto Jose <rintoj@gmail.com>",
+  "workspaces": [
+    "component/*",
+    "devops",
+    "feature/*",
+    "mobile",
+    "screens",
+    "util"
+  ],
+  "scripts": {
+    "android": "yarn workspace @silo/mobile android",
+    "ios": "yarn workspace @silo/mobile ios",
+    "lint": "tsc -p . --noEmit && eslint . --ext .js,.ts,.tsx  --fix &&  yarn prettier",
+    "cli": "yarn workspace @silo/devops cli",
+    "pod:install": "npx pod-install mobile/ios",
+    "prettier": "prettier --write \"**/**/*.{ts,tsx,json}\" -c",
+    "start": "yarn workspace @silo/mobile start"
+  },
+  "devDependencies": {
+    "@react-native-community/eslint-config": "^3.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.7.0",
+    "@typescript-eslint/parser": "^5.7.0",
+    "eslint": "^7.14.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-typescript": "^0.14.0",
+    "lint-staged": "^11.0.0",
+    "organize-imports-cli": "^0.8.0",
+    "prettier": "^2.3.2",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "organize-imports-cli",
+      "prettier --write"
+    ]
+  }
+}

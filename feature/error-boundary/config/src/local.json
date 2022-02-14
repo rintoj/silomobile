@@ -1,0 +1,10 @@
+{
+  "env": "dev",
+  "app": {
+    "urlScheme": "usesilo-dev://"
+  },
+  "codePush": {
+    "ios": "<TBD>",
+    "android": "<TBD>"
+  }
+}
