@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es2019",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "outDir": "./dist",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "declaration": false,
+    "esModuleInterop": true,
+    "noUnusedLocals": false,
+    "resolveJsonModule": true
+  },
+  "exclude": ["node_modules"],
+  "paths": {
+    "@gm-frontend/util": ["./util/src"],
+    "@gm-component/*": ["./components/*/src"],
+    "@gm-feature/*": ["./features/*/src"],
+    "@gm-screen/*": ["./screens/*/src"]
+  }
+}
