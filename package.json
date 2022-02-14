@@ -6,9 +6,9 @@
   "private": true,
   "author": "Rinto Jose <rintoj@gmail.com>",
   "workspaces": [
-    "components/*",
+    "component/*",
     "devops",
-    "features/*",
+    "feature/*",
     "mobile",
     "screens",
     "util"
