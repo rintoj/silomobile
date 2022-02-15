@@ -21,6 +21,7 @@ export function LoginFormView({ onSubmit }: Props) {
         placeholder='john@doe.com'
         placeholderColor={COLOR_X.PLACEHOLDER}
         backgroundColor={COLOR_X.ACCENT2}
+        textColor={COLOR.PRIMARY}
         autoCapitalize='none'
         keyboardType='email-address'
       />
@@ -32,6 +33,7 @@ export function LoginFormView({ onSubmit }: Props) {
         placeholder='password'
         placeholderColor={COLOR_X.PLACEHOLDER}
         backgroundColor={COLOR_X.ACCENT2}
+        textColor={COLOR.PRIMARY}
         keyboardType='ascii-capable'
       />
       <Spacer />
