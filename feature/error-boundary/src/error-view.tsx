@@ -1,4 +1,4 @@
-import { Text } from 'native-x-text'
+import { Text } from '@silo-component/text'
 import { WarningIcon } from 'native-x-icon'
 import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'

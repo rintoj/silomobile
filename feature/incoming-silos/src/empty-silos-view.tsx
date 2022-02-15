@@ -1,6 +1,6 @@
+import { Text } from '@silo-component/text'
 import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
-import { Text } from 'native-x-text'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
 import PlaceHolderIcon from './placeholder.svg'
