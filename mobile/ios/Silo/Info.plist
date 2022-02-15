@@ -51,6 +51,8 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow camera permissions to scan qr code using device camera</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>DMSans-Bold.ttf</string>
