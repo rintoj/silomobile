@@ -8,6 +8,7 @@ import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
+import { Screens } from '../navigation/screens'
 
 const styles = {
   container: { flex: 1 },
@@ -16,7 +17,7 @@ const styles = {
 export function LoginScreen() {
   const { navigate } = useNavigation<any>()
   const navigateToHome = () => {
-    navigate('home')
+    navigate(Screens.Home)
   }
   return (
     <Background>
