@@ -4,6 +4,7 @@ import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
 import Scanner from './scanner.svg'
+import { Tappable } from 'native-x-tappable'
 
 const styles = {
   container: {
@@ -22,7 +23,10 @@ const styles = {
   fabIcon: { top: -20 },
 }
 
-export function NavBar() {
+interface Props {
+  onScanIconTap?: () => void
+}
+export function NavBar({ onScanIconTap }: Props) {
   return (
     <Stack
       border
@@ -32,17 +36,19 @@ export function NavBar() {
       overflowVisible
     >
       <Stack horizontal alignMiddle alignCenter overflowVisible>
-        <Stack
-          alignCenter
-          alignMiddle
-          borderRadius='round'
-          width={78}
-          height={78}
-          backgroundColor={COLOR_X.ACCENT1}
-          style={styles.fabIcon}
-        >
-          <Scanner />
-        </Stack>
+        <Tappable onTap={onScanIconTap}>
+          <Stack
+            alignCenter
+            alignMiddle
+            borderRadius='round'
+            width={78}
+            height={78}
+            backgroundColor={COLOR_X.ACCENT1}
+            style={styles.fabIcon}
+          >
+            <Scanner />
+          </Stack>
+        </Tappable>
       </Stack>
       <Spacer size='small' />
     </Stack>
