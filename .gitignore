@@ -104,3 +104,4 @@ dist
 .tern-port
 feature/error-boundary/config/src/config.json
 .DS_Store
+feature/config/src/config.json
