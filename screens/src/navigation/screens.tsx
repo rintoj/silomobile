@@ -3,10 +3,13 @@ import { ById } from '@silo/util'
 export enum Screens {
   Main = 'MAIN',
   Splash = 'SPLASH',
+  Login = 'LOGIN_SCREEN',
   Error = 'ERROR',
 }
 
 export type MainStackParamList = {
+  [Screens.Splash]: undefined
+  [Screens.Login]: undefined
 }
 
 type ScreenConfigType = {

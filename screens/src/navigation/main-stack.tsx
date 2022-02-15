@@ -2,6 +2,7 @@ import { BottomTabNavigationOptions, createBottomTabNavigator } from '@react-nav
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
+import { LoginScreen } from '../login/login-screen'
 import { SplashScreen } from '../splash/splash-screen'
 import { appScreens, MainStackParamList, Screens } from './screens'
 
@@ -35,6 +36,7 @@ export function MainStack() {
     <Stack fill backgroundColor={COLOR.PRIMARY}>
       <Navigator initialRouteName={Screens.Splash} screenOptions={navigatorOptions}>
         <Screen name={Screens.Splash} component={SplashScreen} />
+        <Screen name={Screens.Login} component={LoginScreen} />
         <Group screenOptions={mainScreenOptions}>{mainMenuNavigatorScreens}</Group>
         <Group>{publicNavigatorScreens}</Group>
       </Navigator>
