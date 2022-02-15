@@ -7,7 +7,6 @@ async function configureEnvironment(environment: Environment) {
   const configDir = resolve(__dirname, '..', '..', 'feature', 'config', 'src')
   const configFile = resolve(configDir, `${environment}.json`)
   const targetFile = resolve(configDir, 'config.json')
-  console.log({ configFile, targetFile })
   await writeFileWithTemplate(configFile, targetFile, {})
 }
 
