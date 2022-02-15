@@ -47,9 +47,6 @@ export function Popup({ visible, accentColor = COLOR.ACCENT, children, onClose, 
       visible={visible}
       animationType='slide'
       presentationStyle='pageSheet'
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //@ts-ignore
-      interactiveDismissEnabled={true}
       onShow={onShow}
       onDismiss={onClose ?? goBack}
       onRequestClose={onClose ?? goBack}
