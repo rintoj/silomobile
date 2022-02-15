@@ -1,0 +1,54 @@
+name: Lint & Test
+
+on: pull_request
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  run-linters:
+    name: Run linters
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - uses: dorny/paths-filter@v2.10.1
+        id: filter
+        with:
+          list-files: shell
+          filters: |
+            frontend:
+              - '**/*.ts'
+              - '**/*.tsx'
+
+      - name: Install Node.js dependencies - frontend
+        if: ${{ steps.filter.outputs.frontend == 'true' || steps.filter.outputs.backend == 'true' }}
+        run: yarn install --frozen-lockfile
+
+      - name: Add import organizer - frontend
+        if: ${{ steps.filter.outputs.frontend == 'true' || steps.filter.outputs.backend == 'true' }}
+        run:
+          yarn add prettier-plugin-organize-imports@2.2.0 -W && git checkout package.json yarn.lock
+
+      - name: Configure environment - frontend
+        if: ${{ steps.filter.outputs.frontend == 'true' }}
+        run: yarn set:dev
+
+      - name: Run eslint - frontend
+        if: ${{ steps.filter.outputs.frontend == 'true' }}
+        run: yarn lint
+
+      - name: Commit lint fixes changes if any
+        uses: EndBug/add-and-commit@v7
+        with:
+          author_name: github-actions-knowabout
+          author_email: bot+github-actions-knowabout@users.noreply.github.com
+          message: 'Fix code style issues with eslint & prettier'

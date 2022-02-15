@@ -29,7 +29,9 @@ export function AvatarBadge({ visible, width, isBusy, missedCall }: AvatarOnline
     }
   }, [width])
 
-  if (!visible) return null
+  if (!visible) {
+    return null
+  }
 
   return (
     <Stack

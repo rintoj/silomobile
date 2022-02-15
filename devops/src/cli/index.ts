@@ -1,5 +1,5 @@
-import minimist from 'minimist'
 import chalk from 'chalk'
+import minimist from 'minimist'
 
 function showUsage() {
   console.log(`
