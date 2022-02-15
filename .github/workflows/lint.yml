@@ -26,8 +26,8 @@ jobs:
           list-files: shell
           filters: |
             frontend:
-              - 'frontend/**/*.ts'
-              - 'frontend/**/*.tsx'
+              - '**/*.ts'
+              - '**/*.tsx'
 
       - name: Install Node.js dependencies - frontend
         if: ${{ steps.filter.outputs.frontend == 'true' || steps.filter.outputs.backend == 'true' }}
