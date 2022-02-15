@@ -15,11 +15,5 @@
     "noUnusedLocals": false,
     "resolveJsonModule": true
   },
-  "exclude": ["node_modules"],
-  "paths": {
-    "@silo-frontend/util": ["./util/src"],
-    "@silo-component/*": ["./component/*/src"],
-    "@silo-feature/*": ["./feature/*/src"],
-    "@silo-screen/*": ["./screens/*/src"]
-  }
+  "exclude": ["node_modules"]
 }

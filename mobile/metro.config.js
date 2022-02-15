@@ -13,13 +13,13 @@ module.exports = (async () => {
     resolver: { sourceExts, assetExts },
   } = await getDefaultConfig()
   return {
-    watchFolders: [path.resolve(__dirname, '../../')],
+    watchFolders: [path.resolve(__dirname, '../')],
     transformer: {
       babelTransformerPath: require.resolve('react-native-svg-transformer'),
       getTransformOptions: async () => ({
         transform: {
           experimentalImportSupport: false,
-          inlineRequires: false,
+          inlineRequires: true,
         },
       }),
     },

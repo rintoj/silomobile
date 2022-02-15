@@ -1,0 +1,9 @@
+{
+  "name": "@silo-feature/logo",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "dependencies": {
+    "react-native-svg": "^12.1.1"
+  }
+}
