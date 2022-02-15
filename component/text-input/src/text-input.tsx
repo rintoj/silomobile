@@ -89,7 +89,7 @@ function TextInputComponent(props: TextInputProps, ref?: React.Ref<any>) {
   const { getColor, getTextColor } = useTheme()
   const containerStyle = useContainerStyle({ ...props, backgroundColor, borderColor, padding })
   const textContainerInputStyle = useContainerStyle({ padding })
-  const textInputStyle = [...useTextStyle({ textColor }), { fontFamily: 'System' }]
+  const textInputStyle = [...useTextStyle({ textColor }), { fontFamily: 'DM Sans' }]
   const transparentColor = getColor?.(COLOR.TRANSPARENT)
   const labelColorStyle = getTextColor?.(labelColor)
   const placeholderColor = getColor?.(props.placeholderColor || COLOR.DIVIDER)
