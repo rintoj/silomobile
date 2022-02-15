@@ -1,15 +1,18 @@
 import { ById } from '@silo/util'
+import { HomeScreen } from '../home/home-screen'
 
 export enum Screens {
   Main = 'MAIN',
   Splash = 'SPLASH',
   Login = 'LOGIN_SCREEN',
+  Home = 'HOME_SCREEN',
   Error = 'ERROR',
 }
 
 export type MainStackParamList = {
   [Screens.Splash]: undefined
   [Screens.Login]: undefined
+  [Screens.Home]: undefined
 }
 
 type ScreenConfigType = {
@@ -21,6 +24,10 @@ type ScreenConfigType = {
 
 const publicScreens: ById<ScreenConfigType> = {}
 const mainScreens: ById<ScreenConfigType> = {
+  [Screens.Home]: {
+    screen: HomeScreen,
+    initialRouteName: Screens.Home,
+  },
 }
 
 export const appScreens = { publicScreens, mainScreens }
