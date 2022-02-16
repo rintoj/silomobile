@@ -7,14 +7,16 @@ import { CloseIcon } from 'native-x-icon'
 import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import { Tappable } from 'native-x-tappable'
-import { COLOR } from 'native-x-theme'
+import { COLOR, useTheme } from 'native-x-theme'
 import React, { useCallback } from 'react'
 import { Linking } from 'react-native'
 import { Screens } from '../navigation/screens'
 import QRCodeIcon from './qr-code-icon.svg'
+import { StatusBar } from 'react-native'
 
 export function CodeScannerModal() {
   const { navigate } = useNavigation<any>()
+  const { getColor } = useTheme()
   const closeModal = useCallback(() => navigate(Screens.Home), [navigate])
   const navigateToURL = useCallback((url: string) => {
     Linking.openURL(url).catch(err => console.error('unable to open the url', err))
@@ -22,6 +24,12 @@ export function CodeScannerModal() {
 
   return (
     <Popup visible accentColor={COLOR_X.ACCENT1}>
+      <StatusBar
+        barStyle='light-content'
+        backgroundColor={getColor(COLOR.ACCENT)}
+        animated
+        translucent
+      />
       <Stack
         alignCenter
         fill
