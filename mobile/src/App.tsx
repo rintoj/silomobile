@@ -18,7 +18,6 @@ import {
   useColorScheme,
   View,
 } from 'react-native'
-import SplashScreen from 'react-native-splash-screen'
 import {
   Colors,
   DebugInstructions,
@@ -31,10 +30,6 @@ const Section: React.FC<{
   title: string
 }> = ({ children, title }) => {
   const isDarkMode = useColorScheme() === 'dark'
-
-  React.useEffect(() => {
-    SplashScreen.hide()
-  }, [])
 
   return (
     <View style={styles.sectionContainer}>

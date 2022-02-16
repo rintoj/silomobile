@@ -3,14 +3,12 @@ import { HomeScreen } from '../home/home-screen'
 
 export enum Screens {
   Main = 'MAIN',
-  Splash = 'SPLASH',
   Login = 'LOGIN_SCREEN',
   Home = 'HOME_SCREEN',
   Error = 'ERROR',
 }
 
 export type MainStackParamList = {
-  [Screens.Splash]: undefined
   [Screens.Login]: undefined
   [Screens.Home]: undefined
 }
