@@ -1,10 +1,9 @@
 import { COLOR_X } from '@silo-feature/theme'
 import { Stack } from 'native-x-stack'
 import React from 'react'
-import { ImageBackground } from 'react-native'
+import { Dimensions, ImageBackground } from 'react-native'
 import { styles as s } from 'tachyons-react-native'
 import background from './images/background.jpg'
-import { Dimensions } from 'react-native'
 
 interface Props {
   children?: React.ReactChild
