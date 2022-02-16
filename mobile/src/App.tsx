@@ -18,7 +18,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native'
-
+import SplashScreen from 'react-native-splash-screen'
 import {
   Colors,
   DebugInstructions,
@@ -26,8 +26,6 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen'
-
-import SplashScreen from 'react-native-splash-screen'
 
 const Section: React.FC<{
   title: string
