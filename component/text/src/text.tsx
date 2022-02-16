@@ -97,7 +97,7 @@ export function Text(props: TextProps) {
       thin && s.fw2,
       italic && s.i,
       textStyle,
-      { fontFamily: 'System' },
+      { fontFamily: 'DM Sans' },
       fontSize ? FONT_SIZE[fontSize] : {},
       style,
     ],

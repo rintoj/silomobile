@@ -105,3 +105,4 @@ dist
 feature/error-boundary/config/src/config.json
 .DS_Store
 feature/config/src/config.json
+mobile/ios/Silo.app.dSYM.zip
