@@ -40,13 +40,7 @@ interface Props {
 export function NavBar({ onScanIconTap }: Props) {
   const { bottom } = useSafeAreaInsets()
   return (
-    <Stack
-      border
-      fillHorizontal
-      backgroundColor={COLOR.PRIMARY}
-      style={styles.container}
-      overflowVisible
-    >
+    <Stack fillHorizontal backgroundColor={COLOR.PRIMARY} style={styles.container} overflowVisible>
       <Stack horizontal alignMiddle alignCenter overflowVisible padding='vertical:x-small'>
         <Tappable onTap={onScanIconTap}>
           <Stack
