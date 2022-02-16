@@ -9,10 +9,9 @@ import { Stack } from 'native-x-stack'
 import { Tappable } from 'native-x-tappable'
 import { COLOR, useTheme } from 'native-x-theme'
 import React, { useCallback } from 'react'
-import { Linking } from 'react-native'
+import { Linking, StatusBar } from 'react-native'
 import { Screens } from '../navigation/screens'
 import QRCodeIcon from './qr-code-icon.svg'
-import { StatusBar } from 'react-native'
 
 export function CodeScannerModal() {
   const { navigate } = useNavigation<any>()
