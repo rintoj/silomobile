@@ -16,7 +16,7 @@ enum Type {
 }
 
 async function createComponentOrFeature(name: string, type: Type) {
-  const packagePath = resolve(getRootDir(), `${type}s`)
+  const packagePath = resolve(getRootDir(), `${type}`)
   if (existsSync(resolve(packagePath, name))) {
     throw new Error(
       `A ${type} by name "${name}" exists! Terminating script not to overwrite the existing content.`,
