@@ -7,11 +7,18 @@ import background from './images/background.jpg'
 
 interface Props {
   children?: React.ReactChild
+  onLoad?: () => void
 }
 
-export function Background({ children }: Props) {
+export function Background({ children, onLoad }: Props) {
   return (
-    <ImageBackground source={background} resizeMode='cover' style={s.flex}>
+    <ImageBackground
+      fadeDuration={0}
+      source={background}
+      resizeMode='cover'
+      style={s.flex}
+      onLoadEnd={onLoad}
+    >
       <Stack backgroundColor={COLOR_X.ACCENT3} opacity='low' style={s.absolute as any} fill />
       {children}
     </ImageBackground>
