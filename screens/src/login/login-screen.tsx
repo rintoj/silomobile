@@ -8,6 +8,7 @@ import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
 import { KeyboardAvoidingView } from 'react-native'
+import SplashScreen from 'react-native-splash-screen'
 import { Screens } from '../navigation/screens'
 
 const styles = {
@@ -19,18 +20,25 @@ export function LoginScreen() {
   const navigateToHome = () => {
     navigate(Screens.Home)
   }
+
+  React.useEffect(() => {
+    SplashScreen.hide()
+  }, [])
+
   return (
-    <Background>
-      <Screen backgroundColor={COLOR.TRANSPARENT} withSafeArea>
-        <KeyboardAvoidingView style={styles.container}>
-          <Stack fill alignCenter padding='normal'>
-            <Spacer size='large' />
-            <Logo />
-            <Spacer />
-            <LoginForm onSuccess={navigateToHome} />
-          </Stack>
-        </KeyboardAvoidingView>
-      </Screen>
-    </Background>
+    <Stack fill backgroundColor={COLOR.SECONDARY}>
+      <Background>
+        <Screen backgroundColor={COLOR.TRANSPARENT} withSafeArea>
+          <KeyboardAvoidingView style={styles.container}>
+            <Stack fill alignCenter padding='normal'>
+              <Spacer size='large' />
+              <Logo />
+              <Spacer />
+              <LoginForm onSuccess={navigateToHome} />
+            </Stack>
+          </KeyboardAvoidingView>
+        </Screen>
+      </Background>
+    </Stack>
   )
 }

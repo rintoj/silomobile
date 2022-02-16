@@ -3,7 +3,6 @@ import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
 import { LoginScreen } from '../login/login-screen'
-import { SplashScreen } from '../splash/splash-screen'
 import { appScreens, MainStackParamList, Screens } from './screens'
 
 const { mainScreens, publicScreens } = appScreens
@@ -34,8 +33,7 @@ export function MainStack() {
 
   return (
     <Stack fill backgroundColor={COLOR.PRIMARY}>
-      <Navigator initialRouteName={Screens.Splash} screenOptions={navigatorOptions}>
-        <Screen name={Screens.Splash} component={SplashScreen} />
+      <Navigator initialRouteName={Screens.Login} screenOptions={navigatorOptions}>
         <Screen name={Screens.Login} component={LoginScreen} />
         <Group screenOptions={mainScreenOptions}>{mainMenuNavigatorScreens}</Group>
         <Group>{publicNavigatorScreens}</Group>

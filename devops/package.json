@@ -4,7 +4,8 @@
   "main": "src/index.ts",
   "license": "MIT",
   "scripts": {
-    "cli": "ts-node --transpile-only src/cli/index.ts"
+    "cli": "ts-node --transpile-only src/cli/index.ts",
+    "setenv": "ts-node --transpile-only src/set-env.ts"
   },
   "dependencies": {
     "chalk": "^4.1.1",
