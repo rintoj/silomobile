@@ -7,7 +7,7 @@ import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
-import { KeyboardAvoidingView } from 'react-native'
+import { KeyboardAvoidingView, ScrollView } from 'react-native'
 import SplashScreen from 'react-native-splash-screen'
 import { Screens } from '../navigation/screens'
 
@@ -26,10 +26,10 @@ export function LoginScreen() {
   }, [])
 
   return (
-    <Stack fill backgroundColor={COLOR.SECONDARY}>
-      <Background>
-        <Screen backgroundColor={COLOR.TRANSPARENT} withSafeArea>
-          <KeyboardAvoidingView style={styles.container}>
+    <Background>
+      <Screen backgroundColor={COLOR.TRANSPARENT} withSafeArea>
+        <ScrollView>
+          <KeyboardAvoidingView behavior='position' style={styles.container}>
             <Stack fill alignCenter padding='normal'>
               <Spacer size='large' />
               <Logo />
@@ -37,8 +37,8 @@ export function LoginScreen() {
               <LoginForm onSuccess={navigateToHome} />
             </Stack>
           </KeyboardAvoidingView>
-        </Screen>
-      </Background>
-    </Stack>
+        </ScrollView>
+      </Screen>
+    </Background>
   )
 }
