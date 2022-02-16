@@ -1,11 +1,10 @@
 import { COLOR_X } from '@silo-feature/theme'
-import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
+import { Tappable } from 'native-x-tappable'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Scanner from './scanner.svg'
-import { Tappable } from 'native-x-tappable'
-
 const styles = {
   container: {
     borderRadius: 40,
@@ -19,14 +18,27 @@ const styles = {
     shadowOpacity: 0.2,
     shadowRadius: 3.84,
     elevation: 5,
+    position: 'absolute' as const,
+    bottom: 0,
   },
-  fabIcon: { top: -20 },
+  fabIcon: {
+    top: -12,
+    shadowColor: '##03002b',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 10,
+    elevation: 5,
+  },
 }
 
 interface Props {
   onScanIconTap?: () => void
 }
 export function NavBar({ onScanIconTap }: Props) {
+  const { bottom } = useSafeAreaInsets()
   return (
     <Stack
       border
@@ -35,7 +47,7 @@ export function NavBar({ onScanIconTap }: Props) {
       style={styles.container}
       overflowVisible
     >
-      <Stack horizontal alignMiddle alignCenter overflowVisible>
+      <Stack horizontal alignMiddle alignCenter overflowVisible padding='vertical:x-small'>
         <Tappable onTap={onScanIconTap}>
           <Stack
             alignCenter
@@ -44,13 +56,14 @@ export function NavBar({ onScanIconTap }: Props) {
             width={78}
             height={78}
             backgroundColor={COLOR_X.ACCENT1}
+            overflowVisible
             style={styles.fabIcon}
           >
             <Scanner />
           </Stack>
         </Tappable>
       </Stack>
-      <Spacer size='small' />
+      <Stack height={bottom} fillHorizontal />
     </Stack>
   )
 }
