@@ -2,6 +2,7 @@ import { Text } from '@silo-component/text'
 import { Tappable } from 'native-x-tappable'
 import {
   COLOR,
+  BORDER_SIZE,
   ContainerStyleProps,
   TextStyleProps,
   useContainerStyle,
@@ -59,6 +60,7 @@ export type ButtonProps<T> = PropsWithData<T> | PropsWithoutData
 
 export function Button<T>(props: ButtonProps<T>) {
   const {
+    border,
     children,
     disabled = false,
     loading = false,
@@ -113,8 +115,10 @@ export function Button<T>(props: ButtonProps<T>) {
       minHeight ? { minHeight } : undefined,
       maxWidth ? { maxWidth } : undefined,
       maxHeight ? { maxHeight } : undefined,
+      border === true ? BORDER_SIZE.normal : BORDER_SIZE[border ? border : 'none'],
     ]
   }, [
+    border,
     containerStyle,
     fill,
     fillHorizontal,
@@ -134,8 +138,8 @@ export function Button<T>(props: ButtonProps<T>) {
     <Tappable data={data} disabled={disabled} onTap={onTap}>
       <View
         backgroundColor={loading || disabled ? COLOR.DISABLED : backgroundColor}
-        style={style as any}
         {...props}
+        style={style as any}
       >
         {!rightIcon && loading ? (
           <>
