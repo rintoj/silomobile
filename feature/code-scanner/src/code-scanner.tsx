@@ -1,5 +1,5 @@
-import { COLOR } from 'native-x-theme'
 import { Stack } from 'native-x-stack'
+import { COLOR } from 'native-x-theme'
 import React, { useCallback } from 'react'
 import { BarCodeReadEvent, RNCamera } from 'react-native-camera'
 import QRCodeScanner from 'react-native-qrcode-scanner'
