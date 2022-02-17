@@ -1,11 +1,11 @@
 import { Button } from '@silo-component/button'
 import { Text } from '@silo-component/text'
 import { COLOR_X } from '@silo-feature/theme'
-import { LocationIcon } from 'native-x-icon'
 import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
+import LocationIcon from './images/location.svg'
 
 enum PurchaseOrderStatus {
   RECEIVED = 'RECEIVED',
@@ -36,39 +36,55 @@ export function PurchaseOrderView({ onReceiveTap, order }: Props) {
   const received = status === 'RECEIVED'
   return (
     <Stack alignTop>
-      <Stack fillHorizontal horizontal padding='normal'>
-        <Stack fill>
+      <Spacer size='x-small' />
+      <Stack fillHorizontal horizontal padding='vertical:small'>
+        <Stack fill padding='horizontal:normal'>
           <Text textColor={COLOR_X.ACCENT2}>Vendor</Text>
-          <Text textColor={COLOR_X.ACCENT3}>{vendor.name}</Text>
-          <Text textColor={COLOR_X.ACCENT3}>{vendor.address}</Text>
+          <Text fill textColor={COLOR_X.ACCENT3} fontSize='large'>
+            {vendor.name}
+          </Text>
+          <Text textColor={COLOR_X.ACCENT3} fontSize='large'>
+            {vendor.address}
+          </Text>
         </Stack>
-        <Stack fill alignRight>
+        <Stack fill alignRight padding='horizontal:normal'>
           <Text textColor={COLOR_X.ACCENT2}>Vendor Invoice #</Text>
-          <Text textColor={COLOR_X.ACCENT3}>{invoice}</Text>
+          <Text textColor={COLOR_X.ACCENT3} fontSize='large'>
+            {invoice}
+          </Text>
           <Spacer size='small' />
+          <Spacer size='xx-small' />
           <Text textColor={COLOR_X.ACCENT2}>BOL #</Text>
-          <Text textColor={COLOR_X.ACCENT3}>{bol}</Text>
+          <Text textColor={COLOR_X.ACCENT3} fontSize='large'>
+            {bol}
+          </Text>
         </Stack>
       </Stack>
-      <Stack fillHorizontal horizontal padding='normal'>
-        <Stack fill>
+      <Spacer size='xx-small' />
+      <Stack fillHorizontal horizontal padding='vertical:small'>
+        <Stack fill padding='horizontal:normal'>
           <Stack horizontal alignMiddle>
-            <Text textColor={COLOR_X.ACCENT2}>Location</Text>
+            <Text textColor={COLOR_X.ACCENT2} fontSize='large'>
+              Location
+            </Text>
             <Spacer size='xx-small' />
-            <LocationIcon size={14} color={COLOR_X.ACCENT2} />
+            <LocationIcon />
           </Stack>
-          <Text textColor={COLOR_X.ACCENT3}>{vendor.location}</Text>
+          <Text textColor={COLOR_X.ACCENT3} fontSize='large'>
+            {vendor.location}
+          </Text>
         </Stack>
-        <Stack fill>
-          <Stack fill alignRight alignMiddle>
+        <Stack fill padding='horizontal:normal'>
+          <Stack fill alignRight>
             {received ? (
               <Button
                 rounded={false}
                 size='small'
-                fontSize='small'
-                width={140}
+                width={145}
+                height={43}
                 backgroundColor={COLOR.TRANSPARENT}
                 border
+                borderRadius='large'
                 borderColor={COLOR.ACCENT}
                 textColor={COLOR.ACCENT}
                 onTap={onReceiveTap}

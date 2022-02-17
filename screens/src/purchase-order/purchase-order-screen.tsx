@@ -26,9 +26,9 @@ export function PurchaseOrderScreen() {
         <PageHeader showBackButton accentColor={COLOR.SUCCESS} onTapLeftButton={navigateToHome}>
           <Stack horizontal alignMiddle fill alignCenter>
             <PurchaseOrderIcon />
-            <Spacer size='x-small' />
-            <Text semiBold fontSize='large' textColor={COLOR.PRIMARY}>
-              PO #65444
+            <Spacer size='small' />
+            <Text semiBold fontSize='x-large' textColor={COLOR.PRIMARY}>
+              PO # 65444
             </Text>
           </Stack>
         </PageHeader>

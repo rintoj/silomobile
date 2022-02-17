@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
 import { Text } from '@silo-component/text'
 import { COLOR_X } from '@silo-feature/theme'
-import { ChevronBackIcon, CloseIcon } from 'native-x-icon'
+import { ArrowBackIcon, CloseIcon } from 'native-x-icon'
 import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
@@ -39,12 +39,14 @@ export function PageHeader({
   return (
     <Stack backgroundColor={accentColor}>
       <Spacer size='small' />
+      <Spacer size='xx-small' />
       <Spacer size='x-small' />
-      <Stack horizontal alignCenter alignMiddle padding='normal'>
+      <Stack horizontal alignCenter alignMiddle padding={['horizontal:small', 'vertical:small']}>
+        <Spacer size='xx-small' />
         <Stack width={80}>
           {showBackButton ? (
             <HeaderButton onTap={onTapLeftButton ?? goBack}>
-              <ChevronBackIcon color={COLOR.PRIMARY} />
+              <ArrowBackIcon color={COLOR.PRIMARY} />
             </HeaderButton>
           ) : (
             <HeaderButton disabled={leftButtonDisabled} onTap={onTapLeftButton ?? goBack}>
@@ -77,6 +79,7 @@ export function PageHeader({
           )}
         </Stack>
       </Stack>
+      <Spacer size='xx-small' />
     </Stack>
   )
 }

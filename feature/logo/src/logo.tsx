@@ -1,4 +1,3 @@
-import { Stack } from 'native-x-stack'
 import { COLOR, useTheme } from 'native-x-theme'
 import React from 'react'
 import SiloLogo from './logo.svg'
@@ -22,27 +21,11 @@ const logoSizes: Record<LogoSize, { width: number; height: number }> = {
 
 interface Props {
   size?: LogoSize
-  showCircle?: boolean
 }
 
-export function Logo({ size = 'normal', showCircle }: Props) {
+export function Logo({ size = 'normal' }: Props) {
   const { getColor } = useTheme()
-
   const { width, height } = logoSizes[size]
-  const icon = <SiloLogo width={width} height={height} color={getColor(COLOR.SECONDARY)} />
 
-  if (showCircle) {
-    return (
-      <Stack
-        alignCenter
-        alignMiddle
-        padding={size}
-        backgroundColor={COLOR.DIVIDER}
-        borderRadius='round'
-      >
-        <Stack padding='small'>{icon}</Stack>
-      </Stack>
-    )
-  }
-  return icon
+  return <SiloLogo width={width} height={height} color={getColor(COLOR.SECONDARY)} />
 }

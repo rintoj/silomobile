@@ -13,9 +13,9 @@ export function LotList() {
       </Stack>
       <Spacer size='x-small' />
       <LotItem />
-      <Spacer size='x-small' />
+      <Stack height={10} />
       <LotItem />
-      <Spacer size='x-small' />
+      <Stack height={10} />
       <LotItem />
     </Stack>
   )

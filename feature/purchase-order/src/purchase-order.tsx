@@ -11,7 +11,8 @@ export function PurchaseOrder() {
   return (
     <Stack fill>
       <PurchaseOrderView order={purchaseOrder as any} />
-      <Spacer />
+      <Spacer size='small' />
+      <Spacer size='x-small' />
       <LotList />
     </Stack>
   )

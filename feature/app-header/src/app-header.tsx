@@ -9,7 +9,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 const styles = {
   container: {
-    borderRadius: 10,
+    borderRadius: 20,
     borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
     elevation: 5,
@@ -33,9 +33,12 @@ export function AppHeader() {
     <Stack fillHorizontal backgroundColor={COLOR.SECONDARY} style={styles.container}>
       <Stack height={top} />
       <Stack horizontal alignMiddle padding='normal'>
+        <Spacer size='xx-small' />
         <Logo size='small' />
         <Spacer fill />
-        <Text textColor={COLOR.PRIMARY}>Xavier Ponce</Text>
+        <Text fontSize='large' textColor={COLOR.PRIMARY}>
+          Xavier Ponce
+        </Text>
         <Spacer size='small' />
         <Avatar />
       </Stack>

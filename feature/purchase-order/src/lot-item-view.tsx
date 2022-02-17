@@ -5,13 +5,13 @@ import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
-import LotIcon from './lot-icon.svg'
+import LotIcon from './images/lot-icon.svg'
 
 export function LotItemView() {
   return (
-    <Stack fillHorizontal>
+    <Stack fillHorizontal backgroundColor={COLOR.PRIMARY}>
       <Stack
-        height={37}
+        height={40}
         alignMiddle
         horizontal
         padding='horizontal:normal'
@@ -23,10 +23,23 @@ export function LotItemView() {
         <Spacer size='small' />
         <ArrowForwardIcon size={16} color={COLOR.PRIMARY} />
       </Stack>
-      <Stack padding='normal' backgroundColor={COLOR.PRIMARY}>
-        <Text textColor={COLOR_X.ACCENT2}>Location</Text>
-        <Text textColor={COLOR_X.ACCENT3}>Angel Sweet Cherry Tomato - 2 pint - Green Label</Text>
+      <Spacer size='xx-small' />
+      <Stack fillHorizontal horizontal padding='vertical:small'>
+        <Spacer size='small' />
+        <Stack fill>
+          <Text textColor={COLOR_X.ACCENT2}>Item</Text>
+          <Text textColor={COLOR_X.ACCENT3}>Angel Sweet Cherry Tomato - 2 pint - Green Label</Text>
+        </Stack>
+        <Spacer size='x-small' />
+        <Stack alignRight width={60}>
+          <Text textColor={COLOR_X.ACCENT2}>Total u</Text>
+          <Text textColor={COLOR_X.ACCENT2} fontSize='large'>
+            112
+          </Text>
+        </Stack>
+        <Spacer size='small' />
       </Stack>
+      <Spacer size='x-small' />
     </Stack>
   )
 }
