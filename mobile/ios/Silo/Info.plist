@@ -1,154 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-	<dict>
-		<key>
+<dict>
+	<key>
 			CFBundleDevelopmentRegion
 		</key>
-		<string>
+	<string>
 			en
 		</string>
-		<key>
+	<key>
 			CFBundleDisplayName
 		</key>
-		<string>
+	<string>
 			Silo
 		</string>
-		<key>
+	<key>
 			CFBundleExecutable
 		</key>
-		<string>
+	<string>
 			$(EXECUTABLE_NAME)
 		</string>
-		<key>
+	<key>
 			CFBundleIdentifier
 		</key>
-		<string>
+	<string>
 			$(PRODUCT_BUNDLE_IDENTIFIER)
 		</string>
-		<key>
+	<key>
 			CFBundleInfoDictionaryVersion
 		</key>
-		<string>
+	<string>
 			6.0
 		</string>
-		<key>
+	<key>
 			CFBundleName
 		</key>
-		<string>
+	<string>
 			$(PRODUCT_NAME)
 		</string>
-		<key>
+	<key>
 			CFBundlePackageType
 		</key>
-		<string>
+	<string>
 			APPL
 		</string>
-		<key>
+	<key>
 			CFBundleShortVersionString
 		</key>
-		<string>
+	<string>
 			1.0
 		</string>
-		<key>
+	<key>
 			CFBundleSignature
 		</key>
-		<string>
+	<string>
 			????
 		</string>
-		<key>
+	<key>
 			CFBundleVersion
 		</key>
-		<string>
+	<string>
 			1
 		</string>
-		<key>
+	<key>
 			LSRequiresIPhoneOS
 		</key>
-		<true />
-		<key>
+	<true/>
+	<key>
 			NSAppTransportSecurity
 		</key>
-		<dict>
-			<key>
+	<dict>
+		<key>
 				NSExceptionDomains
 			</key>
-			<dict>
-				<key>
+		<dict>
+			<key>
 					localhost
 				</key>
-				<dict>
-					<key>
+			<dict>
+				<key>
 						NSExceptionAllowsInsecureHTTPLoads
 					</key>
-					<true />
-				</dict>
+				<true/>
 			</dict>
 		</dict>
-		<key>
-			NSLocationWhenInUseUsageDescription
-		</key>
-		<string />
-		<key>
-			UILaunchStoryboardName
-		</key>
-		<string>
-			LaunchScreen
-		</string>
-		<key>
-			UIRequiredDeviceCapabilities
-		</key>
-		<array>
-			<string>
-				armv7
-			</string>
-		</array>
-		<key>
-			UISupportedInterfaceOrientations
-		</key>
-		<array>
-			<string>
-				UIInterfaceOrientationPortrait
-			</string>
-			<string>
-				UIInterfaceOrientationLandscapeLeft
-			</string>
-			<string>
-				UIInterfaceOrientationLandscapeRight
-			</string>
-		</array>
-		<key>
-			UIViewControllerBasedStatusBarAppearance
-		</key>
-		<false />
-		<key>
+	</dict>
+	<key>
 			NSCameraUsageDescription
 		</key>
-		<string>
+	<string>
 			Allow camera permissions to scan qr code using device camera
 		</string>
-		<key>
+	<key>
+			NSLocationWhenInUseUsageDescription
+		</key>
+	<string></string>
+	<key>
 			UIAppFonts
 		</key>
-		<array>
-			<string>
+	<array>
+		<string>
 				DMSans-Bold.ttf
 			</string>
-			<string>
+		<string>
 				DMSans-BoldItalic.ttf
 			</string>
-			<string>
+		<string>
 				DMSans-Italic.ttf
 			</string>
-			<string>
+		<string>
 				DMSans-Medium.ttf
 			</string>
-			<string>
+		<string>
 				DMSans-MediumItalic.ttf
 			</string>
-			<string>
+		<string>
 				DMSans-Regular.ttf
 			</string>
-		</array>
-	</dict>
+	</array>
+	<key>
+			UILaunchStoryboardName
+		</key>
+	<string>
+			LaunchScreen
+		</string>
+	<key>
+			UIRequiredDeviceCapabilities
+		</key>
+	<array>
+		<string>
+				armv7
+			</string>
+	</array>
+	<key>
+			UISupportedInterfaceOrientations
+		</key>
+	<array>
+		<string>
+				UIInterfaceOrientationPortrait
+			</string>
+		<string>
+				UIInterfaceOrientationLandscapeLeft
+			</string>
+		<string>
+				UIInterfaceOrientationLandscapeRight
+			</string>
+	</array>
+	<key>
+			UIViewControllerBasedStatusBarAppearance
+		</key>
+	<false/>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+</dict>
 </plist>
