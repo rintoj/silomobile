@@ -9,7 +9,6 @@ import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
-import { Modals } from '../navigation/modals'
 import { Screens } from '../navigation/screens'
 
 export function HomeScreen() {
