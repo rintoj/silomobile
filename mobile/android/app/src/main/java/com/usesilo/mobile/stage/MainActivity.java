@@ -1,4 +1,4 @@
-package com.useslio.mobile.dev;
+package com.usesilo.mobile.stage;
 
 import android.os.Bundle;
 import org.devio.rn.splashscreen.SplashScreen;

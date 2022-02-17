@@ -1,0 +1,8 @@
+app_identifier("com.usesilo.mobile.stage") # The bundle identifier of your app
+apple_id("rinto.jose@toptal.com") # Your Apple email address
+
+itc_team_id("120317421") # App Store Connect Team ID
+team_id("3USTUG8F33") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
