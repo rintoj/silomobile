@@ -36,7 +36,9 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
+  <key>NSCameraUsageDescription</key>
+	<string>Allow camera permissions to scan qr code using device camera</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Need access to photo library to allow you to pick photos with barcodes</string>
 	<key>UILaunchStoryboardName</key>

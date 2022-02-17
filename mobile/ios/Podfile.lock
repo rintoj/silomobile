@@ -323,6 +323,14 @@ PODS:
     - React-Core
   - react-native-blur (0.8.0):
     - React
+  - react-native-camera (4.2.1):
+    - React-Core
+    - react-native-camera/RCT (= 4.2.1)
+    - react-native-camera/RN (= 4.2.1)
+  - react-native-camera/RCT (4.2.1):
+    - React-Core
+  - react-native-camera/RN (4.2.1):
+    - React-Core
   - react-native-cameraroll (4.1.2):
     - React-Core
   - react-native-get-random-values (1.7.2):
@@ -514,6 +522,7 @@ DEPENDENCIES:
   - React-logger (from `../../node_modules/react-native/ReactCommon/logger`)
   - react-native-app-bg-color (from `../../node_modules/react-native-app-bg-color`)
   - "react-native-blur (from `../../node_modules/@react-native-community/blur`)"
+  - react-native-camera (from `../../node_modules/react-native-camera`)
   - "react-native-cameraroll (from `../../node_modules/@react-native-community/cameraroll`)"
   - react-native-get-random-values (from `../../node_modules/react-native-get-random-values`)
   - react-native-image-picker (from `../../node_modules/react-native-image-picker`)
@@ -622,6 +631,8 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/react-native-app-bg-color"
   react-native-blur:
     :path: "../../node_modules/@react-native-community/blur"
+  react-native-camera:
+    :path: "../../node_modules/react-native-camera"
   react-native-cameraroll:
     :path: "../../node_modules/@react-native-community/cameraroll"
   react-native-get-random-values:
@@ -728,6 +739,7 @@ SPEC CHECKSUMS:
   React-logger: 23de8ea0f44fa00ee77e96060273225607fd4d78
   react-native-app-bg-color: b1f851659af013cfe27b8c37b26041dd4c9f2800
   react-native-blur: cad4d93b364f91e7b7931b3fa935455487e5c33c
+  react-native-camera: 3eae183c1d111103963f3dd913b65d01aef8110f
   react-native-cameraroll: 2957f2bce63ae896a848fbe0d5352c1bd4d20866
   react-native-get-random-values: 30b3f74ca34e30e2e480de48e4add2706a40ac8f
   react-native-image-picker: 4e6008ad8c2321622affa2c85432a5ebd02d480c
