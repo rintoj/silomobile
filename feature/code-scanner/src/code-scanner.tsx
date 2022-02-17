@@ -1,3 +1,5 @@
+import { COLOR } from 'native-x-theme'
+import { Stack } from 'native-x-stack'
 import React, { useCallback } from 'react'
 import { BarCodeReadEvent, RNCamera } from 'react-native-camera'
 import QRCodeScanner from 'react-native-qrcode-scanner'
@@ -27,10 +29,12 @@ export function CodeScanner({ onScanSuccess }: Props) {
   )
 
   return (
-    <QRCodeScanner
-      flashMode={RNCamera.Constants.FlashMode.auto}
-      cameraStyle={styles.camera}
-      onRead={handleOnRead}
-    />
+    <Stack backgroundColor={COLOR.DIVIDER} fill>
+      <QRCodeScanner
+        flashMode={RNCamera.Constants.FlashMode.auto}
+        cameraStyle={styles.camera}
+        onRead={handleOnRead}
+      />
+    </Stack>
   )
 }
