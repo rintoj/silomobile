@@ -47,8 +47,8 @@ export function NavBar({ onScanIconTap }: Props) {
             alignCenter
             alignMiddle
             borderRadius='round'
-            width={78}
-            height={78}
+            width={84}
+            height={84}
             backgroundColor={COLOR_X.ACCENT1}
             overflowVisible
             style={styles.fabIcon}
