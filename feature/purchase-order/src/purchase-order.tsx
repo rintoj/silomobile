@@ -10,7 +10,7 @@ const purchaseOrder = data[0]
 export function PurchaseOrder() {
   return (
     <Stack fill>
-      <PurchaseOrderView order={purchaseOrder} />
+      <PurchaseOrderView order={purchaseOrder as any} />
       <Spacer />
       <LotList />
     </Stack>
