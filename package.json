@@ -18,6 +18,7 @@
     "ios": "yarn workspace @silo/mobile ios",
     "set:dev": "yarn workspace @silo/devops setenv dev",
     "set:prod": "yarn workspace @silo/devops setenv prod",
+    "release:ios:dev": "yarn set:dev && cd mobile/ios; fastlane beta",
     "lint": "tsc -p . --noEmit && eslint . --ext .js,.ts,.tsx  --fix &&  yarn prettier",
     "cli": "yarn workspace @silo/devops cli",
     "pod:install": "npx pod-install mobile/ios",

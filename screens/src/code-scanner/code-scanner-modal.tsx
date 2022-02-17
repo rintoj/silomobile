@@ -19,7 +19,8 @@ export function CodeScannerModal() {
   const closeModal = useCallback(() => navigate(Screens.Home), [navigate])
   const navigateToURL = useCallback(() => {
     navigate(Screens.PurchaseOrder)
-  }, [navigate])
+    closeModal()
+  }, [navigate, closeModal])
 
   return (
     <Popup visible accentColor={COLOR_X.ACCENT1}>
