@@ -105,7 +105,7 @@ export function Button<T>(props: ButtonProps<T>) {
     return [
       styles.container,
       containerStyle,
-      rounded ? s.brPill : s.br2,
+      rounded ? s.brPill : s.br3,
       sizes[size],
       fill ? [s.flex, s.w100, s.h100] : undefined,
       fillHorizontal ? [s.w100] : undefined,
@@ -152,7 +152,7 @@ export function Button<T>(props: ButtonProps<T>) {
             <View style={[s.pa1]} />
           </>
         ) : null}
-        <Text bold fontSize='normal' style={contentStyle as any}>{` ${children} `}</Text>
+        <Text fontSize='normal' style={contentStyle as any}>{` ${children} `}</Text>
         {loading ? (
           <>
             <View style={[s.pa1]} />
