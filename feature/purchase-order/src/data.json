@@ -1,0 +1,15 @@
+[
+  {
+    "id": 654444,
+    "vendor": {
+      "id": "78822025-7e64-49ab-962a-e682d87655db",
+      "name": "Productora de Tomates Oaxaca, SA de CV",
+      "address": "",
+      "location": "Nogales Warehouse"
+    },
+    "invoice": 22391227,
+    "bol": 23923483,
+    "status": "RECEIVED",
+    "receivedOn": "2022-02-06T15:02:38Z"
+  }
+]
