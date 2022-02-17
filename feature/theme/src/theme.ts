@@ -10,6 +10,7 @@ export enum COLOR_X {
   WARNING_LIGHT = 'WARNING_LIGHT',
   TERTIARY_DARK = 'TERTIARY_DARK',
   PLACEHOLDER = 'PLACEHOLDER',
+  PAGE = 'PAGE',
 }
 
 export const THEMES = {
@@ -33,5 +34,6 @@ export const THEMES = {
     [COLOR_X.ACCENT2]: '#6C8A7B',
     [COLOR_X.ACCENT3]: '#0A3C23',
     [COLOR_X.PLACEHOLDER]: '#FFFFFF50',
+    [COLOR_X.PAGE]: '#F9FAFC',
   },
 }

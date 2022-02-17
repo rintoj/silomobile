@@ -5,9 +5,9 @@ import { LoginForm } from '@silo-feature/login-form'
 import { Logo } from '@silo-feature/logo'
 import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
-import { COLOR } from 'native-x-theme'
-import React from 'react'
-import { KeyboardAvoidingView } from 'react-native'
+import { COLOR, useTheme } from 'native-x-theme'
+import React, { useCallback } from 'react'
+import { KeyboardAvoidingView, ScrollView, StatusBar } from 'react-native'
 import SplashScreen from 'react-native-splash-screen'
 import { Screens } from '../navigation/screens'
 
@@ -17,19 +17,16 @@ const styles = {
 
 export function LoginScreen() {
   const { navigate } = useNavigation<any>()
-  const navigateToHome = () => {
-    navigate(Screens.Home)
-  }
-
-  React.useEffect(() => {
-    SplashScreen.hide()
-  }, [])
+  const { getColor } = useTheme()
+  const navigateToHome = useCallback(() => navigate(Screens.Home), [navigate])
+  const hideSplashScreen = useCallback(() => SplashScreen.hide(), [])
 
   return (
-    <Stack fill backgroundColor={COLOR.SECONDARY}>
-      <Background>
-        <Screen backgroundColor={COLOR.TRANSPARENT} withSafeArea>
-          <KeyboardAvoidingView style={styles.container}>
+    <Background onLoad={hideSplashScreen}>
+      <Screen backgroundColor={COLOR.TRANSPARENT} withSafeArea>
+        <StatusBar backgroundColor={getColor(COLOR.TRANSPARENT)} />
+        <ScrollView>
+          <KeyboardAvoidingView behavior='position' style={styles.container}>
             <Stack fill alignCenter padding='normal'>
               <Spacer size='large' />
               <Logo />
@@ -37,8 +34,8 @@ export function LoginScreen() {
               <LoginForm onSuccess={navigateToHome} />
             </Stack>
           </KeyboardAvoidingView>
-        </Screen>
-      </Background>
-    </Stack>
+        </ScrollView>
+      </Screen>
+    </Background>
   )
 }

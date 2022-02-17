@@ -5,17 +5,33 @@ import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
-import { styles as s } from 'tachyons-react-native'
-import { isIOS } from '../../../util/src'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+
+const styles = {
+  container: {
+    borderRadius: 10,
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
+    elevation: 5,
+    position: 'absolute' as const,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 10,
+    top: 0,
+    width: '100%',
+    zIndex: 1,
+  },
+}
 
 export function AppHeader() {
+  const { top } = useSafeAreaInsets()
   return (
-    <Stack
-      fillHorizontal
-      backgroundColor={COLOR.SECONDARY}
-      style={[s.brBottom, { borderRadius: 10 }] as any}
-    >
-      <Stack height={isIOS ? 36 : 24} />
+    <Stack fillHorizontal backgroundColor={COLOR.SECONDARY} style={styles.container}>
+      <Stack height={top} />
       <Stack horizontal alignMiddle padding='normal'>
         <Logo size='small' />
         <Spacer fill />
