@@ -1,10 +1,10 @@
 import { COLOR_X } from '@silo-feature/theme'
 import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
+import { Tappable } from 'native-x-tappable'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
 import Scanner from './scanner.svg'
-import { Tappable } from 'native-x-tappable'
 
 const styles = {
   container: {
