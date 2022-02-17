@@ -17,9 +17,13 @@ export function CodeScannerModal() {
   const { navigate } = useNavigation<any>()
   const { getColor } = useTheme()
   const closeModal = useCallback(() => navigate(Screens.Home), [navigate])
-  const navigateToURL = useCallback((url: string) => {
-    Linking.openURL(url).catch(err => console.error('unable to open the url', err))
-  }, [])
+  const navigateToURL = useCallback(
+    (url: string) => {
+      Linking.openURL(url).catch(err => console.error('unable to open the url', err))
+      closeModal()
+    },
+    [closeModal],
+  )
 
   return (
     <Popup visible accentColor={COLOR_X.ACCENT1}>
