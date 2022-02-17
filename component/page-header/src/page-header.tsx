@@ -1,12 +1,12 @@
-import { Text } from '@silo-component/text'
 import { useNavigation } from '@react-navigation/native'
+import { Text } from '@silo-component/text'
+import { COLOR_X } from '@silo-feature/theme'
 import { ChevronBackIcon, CloseIcon } from 'native-x-icon'
+import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
 import { HeaderButton } from './header-button'
-import { Spacer } from 'native-x-spacer'
-import { COLOR_X } from '@silo-feature/theme'
 
 export interface PageHeaderProps {
   children?: string | React.ReactElement

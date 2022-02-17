@@ -1,11 +1,11 @@
 import { Button } from '@silo-component/button'
 import { Text } from '@silo-component/text'
 import { COLOR_X } from '@silo-feature/theme'
+import { LocationIcon } from 'native-x-icon'
 import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
-import { LocationIcon } from 'native-x-icon'
 
 enum PurchaseOrderStatus {
   RECEIVED = 'RECEIVED',

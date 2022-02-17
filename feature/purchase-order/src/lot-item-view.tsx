@@ -1,12 +1,12 @@
-import React from 'react'
+import { Text } from '@silo-component/text'
+import { COLOR_X } from '@silo-feature/theme'
+import { ArrowForwardIcon } from 'native-x-icon'
+import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
-import { COLOR_X } from '@silo-feature/theme'
-import { Text } from '@silo-component/text'
+import React from 'react'
 import LotIcon from './lot-icon.svg'
-import { Spacer } from 'native-x-spacer'
 
-import { ArrowForwardIcon } from 'native-x-icon'
 export function LotItemView() {
   return (
     <Stack fillHorizontal>

@@ -1,8 +1,8 @@
 import { Text } from '@silo-component/text'
 import { Tappable } from 'native-x-tappable'
 import {
-  COLOR,
   BORDER_SIZE,
+  COLOR,
   ContainerStyleProps,
   TextStyleProps,
   useContainerStyle,
