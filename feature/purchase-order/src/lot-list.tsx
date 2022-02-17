@@ -9,13 +9,15 @@ export function LotList() {
   return (
     <Stack fillHorizontal>
       <Stack padding='horizontal:normal'>
-        <Text textColor={COLOR_X.ACCENT2}>List of lots</Text>
+        <Text textColor={COLOR_X.ACCENT2}>List Of Lots</Text>
       </Stack>
       <Spacer size='x-small' />
       <LotItem />
-      <Stack height={10} />
+      <Spacer size='xx-small' />
       <LotItem />
-      <Stack height={10} />
+      <Spacer size='xx-small' />
+      <LotItem />
+      <Spacer size='xx-small' />
       <LotItem />
     </Stack>
   )

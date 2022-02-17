@@ -10,11 +10,12 @@ import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
 import { Modals } from '../navigation/modals'
+import { Screens } from '../navigation/screens'
 
 export function HomeScreen() {
   const { navigate } = useNavigation<any>()
   const openCodeScanner = React.useCallback(() => {
-    navigate(Modals.CodeScanner)
+    navigate(Screens.PurchaseOrder)
   }, [navigate])
 
   return (
