@@ -7,7 +7,7 @@ import { COLOR } from 'native-x-theme'
 import React from 'react'
 import PurchaseOrderIcon from './images/po-icon.svg'
 import LocationIcon from './images/location-icon.svg'
-import { SummaryTile } from '../../../screens/src/lot-details/summary-tile'
+import { SummaryTile } from './summary-tile'
 
 export function LotDetails() {
   return (

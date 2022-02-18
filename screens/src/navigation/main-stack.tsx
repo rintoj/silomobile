@@ -10,7 +10,6 @@ const { Navigator, Screen, Group } = createBottomTabNavigator<MainStackParamList
 const navigatorOptions: BottomTabNavigationOptions = {
   tabBarStyle: { display: 'none' },
   headerShown: false,
-  unmountOnBlur: true,
 }
 
 export function MainStack() {
@@ -33,7 +32,11 @@ export function MainStack() {
 
   return (
     <Stack fill backgroundColor={COLOR.PRIMARY}>
-      <Navigator initialRouteName={Screens.Login} screenOptions={navigatorOptions}>
+      <Navigator
+        initialRouteName={Screens.Login}
+        screenOptions={navigatorOptions}
+        backBehavior='history'
+      >
         <Screen name={Screens.Login} component={LoginScreen} />
         <Group screenOptions={mainScreenOptions}>{mainMenuNavigatorScreens}</Group>
         <Group>{publicNavigatorScreens}</Group>
