@@ -9,14 +9,18 @@ import { PurchaseOrderView } from './purchase-order-view'
 const purchaseOrder = data[0]
 const styles = { flex: 1 }
 
-export function PurchaseOrder() {
+interface Props {
+  onSelectLot?: () => void
+}
+
+export function PurchaseOrder({ onSelectLot }: Props) {
   return (
     <ScrollView style={styles} showsVerticalScrollIndicator={false}>
       <Stack fill>
         <PurchaseOrderView order={purchaseOrder as any} />
         <Spacer size='small' />
         <Spacer size='x-small' />
-        <LotList />
+        <LotList onSelectItem={onSelectLot} />
       </Stack>
       <Spacer size='x-large' />
     </ScrollView>

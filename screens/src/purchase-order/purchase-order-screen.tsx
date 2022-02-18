@@ -15,26 +15,29 @@ import PurchaseOrderIcon from './po.svg'
 
 export function PurchaseOrderScreen() {
   const { navigate } = useNavigation<any>()
-  const navigateToHome = () => navigate(Screens.Home)
+  const navigateToHome = React.useCallback(() => navigate(Screens.Home), [navigate])
+  const navigateToLotDetails = React.useCallback(() => navigate(Screens.LotDetails), [navigate])
 
   return (
-    <Screen>
+    <>
       <AppHeader />
-      <Stack fill backgroundColor={COLOR_X.PAGE}>
-        <Spacer />
-        <Spacer size='small' />
-        <PageHeader showBackButton accentColor={COLOR.SUCCESS} onTapLeftButton={navigateToHome}>
-          <Stack horizontal alignMiddle fill alignCenter>
-            <PurchaseOrderIcon />
-            <Spacer size='small' />
-            <Text semiBold fontSize='x-large' textColor={COLOR.PRIMARY}>
-              PO # 65444
-            </Text>
-          </Stack>
-        </PageHeader>
-        <PurchaseOrder />
-        <NavBar />
-      </Stack>
-    </Screen>
+      <Screen withSafeArea>
+        <Stack fill backgroundColor={COLOR_X.PAGE}>
+          <Spacer />
+          <Spacer size='small' />
+          <PageHeader showBackButton accentColor={COLOR.SUCCESS} onTapLeftButton={navigateToHome}>
+            <Stack horizontal alignMiddle fill alignCenter>
+              <PurchaseOrderIcon />
+              <Spacer size='small' />
+              <Text semiBold fontSize='x-large' textColor={COLOR.PRIMARY}>
+                PO # 65444
+              </Text>
+            </Stack>
+          </PageHeader>
+          <PurchaseOrder onSelectLot={navigateToLotDetails} />
+          <NavBar />
+        </Stack>
+      </Screen>
+    </>
   )
 }
