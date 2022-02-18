@@ -7,24 +7,24 @@ type TextType = ReactText | ReactElement<Text> | boolean | null | undefined
 
 const FONT_SIZE = {
   'xxx-small': {
-    fontSize: 12,
+    fontSize: 10,
     lineHeight: 15,
   },
   'xx-small': {
-    fontSize: 13,
-    lineHeight: 17,
+    fontSize: 12,
+    lineHeight: 16,
   },
   'x-small': {
     fontSize: 14,
-    lineHeight: 18,
+    lineHeight: 19,
   },
   small: {
     fontSize: 15,
     lineHeight: 20,
   },
   normal: {
-    fontSize: 17,
-    lineHeight: 24,
+    fontSize: 16,
+    lineHeight: 21,
   },
   large: {
     fontSize: 18,
@@ -39,8 +39,8 @@ const FONT_SIZE = {
     lineHeight: 32,
   },
   'xxx-large': {
-    fontSize: 36,
-    lineHeight: 47,
+    fontSize: 28,
+    lineHeight: 37,
   },
 }
 
@@ -124,6 +124,7 @@ export function Text(props: TextProps) {
   return (
     <TextAncestorStyleContext.Provider value={composedStyle}>
       <RNText
+        allowFontScaling={false}
         style={composedStyle as never}
         onPress={onPress}
         numberOfLines={numberOfLines}
