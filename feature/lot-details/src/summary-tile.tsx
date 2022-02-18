@@ -2,6 +2,7 @@ import { Text } from '@silo-component/text'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
+import { COLOR_X } from '@silo-feature/theme'
 
 const style = {
   container: {
@@ -33,8 +34,12 @@ export function SummaryTile({ title, value, alignRight }: Props) {
       padding='small'
     >
       <Stack alignRight={alignRight}>
-        <Text fontSize='x-small'>{title}</Text>
-        <Text fontSize='xxx-large'>{value}</Text>
+        <Text fontSize='x-small' textColor={COLOR.TERTIARY}>
+          {title}
+        </Text>
+        <Text fontSize='xxx-large' textColor={COLOR_X.ACCENT5}>
+          {value}
+        </Text>
       </Stack>
     </Stack>
   )
