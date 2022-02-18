@@ -11,7 +11,7 @@ export function App() {
   }, [])
   return (
     <ThemeProvider theme={THEME.LIGHT} themes={THEMES} autoSwitchTheme={false}>
-      <StatusBar barStyle='light-content' backgroundColor='#235039' animated translucent />
+      <StatusBar barStyle='light-content' backgroundColor='#235039' animated />
       <RootStack />
     </ThemeProvider>
   )

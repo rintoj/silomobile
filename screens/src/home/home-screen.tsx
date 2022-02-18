@@ -9,6 +9,7 @@ import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
+import { StatusBar } from 'react-native'
 import { Modals } from '../navigation/modals'
 
 export function HomeScreen() {
@@ -19,6 +20,8 @@ export function HomeScreen() {
 
   return (
     <Screen withSafeArea={false}>
+      <StatusBar barStyle='light-content' backgroundColor='#235039' animated />
+
       <Stack fill backgroundColor={COLOR.PRIMARY}>
         <AppHeader />
         <Stack alignCenter fill padding='normal' backgroundColor={COLOR_X.PAGE}>
