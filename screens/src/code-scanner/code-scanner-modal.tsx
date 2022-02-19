@@ -17,7 +17,7 @@ export function CodeScannerModal() {
   const { navigate } = useNavigation<any>()
   const { getColor } = useTheme()
   const closeModal = useCallback(() => navigate(Screens.Home), [navigate])
-  const navigateToURL = useCallback(() => {
+  const onScan = useCallback(() => {
     navigate(Screens.PurchaseOrder)
   }, [navigate])
 
@@ -45,7 +45,7 @@ export function CodeScannerModal() {
         </Stack>
         <Spacer />
         <Stack fill borderRadius='large'>
-          <CodeScanner onScanSuccess={navigateToURL} />
+          <CodeScanner onScanSuccess={onScan} />
         </Stack>
         <Spacer />
         <Tappable onTap={closeModal}>
