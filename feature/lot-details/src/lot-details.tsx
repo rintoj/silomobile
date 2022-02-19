@@ -5,8 +5,8 @@ import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
-import PurchaseOrderIcon from './images/po-icon.svg'
 import LocationIcon from './images/location-icon.svg'
+import PurchaseOrderIcon from './images/po-icon.svg'
 import { SummaryTile } from './summary-tile'
 
 export function LotDetails() {

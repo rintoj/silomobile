@@ -1,8 +1,8 @@
 import { Text } from '@silo-component/text'
+import { COLOR_X } from '@silo-feature/theme'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
-import { COLOR_X } from '@silo-feature/theme'
 
 const style = {
   container: {
