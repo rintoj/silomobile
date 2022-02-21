@@ -30,7 +30,12 @@ const styles = {
 export function AppHeader() {
   const { top } = useSafeAreaInsets()
   return (
-    <Stack fillHorizontal backgroundColor={COLOR.SECONDARY} style={styles.container}>
+    <Stack
+      fillHorizontal
+      backgroundColor={COLOR.SECONDARY}
+      style={styles.container}
+      overflowVisible
+    >
       <Stack height={top} />
       <Stack horizontal alignMiddle padding='normal'>
         <Spacer size='xx-small' />

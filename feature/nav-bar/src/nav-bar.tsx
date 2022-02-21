@@ -57,7 +57,7 @@ export function NavBar({ onScanIconTap }: Props) {
           </Stack>
         </Tappable>
       </Stack>
-      <Stack height={bottom} fillHorizontal />
+      {bottom ? <Stack height={15} fillHorizontal /> : null}
     </Stack>
   )
 }
