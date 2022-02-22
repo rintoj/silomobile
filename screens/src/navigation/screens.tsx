@@ -1,7 +1,5 @@
 import { ById } from '@silo/util'
-import { HomeScreen } from '../home/home-screen'
-import { LotDetailsScreen } from '../lot-details/lot-details-screen'
-import { PurchaseOrderScreen } from '../purchase-order/purchase-order-screen'
+import { HomeStack } from '../home/home-stack'
 
 export enum Screens {
   Main = 'MAIN',
@@ -9,12 +7,13 @@ export enum Screens {
   Home = 'HOME_SCREEN',
   LotDetails = 'LOT_DETAILS',
   Error = 'ERROR',
-  PurchaseOrder = 'PurchaseOrder',
+  PurchaseOrder = 'PURCHASE_ORDER',
+  HomeTab = 'HOME_TAB',
 }
 
 export type MainStackParamList = {
   [Screens.Login]: undefined
-  [Screens.Home]: undefined
+  [Screens.HomeTab]: undefined
 }
 
 type ScreenConfigType = {
@@ -26,16 +25,9 @@ type ScreenConfigType = {
 
 const publicScreens: ById<ScreenConfigType> = {}
 const mainScreens: ById<ScreenConfigType> = {
-  [Screens.Home]: {
-    screen: HomeScreen,
-    initialRouteName: Screens.Home,
-  },
-  [Screens.PurchaseOrder]: {
-    screen: PurchaseOrderScreen,
-  },
-  [Screens.LotDetails]: {
-    screen: LotDetailsScreen,
-    initialRouteName: Screens.Home,
+  [Screens.HomeTab]: {
+    screen: HomeStack,
+    initialRouteName: Screens.HomeTab,
   },
 }
 
