@@ -17,7 +17,7 @@ const styles = {
 
 export function LoginScreen() {
   const { navigate } = useNavigation<any>()
-  const navigateToHome = useCallback(() => navigate(Screens.Home), [navigate])
+  const navigateToHome = useCallback(() => navigate(Screens.HomeTab), [navigate])
   const hideSplashScreen = useCallback(() => SplashScreen.hide(), [])
 
   return (
