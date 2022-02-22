@@ -14,6 +14,9 @@ export interface App {
 export interface CodePush {
   ios: string
   android: string
+  windows: string
+  macos: string
+  web: string
 }
 
 export default configJson as FrontendConfig
