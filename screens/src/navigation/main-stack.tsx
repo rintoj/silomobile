@@ -1,4 +1,5 @@
 import { BottomTabNavigationOptions, createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { useCodePush } from '@silo-feature/code-push'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
@@ -13,8 +14,8 @@ const navigatorOptions: BottomTabNavigationOptions = {
 }
 
 export function MainStack() {
+  const [updateApp] = useCodePush()
   const mainScreenOptions: any = React.useMemo(() => ({ tabBarStyle: { display: 'none' } }), [])
-
   const publicNavigatorScreens = React.useMemo(
     () =>
       Object.keys(publicScreens).map(screen => (
@@ -29,6 +30,10 @@ export function MainStack() {
       )),
     [],
   )
+
+  React.useEffect(() => {
+    updateApp()
+  }, [updateApp])
 
   return (
     <Stack fill backgroundColor={COLOR.PRIMARY}>
