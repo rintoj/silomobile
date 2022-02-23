@@ -31,7 +31,7 @@ export function LoginFormView({ loading, onSubmit }: Props) {
         disabled={loading}
         fill
         keyboardType='email-address'
-        onChange={setEmail}
+        onChangeText={setEmail}
         placeholder='john@doe.com'
         placeholderColor={COLOR_X.PLACEHOLDER}
         textColor={COLOR.PRIMARY}
@@ -44,7 +44,7 @@ export function LoginFormView({ loading, onSubmit }: Props) {
         disabled={loading}
         fill
         keyboardType='ascii-capable'
-        onChange={setPassword}
+        onChangeText={setPassword}
         password
         placeholder='password'
         placeholderColor={COLOR_X.PLACEHOLDER}
