@@ -1,5 +1,5 @@
-import { useMutation } from 'react-query'
 import config from '@silo-feature/config'
+import { useMutation } from 'react-query'
 
 const { baseUrl } = config.api
 const endPoint = '/login'

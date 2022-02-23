@@ -1,5 +1,5 @@
-import { useQuery } from 'react-query'
 import config from '@silo-feature/config'
+import { useQuery } from 'react-query'
 
 const { baseUrl } = config.api
 const endPoint = '/users'
