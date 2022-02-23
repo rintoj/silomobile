@@ -7,6 +7,7 @@ import {
 import { AppHeader } from '@silo-feature/app-header'
 import { NavBar } from '@silo-feature/nav-bar'
 import React from 'react'
+import SplashScreen from 'react-native-splash-screen'
 import { LotDetailsScreen } from '../lot-details/lot-details-screen'
 import { Modals } from '../navigation/modals'
 import { Screens } from '../navigation/screens'
@@ -26,6 +27,9 @@ export function HomeStack() {
   const openCodeScanner = React.useCallback(() => {
     navigate(Modals.CodeScanner)
   }, [navigate])
+
+  React.useEffect(() => SplashScreen.hide(), [])
+
   return (
     <>
       <AppHeader />

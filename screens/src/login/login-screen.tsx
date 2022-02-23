@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/core'
 import { Background } from '@silo-component/background'
 import { Screen } from '@silo-component/screen'
 import { LoginForm } from '@silo-feature/login-form'
@@ -9,15 +8,12 @@ import { COLOR } from 'native-x-theme'
 import React, { useCallback } from 'react'
 import { KeyboardAvoidingView, ScrollView, StatusBar } from 'react-native'
 import SplashScreen from 'react-native-splash-screen'
-import { Screens } from '../navigation/screens'
 
 const styles = {
   container: { flex: 1 },
 }
 
 export function LoginScreen() {
-  const { navigate } = useNavigation<any>()
-  const navigateToHome = useCallback(() => navigate(Screens.HomeTab), [navigate])
   const hideSplashScreen = useCallback(() => SplashScreen.hide(), [])
 
   return (
@@ -30,7 +26,7 @@ export function LoginScreen() {
               <Spacer size='large' />
               <Logo />
               <Spacer />
-              <LoginForm onSuccess={navigateToHome} />
+              <LoginForm />
             </Stack>
           </KeyboardAvoidingView>
         </ScrollView>
