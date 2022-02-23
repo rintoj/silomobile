@@ -3,8 +3,8 @@
   "app": {
     "urlScheme": "usesilo-dev://"
   },
-  "api":{
-    "baseUrl":"https://stage-api.usesilo.com/api"
+  "api": {
+    "baseUrl": "https://stage-api.usesilo.com/api"
   },
   "codePush": {
     "ios": "OGQQzlaqVjhgnkbwFQsaE79mmnvscYeIqd3Qf",
