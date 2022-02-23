@@ -3,6 +3,9 @@
   "app": {
     "urlScheme": "usesilo-dev://"
   },
+  "api":{
+    "baseUrl":"https://stage-api.usesilo.com/api"
+  },
   "codePush": {
     "ios": "OGQQzlaqVjhgnkbwFQsaE79mmnvscYeIqd3Qf",
     "android": "HLJ7cg4B6ybQ2lKFQ7FPo8o7qWH0REae9e75d"
