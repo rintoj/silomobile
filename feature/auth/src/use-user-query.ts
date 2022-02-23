@@ -15,19 +15,9 @@ async function getUser({ userId, token }: { userId?: number; token: string }) {
   if (!userId || !token) {
     return null
   }
-
-  const response = await fetch(`${baseUrl}${endPoint}/${userId}`, {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-  })
-
-  if (!response.ok) {
-    throw new Error('Network response was not ok')
-  }
-
-  return response.json()
+  return fetch(`${baseUrl}${endPoint}/${userId}`, {
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+  }).then(response => response.json())
 }
 
 export function useUserQuery(variables: { token: string; userId: number }) {
