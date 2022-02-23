@@ -5,6 +5,8 @@ import { COLOR } from 'native-x-theme'
 import React from 'react'
 import { LoginScreen } from '../login/login-screen'
 import { appScreens, MainStackParamList, Screens } from './screens'
+import { useAuth } from '@silo-feature/auth'
+import { AuthState } from '@silo-feature/auth/src/auth-context'
 
 const { mainScreens, publicScreens } = appScreens
 const { Navigator, Screen, Group } = createBottomTabNavigator<MainStackParamList>()
@@ -14,6 +16,7 @@ const navigatorOptions: BottomTabNavigationOptions = {
 }
 
 export function MainStack() {
+  const { state } = useAuth()
   const [updateApp] = useCodePush()
   const mainScreenOptions: any = React.useMemo(() => ({ tabBarStyle: { display: 'none' } }), [])
   const publicNavigatorScreens = React.useMemo(
@@ -35,6 +38,10 @@ export function MainStack() {
     updateApp()
   }, [updateApp])
 
+  if (state !== AuthState.AUTHORIZED) {
+    return <LoginScreen />
+  }
+
   return (
     <Stack fill backgroundColor={COLOR.PRIMARY}>
       <Navigator
@@ -42,7 +49,6 @@ export function MainStack() {
         screenOptions={navigatorOptions}
         backBehavior='history'
       >
-        <Screen name={Screens.Login} component={LoginScreen} />
         <Group screenOptions={mainScreenOptions}>{mainMenuNavigatorScreens}</Group>
         <Group>{publicNavigatorScreens}</Group>
       </Navigator>
