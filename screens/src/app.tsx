@@ -1,9 +1,9 @@
+import { AuthProvider } from '@silo-feature/auth'
 import { THEMES } from '@silo-feature/theme'
 import { THEME, ThemeProvider } from 'native-x-theme'
 import React from 'react'
 import { StatusBar } from 'react-native'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { AuthProvider } from '../../feature/auth/src'
 import { RootStack } from './navigation/root-stack'
 
 const queryClient = new QueryClient()

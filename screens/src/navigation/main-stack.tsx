@@ -1,6 +1,6 @@
 import { BottomTabNavigationOptions, createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { useAuth } from '@silo-feature/auth'
-import { AuthState } from '@silo-feature/auth/src/auth-context'
+import { AuthState } from '@silo-feature/auth'
 import { useCodePush } from '@silo-feature/code-push'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
