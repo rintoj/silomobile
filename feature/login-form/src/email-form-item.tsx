@@ -1,9 +1,9 @@
+import { FormItem, isEmpty, isInvalidEmail } from '@silo-component/form'
 import { TextInput } from '@silo-component/text-input'
 import { COLOR_X } from '@silo-feature/theme'
-import { FormItem, isEmpty, isInvalidEmail } from '@silo-component/form'
+import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
-import { Stack } from 'native-x-stack'
 
 interface Props {
   disabled?: boolean
