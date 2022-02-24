@@ -14,9 +14,10 @@ export function AuthProvider({ children }: Props) {
   const [userId, setUserId] = usePersistedState<number>(AUTH_USER_ID_KEY)
   const [authToken, setAuthToken] = usePersistedState<string>(AUTH_TOKEN_KEY)
   const [authState, setAuthState] = React.useState(AuthState.UNAUTHORIZED)
+
   // TODO: Pass authToken via request interceptor
   const { data: user } = useUserQuery({ token: authToken, userId })
-  const { mutate: signInUser, isLoading: loading, isError: error } = useSignInMutation()
+  const { mutateAsync: signInUser, isLoading: loading, isError: error } = useSignInMutation()
 
   const signOut = React.useCallback(() => {
     setAuthToken(undefined)
@@ -25,19 +26,14 @@ export function AuthProvider({ children }: Props) {
 
   const signIn = React.useCallback(
     async (email: string, password: string) => {
-      setAuthState(AuthState.CHECKING)
-      signInUser(
-        { email, password },
-        {
-          onSuccess: ({ token, userID }) => {
-            setAuthToken(token)
-            setUserId(userID)
-          },
-          onError: () => {
-            setAuthToken(undefined)
-          },
-        },
-      )
+      try {
+        const { userID, token } = await signInUser({ email, password })
+        setAuthToken(token)
+        setUserId(userID)
+      } catch {
+        setAuthToken(undefined)
+        setUserId(undefined)
+      }
     },
     [setAuthToken, setUserId, signInUser],
   )
@@ -46,6 +42,10 @@ export function AuthProvider({ children }: Props) {
     () => ({ user, error, loading, signIn, state: authState, signOut }),
     [authState, error, loading, signIn, signOut, user],
   )
+
+  useEffect(() => {
+    setAuthState(AuthState.PENDING)
+  }, [loading])
 
   useEffect(() => {
     if (authToken) {

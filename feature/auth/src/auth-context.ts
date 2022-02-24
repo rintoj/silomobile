@@ -3,7 +3,7 @@ import { User } from './use-user-query'
 
 export enum AuthState {
   AUTHORIZED = 'AUTHORIZED',
-  CHECKING = 'CHECKING',
+  PENDING = 'PENDING',
   INVALID_TOKEN = 'INVALID_TOKEN',
   UNAUTHORIZED = 'UNAUTHORIZED',
 }
