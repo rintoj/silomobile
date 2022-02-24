@@ -32,6 +32,8 @@ const styles = {
 export function AppHeader() {
   const { user, signOut } = useAuth()
   const { top } = useSafeAreaInsets()
+  const photoURL = `https://silo-technologies-stage.imgix.net/farm_photos/profile-${user?.accountID}.jpg?w=60&h=60&fit=crop`
+
   return (
     <Stack
       fillHorizontal
@@ -49,7 +51,7 @@ export function AppHeader() {
         </Text>
         <Spacer size='small' />
         <Tappable onTap={signOut}>
-          <Avatar />
+          <Avatar photoURL={photoURL} />
         </Tappable>
       </Stack>
     </Stack>
