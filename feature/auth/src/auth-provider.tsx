@@ -1,6 +1,7 @@
 import { usePersistedState } from '@silo/util'
 import React, { useEffect } from 'react'
 import { AuthContext, AuthState } from './auth-context'
+import { clearAuthToken, setAuthToken } from './auth-token'
 import { useSignInMutation } from './use-sign-in-mutation'
 import { useUserQuery } from './use-user-query'
 
@@ -8,21 +9,16 @@ interface Props {
   children: React.ReactElement
 }
 
-const AUTH_TOKEN_KEY = 'AUTH_TOKEN'
 const AUTH_USER_ID_KEY = 'AUTH_USER_ID'
 export function AuthProvider({ children }: Props) {
   const [userId, setUserId] = usePersistedState<number>(AUTH_USER_ID_KEY)
-  const [authToken, setAuthToken] = usePersistedState<string>(AUTH_TOKEN_KEY)
   const [authState, setAuthState] = React.useState(AuthState.UNAUTHORIZED)
-
-  // TODO: Pass authToken via request interceptor
-  const { data: user } = useUserQuery({ token: authToken, userId })
+  const { data: user } = useUserQuery({ userId })
   const { mutateAsync: signInUser, isLoading: loading, isError: error } = useSignInMutation()
 
   const signOut = React.useCallback(() => {
-    setAuthToken(undefined)
     setUserId(undefined)
-  }, [setAuthToken, setUserId])
+  }, [setUserId])
 
   const signIn = React.useCallback(
     async (email: string, password: string) => {
@@ -31,11 +27,11 @@ export function AuthProvider({ children }: Props) {
         setAuthToken(token)
         setUserId(userID)
       } catch {
-        setAuthToken(undefined)
+        clearAuthToken()
         setUserId(undefined)
       }
     },
-    [setAuthToken, setUserId, signInUser],
+    [setUserId, signInUser],
   )
 
   const value = React.useMemo(
@@ -48,12 +44,12 @@ export function AuthProvider({ children }: Props) {
   }, [loading])
 
   useEffect(() => {
-    if (authToken) {
+    if (userId) {
       setAuthState(AuthState.AUTHORIZED)
     } else {
       setAuthState(AuthState.UNAUTHORIZED)
     }
-  }, [authToken])
+  }, [userId])
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
