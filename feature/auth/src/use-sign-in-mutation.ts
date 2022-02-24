@@ -18,8 +18,8 @@ export interface UserAccount {
   siloEmail: string
 }
 
-function signIn({ email, password }: SignInRequestParams) {
-  return fetch(`${baseUrl}${endPoint}`, {
+async function signIn({ email, password }: SignInRequestParams) {
+  const response = await fetch(`${baseUrl}${endPoint}`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -27,9 +27,14 @@ function signIn({ email, password }: SignInRequestParams) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ email, password }),
-  }).then(response => response.json())
+  })
+  if (!response.ok) {
+    const { message } = await response.json()
+    throw new Error(message ?? 'Login failed')
+  }
+  return response.json()
 }
 
 export function useSignInMutation() {
-  return useMutation<UserAccount, unknown, SignInRequestParams>(signIn)
+  return useMutation<UserAccount, Error, SignInRequestParams>(signIn)
 }

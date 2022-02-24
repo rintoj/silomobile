@@ -14,7 +14,7 @@ export function AuthProvider({ children }: Props) {
   const [userId, setUserId] = usePersistedState<number>(AUTH_USER_ID_KEY)
   const [authState, setAuthState] = React.useState(AuthState.UNAUTHORIZED)
   const { data: user } = useUserQuery({ userId })
-  const { mutateAsync: signInUser, isLoading: loading, isError: error } = useSignInMutation()
+  const { mutateAsync: signInUser, isLoading: loading, error } = useSignInMutation()
 
   const signOut = React.useCallback(() => {
     setUserId(undefined)
