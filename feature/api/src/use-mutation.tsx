@@ -7,7 +7,12 @@ export type MutationOptions<TData, TError, TVariables, TContext> = Omit<
   'mutationFn'
 > & { method?: HttpMethod; withAuthHeader?: boolean }
 
-export function useMutation<TData = unknown, TVariables = void, TError = void, TContext = unknown>(
+export function useMutation<
+  TData = unknown,
+  TVariables = void,
+  TError = Error | null,
+  TContext = unknown,
+>(
   url: string,
   options?: MutationOptions<TData, TError, TVariables, TContext>,
 ): ReactQuery.UseMutationResult<TData, TError, TVariables, TContext> {
