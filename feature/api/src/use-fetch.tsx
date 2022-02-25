@@ -1,6 +1,6 @@
-import { getAuthToken } from './auth-token'
 import config from '@silo-feature/config'
 import React from 'react'
+import { getAuthToken } from './auth-token'
 import { HttpMethod } from './http-method'
 
 const { version, baseUrl } = config.api
@@ -19,7 +19,7 @@ export function useFetch<TVariables>(
       if (!url) {
         return null
       }
-      return fetch(`${baseUrl}${url}`, {
+      const response = await fetch(`${baseUrl}${url}`, {
         method,
         headers: {
           ...(withAuthHeader ? { Authorization: `Bearer ${await getAuthToken()}` } : {}),
@@ -27,7 +27,14 @@ export function useFetch<TVariables>(
           'X-Silo-Mobile-Version': version,
         },
         ...(variables && method !== HttpMethod.GET ? { body: JSON.stringify(variables) } : {}),
-      }).then(response => response.json())
+      })
+
+      if (!response.ok) {
+        const error = await response.json()
+        throw new Error(error?.message ?? 'Request failed. Please try again')
+      }
+
+      return response.json()
     },
     [url, method, withAuthHeader],
   )

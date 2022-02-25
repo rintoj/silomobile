@@ -13,7 +13,7 @@ export interface AuthContextType {
   signIn: (email: string, password: string) => void
   signOut?: () => void
   loading?: boolean
-  error?: boolean
+  error?: Error | null
   state?: AuthState
 }
 
