@@ -84,7 +84,7 @@ export function LotDetailsView({ lot, onPurchaseOrderTap }: Props) {
             Location <LocationIcon />
           </Text>
           <Text fontSize='large' fill textColor={COLOR_X.ACCENT3}>
-            {lot?.location.name}
+            {lot?.location?.name}
           </Text>
         </Stack>
         <Stack fill alignRight padding='horizontal:normal' maxWidth={170}>
