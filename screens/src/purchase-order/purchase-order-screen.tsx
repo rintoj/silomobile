@@ -13,7 +13,7 @@ import { Screens } from '../navigation/screens'
 import PurchaseOrderIcon from './po.svg'
 
 type PurchaseOrderParamList = {
-  [Screens.PurchaseOrder]: { id: string }
+  [Screens.PurchaseOrder]: { id: number }
 }
 
 export function PurchaseOrderScreen() {
