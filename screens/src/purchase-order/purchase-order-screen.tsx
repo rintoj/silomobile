@@ -10,9 +10,17 @@ import { COLOR } from 'native-x-theme'
 import React from 'react'
 import { Screens } from '../navigation/screens'
 import PurchaseOrderIcon from './po.svg'
+import { RouteProp, useRoute } from '@react-navigation/core'
+
+type PurchaseOrderParamList = {
+  [Screens.PurchaseOrder]: { id: string }
+}
 
 export function PurchaseOrderScreen() {
   const { navigate } = useNavigation<any>()
+  const { params } = useRoute<RouteProp<PurchaseOrderParamList>>()
+  const { id } = params ?? {}
+
   const navigateToHome = React.useCallback(() => navigate(Screens.Home), [navigate])
   const navigateToLotDetails = React.useCallback(() => navigate(Screens.LotDetails), [navigate])
 
@@ -26,11 +34,11 @@ export function PurchaseOrderScreen() {
             <PurchaseOrderIcon />
             <Spacer size='small' />
             <Text semiBold fontSize='x-large' textColor={COLOR.PRIMARY}>
-              PO # 65444
+              PO # {id}
             </Text>
           </Stack>
         </PageHeader>
-        <PurchaseOrder onSelectLot={navigateToLotDetails} />
+        <PurchaseOrder id={id} onSelectLot={navigateToLotDetails} />
       </Stack>
     </Screen>
   )
