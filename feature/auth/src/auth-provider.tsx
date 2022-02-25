@@ -1,7 +1,7 @@
+import { clearAuthToken, setAuthToken } from '@silo-feature/api'
 import { usePersistedState } from '@silo/util'
 import React, { useEffect } from 'react'
 import { AuthContext, AuthState } from './auth-context'
-import { clearAuthToken, setAuthToken } from './auth-token'
 import { useSignInMutation } from './use-sign-in-mutation'
 import { useUserQuery } from './use-user-query'
 

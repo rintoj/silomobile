@@ -14,6 +14,7 @@ export interface App {
 
 export interface API {
   baseUrl: string
+  version: string
 }
 
 export interface CodePush {

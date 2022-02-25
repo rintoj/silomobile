@@ -4,6 +4,7 @@
     "urlScheme": "usesilo-dev://"
   },
   "api": {
+    "version": "1.0.0",
     "baseUrl": "https://stage-api.usesilo.com/api"
   },
   "codePush": {
