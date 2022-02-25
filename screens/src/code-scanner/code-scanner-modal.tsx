@@ -1,8 +1,10 @@
 import { useNavigation } from '@react-navigation/core'
+import { ErrorPopup } from '@silo-component/error-popup'
 import { Popup } from '@silo-component/popup'
 import { Text } from '@silo-component/text'
-import { CodeScanner } from '@silo-feature/code-scanner'
+import { CodeScanner, QRCodeType, ScannedQRCode } from '@silo-feature/code-scanner'
 import { COLOR_X } from '@silo-feature/theme'
+import { useOpenClose } from '@silo/util'
 import { CloseIcon } from 'native-x-icon'
 import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
@@ -16,10 +18,23 @@ import QRCodeIcon from './qr-code-icon.svg'
 export function CodeScannerModal() {
   const { navigate } = useNavigation<any>()
   const { getColor } = useTheme()
+  const [error, showError, closeError] = useOpenClose()
   const closeModal = useCallback(() => navigate(Screens.Home), [navigate])
-  const onScan = useCallback(() => {
-    navigate(Screens.PurchaseOrder)
-  }, [navigate])
+  const onScan = useCallback(
+    (code: ScannedQRCode) => {
+      switch (code.type) {
+        case QRCodeType.PurchaseOrder:
+          navigate(Screens.PurchaseOrder)
+          break
+        case QRCodeType.Lot:
+          navigate(Screens.LotDetails, code)
+          break
+        default:
+          break
+      }
+    },
+    [navigate],
+  )
 
   return (
     <Popup visible accentColor={COLOR_X.ACCENT1}>
@@ -45,7 +60,7 @@ export function CodeScannerModal() {
         </Stack>
         <Spacer />
         <Stack fill borderRadius='large'>
-          <CodeScanner onScanSuccess={onScan} />
+          <CodeScanner onSuccess={onScan} onError={showError} />
         </Stack>
         <Spacer />
         <Tappable onTap={closeModal}>
@@ -62,6 +77,13 @@ export function CodeScannerModal() {
           </Stack>
         </Tappable>
       </Stack>
+      {error ? (
+        <ErrorPopup
+          title='Invalid QRCode'
+          error='The scanned code was not valid. Please try again.'
+          onDismiss={closeError}
+        />
+      ) : null}
     </Popup>
   )
 }

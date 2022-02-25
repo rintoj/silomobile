@@ -1,3 +1,4 @@
+import { RouteProp, useRoute } from '@react-navigation/core'
 import { useNavigation } from '@react-navigation/native'
 import { PageHeader } from '@silo-component/page-header'
 import { Screen } from '@silo-component/screen'
@@ -8,10 +9,17 @@ import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
+import { Screens } from '../navigation/screens'
 import LotIcon from './lot-icon.svg'
+
+type LotDetailsParamList = {
+  [Screens.LotDetails]: { id: string }
+}
 
 export function LotDetailsScreen() {
   const { goBack } = useNavigation<any>()
+  const { params } = useRoute<RouteProp<LotDetailsParamList>>()
+  const { id } = params ?? {}
 
   return (
     <Screen withSafeArea backgroundColor={COLOR.PRIMARY}>
@@ -22,7 +30,7 @@ export function LotDetailsScreen() {
           <LotIcon />
           <Spacer size='x-small' />
           <Text semiBold fontSize='x-large' textColor={COLOR.PRIMARY}>
-            LOT #ANG-001617
+            LOT #ANG-{id}
           </Text>
         </Stack>
       </PageHeader>
