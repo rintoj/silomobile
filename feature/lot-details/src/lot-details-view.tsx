@@ -3,13 +3,13 @@ import { COLOR_X } from '@silo-feature/theme'
 import { ArrowForwardIcon } from 'native-x-icon'
 import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
+import { Tappable } from 'native-x-tappable'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
 import LocationIcon from './images/location-icon.svg'
 import PurchaseOrderIcon from './images/po-icon.svg'
 import { SummaryTile } from './summary-tile'
 import { Lot } from './use-lot-query'
-import { Tappable } from 'native-x-tappable'
 
 interface Props {
   lot?: Lot
