@@ -1,8 +1,10 @@
 import { Avatar } from '@silo-component/avatar'
 import { Text } from '@silo-component/text'
+import { useAuth } from '@silo-feature/auth'
 import { Logo } from '@silo-feature/logo'
 import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
+import { Tappable } from 'native-x-tappable'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -28,7 +30,10 @@ const styles = {
 }
 
 export function AppHeader() {
+  const { user, signOut } = useAuth()
   const { top } = useSafeAreaInsets()
+  const photoURL = `https://silo-technologies-stage.imgix.net/farm_photos/profile-${user?.accountID}.jpg?w=60&h=60&fit=crop`
+
   return (
     <Stack
       fillHorizontal
@@ -42,10 +47,12 @@ export function AppHeader() {
         <Logo size='small' />
         <Spacer fill />
         <Text fontSize='large' textColor={COLOR.PRIMARY}>
-          Xavier Ponce
+          {user?.firstName} {user?.lastName}
         </Text>
         <Spacer size='small' />
-        <Avatar />
+        <Tappable onTap={signOut}>
+          <Avatar photoURL={photoURL} />
+        </Tappable>
       </Stack>
     </Stack>
   )

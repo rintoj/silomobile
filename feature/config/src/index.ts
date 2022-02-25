@@ -5,10 +5,16 @@ export interface FrontendConfig {
   env: Environment
   app: App
   codePush: CodePush
+  api: API
 }
 
 export interface App {
   urlScheme: string
+}
+
+export interface API {
+  baseUrl: string
+  version: string
 }
 
 export interface CodePush {

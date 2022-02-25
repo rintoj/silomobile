@@ -9,40 +9,56 @@ import { COLOR } from 'native-x-theme'
 import React from 'react'
 
 interface Props {
-  onSubmit?: () => void
+  loading?: boolean
+  onSubmit?: (email: string, password: string) => void
 }
+export function LoginFormView({ loading, onSubmit }: Props) {
+  // TODO: Use forms for validating fields
+  const [email, setEmail] = React.useState<string>()
+  const [password, setPassword] = React.useState<string>()
+  const onSubmitTap = () => {
+    if (email?.length && password?.length) {
+      onSubmit?.(email, password)
+    }
+  }
 
-export function LoginFormView({ onSubmit }: Props) {
   return (
     <Stack fill padding='large'>
       <Text textColor={COLOR.PRIMARY}>Email</Text>
       <TextInput
+        autoCapitalize='none'
+        backgroundColor={COLOR_X.ACCENT2}
+        disabled={loading}
         fill
+        keyboardType='email-address'
+        onChangeText={setEmail}
         placeholder='john@doe.com'
         placeholderColor={COLOR_X.PLACEHOLDER}
-        backgroundColor={COLOR_X.ACCENT2}
         textColor={COLOR.PRIMARY}
-        autoCapitalize='none'
-        keyboardType='email-address'
+        value={email}
       />
       <Spacer />
       <Text textColor={COLOR.PRIMARY}>Password</Text>
       <TextInput
+        backgroundColor={COLOR_X.ACCENT2}
+        disabled={loading}
         fill
+        keyboardType='ascii-capable'
+        onChangeText={setPassword}
         password
         placeholder='password'
         placeholderColor={COLOR_X.PLACEHOLDER}
-        backgroundColor={COLOR_X.ACCENT2}
         textColor={COLOR.PRIMARY}
-        keyboardType='ascii-capable'
+        value={password}
       />
       <Spacer />
       <Stack fillHorizontal alignRight>
         <Button
+          loading={loading}
           width={125}
           rightIcon={<ArrowForwardIcon color={COLOR.PRIMARY} />}
           size='small'
-          onTap={onSubmit}
+          onTap={onSubmitTap}
         >
           Login
         </Button>
