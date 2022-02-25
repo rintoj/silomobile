@@ -35,7 +35,7 @@ export function LotDetailsScreen() {
         </Stack>
       </PageHeader>
       <Stack fill backgroundColor={COLOR_X.PAGE} padding='vertical:x-small'>
-        <LotDetails />
+        <LotDetails lotId={id} />
       </Stack>
     </Screen>
   )
