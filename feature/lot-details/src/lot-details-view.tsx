@@ -9,12 +9,14 @@ import LocationIcon from './images/location-icon.svg'
 import PurchaseOrderIcon from './images/po-icon.svg'
 import { SummaryTile } from './summary-tile'
 import { Lot } from './use-lot-query'
+import { Tappable } from 'native-x-tappable'
 
 interface Props {
   lot?: Lot
+  onPurchaseOrderTap?: (id?: number) => void
 }
 
-export function LotDetailsView({ lot }: Props) {
+export function LotDetailsView({ lot, onPurchaseOrderTap }: Props) {
   const ageInInventory = Math.floor(
     (Date.now() - new Date(lot?.fulfillmentDate ?? 0).getTime()) / (1000 * 60 * 60 * 24),
   )
@@ -36,11 +38,15 @@ export function LotDetailsView({ lot }: Props) {
             <Text textColor={COLOR.SUCCESS}>PO{'  '}#</Text>
           </Stack>
           <Stack horizontal alignMiddle>
-            <ArrowForwardIcon color={COLOR.SUCCESS} size={21} />
-            <Spacer size='xx-small' />
-            <Text fontSize='large' textColor={COLOR.SUCCESS}>
-              {lot?.purchaseOrderID}
-            </Text>
+            <Tappable data={lot?.purchaseOrderID} onTap={onPurchaseOrderTap}>
+              <Text>
+                <ArrowForwardIcon color={COLOR.SUCCESS} size={21} />
+                <Spacer size='xx-small' />
+                <Text fontSize='large' textColor={COLOR.SUCCESS}>
+                  {lot?.purchaseOrderID}
+                </Text>
+              </Text>
+            </Tappable>
           </Stack>
         </Stack>
       </Stack>

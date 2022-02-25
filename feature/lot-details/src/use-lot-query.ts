@@ -94,6 +94,6 @@ export interface Lot {
   inventoryTransferID?: any
 }
 
-export function useLotQuery({ lotId }: { lotId: string }) {
+export function useLotQuery({ lotId }: { lotId: number }) {
   return useQuery<Lot>(`/lots/${lotId}`, ['lot', lotId], { enabled: !!lotId })
 }
