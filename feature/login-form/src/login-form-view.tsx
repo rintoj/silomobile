@@ -1,4 +1,5 @@
 import { Button } from '@silo-component/button'
+import { ErrorPopup } from '@silo-component/error-popup'
 import { Form } from '@silo-component/form'
 import { Text } from '@silo-component/text'
 import { ArrowForwardIcon } from 'native-x-icon'
@@ -6,7 +7,6 @@ import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React, { useCallback } from 'react'
-import { ErrorPopup } from '../../../component/error-popup/src'
 import { EmailFormItem } from './email-form-item'
 import { PasswordFormItem } from './password-form-item'
 
