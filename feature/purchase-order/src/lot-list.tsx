@@ -19,7 +19,7 @@ export function LotList({ orders, onOrderItemTap }: Props) {
       </Stack>
       <Spacer size='x-small' />
       {orders?.map(item => (
-        <LotItem order={item} onTap={onOrderItemTap} />
+        <LotItem key={item?.inventoryID} order={item} onTap={onOrderItemTap} />
       ))}
     </Stack>
   )

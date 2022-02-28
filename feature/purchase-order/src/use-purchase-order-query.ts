@@ -28,8 +28,6 @@ export interface PurchaseOrder {
   costAdjustments?: any
   deliveryRoute?: any
   transportMethod?: number
-  transportLocation?: TransportLocation
-  notes?: any[]
   photos?: any
   deliveredAt?: string
   submittedTime?: string
@@ -41,7 +39,6 @@ export interface PurchaseOrder {
   signedOffBy?: string
   sendEmail?: boolean
   exportedAt?: any
-  priceSheetsBySalesOrderID?: PriceSheetsBySalesOrderId
   editableVendor?: boolean
   hasLotActivity?: boolean
   creditOrderSummaries?: any[]
@@ -187,7 +184,6 @@ export interface OrderItem {
   unit?: Unit
   unitName?: string
   assignedQuantity?: number
-  assignmentSummary?: AssignmentSummary
   inventoryIsMerged?: boolean
   mergeTargetID?: number
   inventoryIsDeleted?: boolean
@@ -236,19 +232,6 @@ interface Unit {
   increment?: number
 }
 
-interface AssignmentSummary {
-  saleCount?: number
-  saleQuantity?: number
-  saleCreditCount?: number
-  saleCreditQuantity?: number
-  repackCount?: number
-  repackQuantity?: number
-  transferCount?: number
-  transferQuantity?: number
-  returnCount?: number
-  returnQuantity?: number
-}
-
 interface Label {
   id?: number
   accountID?: number
@@ -274,7 +257,6 @@ interface Trace {
   origin?: Origin
   countryOfOrigin?: string
   internalLabelID?: number
-  internalLabel?: InternalLabel
   lotNumber?: string
   packDate?: any
   quantity?: number
@@ -298,30 +280,6 @@ interface Origin {
   id?: number
   country?: string
 }
-
-interface InternalLabel {
-  id?: number
-  accountID?: number
-  name?: string
-}
-
-interface TransportLocation {
-  id?: number
-  accountID?: number
-  buyerSellerRelationshipID?: number
-  name?: string
-  phone?: string
-  street1?: string
-  street2?: string
-  city?: string
-  state?: string
-  post?: string
-  country?: string
-  isDefaultBilling?: boolean
-  isDefaultShipping?: boolean
-}
-
-interface PriceSheetsBySalesOrderId {}
 
 export function usePurchaseOrderQuery({
   purchaseOrderID,
