@@ -1,5 +1,5 @@
 {
-  "name": "@silo-feature/error-popup",
+  "name": "@silo-component/error-popup",
   "version": "1.0.0",
   "main": "src/index.ts",
   "license": "MIT",

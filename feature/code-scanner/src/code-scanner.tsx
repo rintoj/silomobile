@@ -3,6 +3,9 @@ import { COLOR } from 'native-x-theme'
 import React, { useCallback } from 'react'
 import { BarCodeReadEvent, RNCamera } from 'react-native-camera'
 import QRCodeScanner from 'react-native-qrcode-scanner'
+import { parseQRCode, QRCodeType } from './parse-qrcode'
+
+const REACTIVATE_ON_ERROR_TIMEOUT = 3000
 
 const styles = {
   camera: {
@@ -13,24 +16,34 @@ const styles = {
   },
 }
 
-interface Props {
-  onScanSuccess?: (data: string) => void
+export interface ScannedQRCode {
+  id: string
+  type: QRCodeType
 }
 
-export function CodeScanner({ onScanSuccess }: Props) {
+interface Props {
+  onSuccess?: (code: ScannedQRCode) => void
+  onError?: () => void
+}
+
+export function CodeScanner({ onSuccess, onError }: Props) {
   const handleOnRead = useCallback(
     (e: BarCodeReadEvent) => {
-      if (!e.data) {
-        return
+      const code = parseQRCode(e.data)
+      if (code) {
+        onSuccess?.(code)
+      } else {
+        onError?.()
       }
-      onScanSuccess?.(e.data)
     },
-    [onScanSuccess],
+    [onError, onSuccess],
   )
 
   return (
     <Stack backgroundColor={COLOR.DIVIDER} fill>
       <QRCodeScanner
+        reactivate
+        reactivateTimeout={REACTIVATE_ON_ERROR_TIMEOUT}
         flashMode={RNCamera.Constants.FlashMode.auto}
         cameraStyle={styles.camera}
         onRead={handleOnRead}

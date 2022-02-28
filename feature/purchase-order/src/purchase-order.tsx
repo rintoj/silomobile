@@ -10,6 +10,7 @@ const purchaseOrder = data[0]
 const styles = { flex: 1 }
 
 interface Props {
+  id: number
   onSelectLot?: () => void
 }
 
