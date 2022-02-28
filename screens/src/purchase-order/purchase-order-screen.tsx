@@ -21,8 +21,10 @@ export function PurchaseOrderScreen() {
   const { params } = useRoute<RouteProp<PurchaseOrderParamList>>()
   const { id } = params ?? {}
 
-  const navigateToLotDetails = React.useCallback(() => navigate(Screens.LotDetails), [navigate])
-
+  const navigateToLotDetails = React.useCallback(
+    (orderID?: number) => navigate(Screens.LotDetails, { id: orderID }),
+    [navigate],
+  )
   return (
     <Screen withSafeArea>
       <Stack fill backgroundColor={COLOR_X.PAGE}>
@@ -37,7 +39,7 @@ export function PurchaseOrderScreen() {
             </Text>
           </Stack>
         </PageHeader>
-        <PurchaseOrder id={id} onSelectLot={navigateToLotDetails} />
+        <PurchaseOrder id={id} onOrderItemTap={navigateToLotDetails} />
       </Stack>
     </Screen>
   )
