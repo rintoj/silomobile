@@ -3,16 +3,20 @@ import { Stack } from 'native-x-stack'
 import { Tappable } from 'native-x-tappable'
 import React from 'react'
 import { LotItemView } from './lot-item-view'
+import { OrderItem } from './use-purchase-order-query'
 
 interface Props {
-  onSelect?: () => void
+  order?: OrderItem
+  onTap?: (orderId?: number) => void
 }
-export function LotItem({ onSelect }: Props) {
+export function LotItem({ order, onTap }: Props) {
+  const [trace] = order?.traces ?? []
   return (
-    <Tappable onTap={onSelect}>
+    <Tappable data={trace?.id} onTap={onTap}>
       <Stack fillHorizontal>
-        <LotItemView />
+        <LotItemView order={order} />
         <Spacer size='x-small' />
+        <Spacer size='xx-small' />
       </Stack>
     </Tappable>
   )

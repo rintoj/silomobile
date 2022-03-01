@@ -6,8 +6,11 @@ import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
 import LotIcon from './images/lot-icon.svg'
-
-export function LotItemView() {
+import { OrderItem } from './use-purchase-order-query'
+interface Props {
+  order?: OrderItem
+}
+export function LotItemView({ order }: Props) {
   return (
     <Stack fillHorizontal backgroundColor={COLOR.PRIMARY}>
       <Stack
@@ -19,7 +22,7 @@ export function LotItemView() {
       >
         <LotIcon width={18} height={18} />
         <Spacer size='small' />
-        <Text textColor={COLOR.PRIMARY}>LOT# ANG-001617</Text>
+        <Text textColor={COLOR.PRIMARY}>LOT# ANG-{order?.inventoryID}</Text>
         <Spacer size='small' />
         <ArrowForwardIcon size={16} color={COLOR.PRIMARY} />
       </Stack>
@@ -28,13 +31,15 @@ export function LotItemView() {
         <Spacer size='small' />
         <Stack fill>
           <Text textColor={COLOR_X.ACCENT2}>Item</Text>
-          <Text textColor={COLOR_X.ACCENT3}>Angel Sweet Cherry Tomato - 2 pint - Green Label</Text>
+          <Text textColor={COLOR_X.ACCENT3}>
+            {order?.productName} - {order?.quantity} {order?.unit?.name} - {order?.label?.name}
+          </Text>
         </Stack>
         <Spacer size='x-small' />
         <Stack alignRight width={60}>
           <Text textColor={COLOR_X.ACCENT2}>Total u</Text>
           <Text textColor={COLOR_X.ACCENT2} fontSize='large'>
-            112
+            {order?.total}
           </Text>
         </Stack>
         <Spacer size='small' />
