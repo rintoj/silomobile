@@ -1,3 +1,4 @@
+import { DataView } from '@silo-component/data-view'
 import { Text } from '@silo-component/text'
 import { COLOR_X } from '@silo-feature/theme'
 import { ArrowForwardIcon } from 'native-x-icon'
@@ -10,7 +11,6 @@ import LocationIcon from './images/location-icon.svg'
 import PurchaseOrderIcon from './images/po-icon.svg'
 import { SummaryTile } from './summary-tile'
 import { Lot } from './use-lot-query'
-import { DataView } from 'native-x-data-view'
 
 interface Props {
   lot?: Lot
