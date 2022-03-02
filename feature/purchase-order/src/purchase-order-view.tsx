@@ -1,25 +1,28 @@
 import { Text } from '@silo-component/text'
+import { ReceivePoButton } from '@silo-feature/receive-po'
 import { COLOR_X } from '@silo-feature/theme'
 import { format } from 'date-fns'
+import { DataView } from 'native-x-data-view'
 import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import React from 'react'
-import { ReceivePoButton } from '@silo-feature/receive-po'
 import LocationIcon from './images/location.svg'
 import { LotList } from './lot-list'
 import { PurchaseOrder, PurchaseOrderStatus } from './use-purchase-order-query'
 
 interface Props {
   order?: PurchaseOrder
+  loading?: boolean
+  error?: Error | null
   onOrderItemTap?: (orderID?: number) => void
 }
 
-export function PurchaseOrderView({ order, onOrderItemTap }: Props) {
+export function PurchaseOrderView({ order, loading, error, onOrderItemTap }: Props) {
   const [vendor] = order?.sellers ?? []
   const receivedOn = format(new Date(order?.deliveredAt ?? 0), 'MMM dd, yyyy - h:mmaaa')
 
   return (
-    <Stack alignTop>
+    <DataView fill isLoading={loading} error={error} alignTop data={order}>
       <Spacer size='x-small' />
       <Stack fillHorizontal horizontal padding='vertical:small'>
         <Stack fill padding='horizontal:normal'>
@@ -59,7 +62,7 @@ export function PurchaseOrderView({ order, onOrderItemTap }: Props) {
           </Text>
         </Stack>
         <Spacer size='x-small' />
-        <Stack fill border>
+        <Stack fill>
           <Stack fill alignRight>
             {order?.status === PurchaseOrderStatus.PENDING ? (
               <ReceivePoButton orderID={order.id} />
@@ -79,6 +82,6 @@ export function PurchaseOrderView({ order, onOrderItemTap }: Props) {
       <Spacer size='small' />
       <Spacer size='x-small' />
       <LotList orders={order?.orderItems} onOrderItemTap={onOrderItemTap} />
-    </Stack>
+    </DataView>
   )
 }
