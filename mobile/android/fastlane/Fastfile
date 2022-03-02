@@ -1,0 +1,55 @@
+default_platform(:android)
+
+platform :android do
+  validate_play_store_json_key(
+  json_key: './playstore-credentials.json',
+)
+end
+
+def update_version_code(package_name)
+  UI.important package_name
+  gi = google_play_track_version_codes(
+    track: "internal",
+    json_key: './playstore-credentials.json', 
+    package_name:package_name
+  )
+  version_updated = gi[0].to_i + 1
+  android_set_version_code(gradle_file: "./app/build.gradle", version_code: version_updated)
+  return version_updated
+end
+
+
+
+platform :android do
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Build and Submit App to Playstore"
+  lane :deploy do |options|
+   
+    
+    # UI.important "Current application version: " + options[:version]
+    # android_set_version_name(gradle_file: "./app/build.gradle", version_name: options[:version])
+
+    # version_code =  update_version_code(options[:isProdVersion] === true ? "com.usesilo.mobile.prod" : "com.usesilo.mobile.stage")
+    # UI.important "Current application version code: " + version_code.to_s
+   
+    gradle(task: "clean")
+    
+    gradle(
+      task: "bundle",
+      flavor: options[:isProdVersion] === true ? "Prod" : "Stage",
+      build_type: "Release"
+    )
+
+    # upload_to_play_store(
+    #     track: 'internal',
+    #     version_code: version_code,
+    #     version_name: options[:version],
+    #     skip_upload_changelogs: true
+    # )
+
+  end
+end
