@@ -17,16 +17,16 @@ type LotDetailsParamList = {
 }
 
 export function LotDetailsScreen() {
-  const { navigate } = useNavigation<any>()
+  const { push } = useNavigation<any>()
   const { params } = useRoute<RouteProp<LotDetailsParamList>>()
   const { id } = params ?? {}
   const navigateToPurchaseOrderScreen = useCallback(
     (orderId?: number) => {
       if (orderId) {
-        navigate(Screens.PurchaseOrder, { id: orderId })
+        push(Screens.PurchaseOrder, { id: orderId })
       }
     },
-    [navigate],
+    [push],
   )
 
   return (

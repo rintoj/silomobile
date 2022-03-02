@@ -17,13 +17,13 @@ type PurchaseOrderParamList = {
 }
 
 export function PurchaseOrderScreen() {
-  const { navigate } = useNavigation<any>()
+  const { push } = useNavigation<any>()
   const { params } = useRoute<RouteProp<PurchaseOrderParamList>>()
   const { id } = params ?? {}
 
   const navigateToLotDetails = React.useCallback(
-    (orderID?: number) => navigate(Screens.LotDetails, { id: orderID }),
-    [navigate],
+    (orderID?: number) => push(Screens.LotDetails, { id: orderID }),
+    [push],
   )
   return (
     <Screen withSafeArea>
