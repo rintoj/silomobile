@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import { gitDescribeSync } from 'git-describe'
-import { getAndroidDir, getFrontendRootDir, getIOSDir, GitHubApi, runCommand } from '../util'
 import * as semver from 'semver'
+import { getAndroidDir, getFrontendRootDir, getIOSDir, GitHubApi, runCommand } from '../util'
 
 export enum AppVariant {
   ANDROID = 'android',
