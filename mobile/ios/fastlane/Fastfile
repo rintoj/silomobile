@@ -17,6 +17,10 @@ default_platform(:ios)
 
 platform :ios do
 
+  appPath    = "./Silo"
+  xcodeproj  = appPath + ".xcodeproj"
+  plist_path = appPath + "/Info.plist"
+
   api_key = app_store_connect_api_key(
     key_id: "7NQ9QVS88N",
     issuer_id: "2bdcfde8-ccdd-4138-94a1-9b4a61ca45e4",
@@ -25,17 +29,29 @@ platform :ios do
     in_house: false
   )
 
-  desc "Push a new beta build to TestFlight"
-  lane :beta do
+  desc "Push a build to TestFlight"
+  lane :deploy do | options |
 
     current_build_num = app_store_build_number(
       api_key: api_key,
       live: false,
-      version: "1.0",
+      app_identifier: options[:identifier],
+      version: options[:version],
       initial_build_number: 0
     )
 
-    increment_build_number(xcodeproj: "Silo.xcodeproj", build_number: current_build_num + 1)
+    update_info_plist(
+      xcodeproj: xcodeproj,
+      plist_path: plist_path,
+      block: proc do |plist|
+        plist["CFBundleShortVersionString"] = options[:version]
+        plist["CFBundleIdentifier"] = options[:identifier]
+        plist["NSAppTransportSecurity"]["NSExceptionDomains"]= {}
+        plist["NSAppTransportSecurity"]["NSAllowsArbitraryLoads"]= false
+      end
+    )
+
+    increment_build_number(xcodeproj: xcodeproj, build_number: current_build_num + 1)
     build_app(workspace: "Silo.xcworkspace", scheme: "Silo")
     upload_to_testflight(skip_waiting_for_build_processing: true)
   end
