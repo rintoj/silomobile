@@ -1,3 +1,4 @@
+import { DataView } from '@silo-component/data-view'
 import { Text } from '@silo-component/text'
 import { COLOR_X } from '@silo-feature/theme'
 import { ArrowForwardIcon } from 'native-x-icon'
@@ -13,16 +14,18 @@ import { Lot } from './use-lot-query'
 
 interface Props {
   lot?: Lot
+  loading?: boolean
+  error?: Error | null
   onPurchaseOrderTap?: (id?: number) => void
 }
 
-export function LotDetailsView({ lot, onPurchaseOrderTap }: Props) {
+export function LotDetailsView({ lot, loading, error, onPurchaseOrderTap }: Props) {
   const ageInInventory = Math.floor(
     (Date.now() - new Date(lot?.fulfillmentDate ?? 0).getTime()) / (1000 * 60 * 60 * 24),
   )
 
   return (
-    <Stack fill>
+    <DataView data={lot} fill isLoading={loading} error={error}>
       <Spacer size='xx-small' />
       <Stack fillHorizontal horizontal padding='vertical:small'>
         <Stack fill padding='horizontal:normal'>
@@ -101,6 +104,6 @@ export function LotDetailsView({ lot, onPurchaseOrderTap }: Props) {
         <SummaryTile title='Returned' value={lot?.returnedQuantity} alignRight />
         <SummaryTile title='O/H' value={lot?.remainingQuantity} alignRight />
       </Stack>
-    </Stack>
+    </DataView>
   )
 }

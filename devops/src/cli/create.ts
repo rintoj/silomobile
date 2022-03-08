@@ -15,6 +15,8 @@ enum Type {
   FEATURE = 'feature',
 }
 
+type Flags = never
+
 async function createComponentOrFeature(name: string, type: Type) {
   const packagePath = resolve(getRootDir(), type)
   if (existsSync(resolve(packagePath, name))) {
@@ -42,7 +44,7 @@ async function createComponentOrFeature(name: string, type: Type) {
 
 const usage = 'Usage: yarn cli create <feature|component> <name>'
 
-export default function create(type: Type, name: string) {
+export default function create(flags: Flags, type: Type, name: string) {
   if (!type) {
     throw new Error(`"type" is missing! \n${usage}\n`)
   }

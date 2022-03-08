@@ -1,99 +1,103 @@
-import chalk from 'chalk'
-import { gitDescribeSync } from 'git-describe'
+import { red, yellow } from 'chalk'
+import moment from 'moment'
 import * as semver from 'semver'
-import { getAndroidDir, getFrontendRootDir, getIOSDir, GitHubApi, runCommand } from '../util'
+import { config } from '../config'
+import { GitHubApi, GitHubIssue, GitHubIssueState, GitHubIssueType } from '../util'
 
-export enum AppVariant {
-  ANDROID = 'android',
-  IOS = 'ios',
+function formatDate(date: string) {
+  return moment(date).fromNow()
 }
 
-export enum Environment {
-  PROD = 'prod',
-  DEV = 'dev',
-}
-
-// TODO: Specify Github config
-const config = {
-  github: {
-    owner: '',
-    apiURL: 'https://api.github.com',
-    token: process.env.GITHUB_TOKEN as string,
-    repo: '',
-  },
-}
-const git = new GitHubApi({ ...config.github, repo: config.github.repo })
-
-const commands = {
-  android: {
-    deploy: 'fastlane android deploy',
-  },
-  ios: {
-    deploy: 'fastlane ios beta',
-  },
-  git: {
-    reset: 'git reset --hard',
-    checkoutTag: (tag: string) => `git checkout tags/${tag}`,
-  },
-  yarn: {
-    setEnv: (env: string) => `yarn set:${env}`,
-  },
-}
-
-export async function getAppVersion(env: Environment) {
-  const [latestRelease] = await git.fetchReleases()
-  const latestVersion = (latestRelease?.tag_name ?? 'v0.0.0').substring(1)
-  if (env === Environment.PROD) {
-    return latestVersion
+function createIssueMarkdown(issue: GitHubIssue) {
+  const assignee = issue.assignees.slice(-1)[0] ?? issue?.user
+  return `- [#${issue.number}](${issue.html_url}) - ${issue.title} ${
+    assignee
+      ? `- _${formatDate(issue.updated_at)} by [${assignee?.login}](${assignee?.html_url})_`
+      : ''
   }
-  const appVersion = semver.inc(latestVersion, 'patch')
-  if (!appVersion) {
-    throw Error('Invalid Application Version')
-  }
-  return appVersion
+`
 }
 
-export async function releaseApp(variant: AppVariant, env: Environment) {
-  const { dirty } = gitDescribeSync()
-  if (dirty) {
-    console.error(
-      chalk`{red Error: Uncommitted changes are present. Please commit changes before deployment }`,
+function sortByPRNumber(issue1: GitHubIssue, issue2: GitHubIssue) {
+  return issue1.number - issue2.number
+}
+
+export enum ReleaseType {
+  MINOR = 'minor',
+  PATCH = 'patch',
+}
+
+export type Flags = { ['dry-run']: boolean }
+
+export default async function release(
+  { 'dry-run': dryRun }: Flags,
+  releaseType = ReleaseType.PATCH,
+) {
+  try {
+    // eslint-disable-next-line no-undef-init
+    let since: string | undefined = undefined
+    let nextTag = config.github.initialVersion
+
+    if (!config.github.token) {
+      throw new Error('Environment variable GITHUB_TOKEN is missing!')
+    }
+    if (![ReleaseType.MINOR, ReleaseType.PATCH].includes(releaseType)) {
+      throw new Error(`Invalid release type: ${releaseType}. Use either "minor" or "patch"`)
+    }
+
+    const git = new GitHubApi(config.github)
+    const [latestRelease] = await git.fetchReleases()
+    const initialRelease = latestRelease === undefined
+
+    if (!initialRelease) {
+      const tag = latestRelease?.tag_name ?? config.github.initialVersion
+      const masterSha = await git.getHeadSHA(config.github.branch)
+      if (!masterSha) {
+        throw new Error('Something is wrong with this repository. Could not find master branch')
+      }
+      const tagSha = (await git.getTagSHA(tag)) as string
+      if (masterSha === tagSha) {
+        throw new Error(`No changes since last version ${tag}!`)
+      }
+      const commit = tagSha ? await git.getCommit(tagSha) : undefined
+      if (!commit) {
+        throw new Error(
+          `Something is wrong with this repository. Could not find commit for tag "${tag}"`,
+        )
+      }
+      since = commit?.committer?.date
+      nextTag = `v${semver.inc(tag, releaseType as any)}`
+      if (!nextTag) {
+        throw new Error('Failed to identify next tag')
+      }
+    }
+    const issues = await git.fetchIssues(
+      {
+        state: GitHubIssueState.Closed,
+        type: GitHubIssueType.PullRequest,
+        merged: true,
+        sort: 'created',
+        since: since as string | undefined,
+      },
+      sortByPRNumber,
     )
-    return
-  }
+    if (!issues.length) {
+      throw new Error('No new PR to release!')
+    }
+    const title = `Production build: ${nextTag}`
+    const body = issues.sort(sortByPRNumber).map(createIssueMarkdown).join('')
+    console.log(`
+${yellow(title)}
 
-  process.chdir(getFrontendRootDir())
-  await runCommand(commands.yarn.setEnv(env))
+${body}`)
 
-  // TODO getAppVersion after setting up versioning
-  // const appVersion = await getAppVersion(env)
-  const appVersion = 'v0.1.0'
-  const androidDir = getAndroidDir()
-  const iosDir = getIOSDir()
-  if (variant === AppVariant.ANDROID) {
-    process.chdir(androidDir)
-
-    await runCommand(
-      `${commands.android.deploy} version:${appVersion}  isProdVersion:${env === Environment.PROD}`,
-    )
+    if (!dryRun) {
+      await git.release(nextTag, title, body)
+    } else {
+      console.log(yellow('This was a dry run!'))
+    }
+  } catch (e: any) {
+    console.error(red(e.message))
+    console.log('')
   }
-  if (variant === AppVariant.IOS) {
-    process.chdir(iosDir)
-    await runCommand(
-      `${commands.ios.deploy} version:${appVersion} isProdVersion:${env === Environment.PROD}`,
-    )
-  }
-  await runCommand(commands.git.reset)
-}
-
-const usage = 'Usage: yarn cli release <ios|android> <stag|dev>'
-export default function release(variant: AppVariant, env: Environment) {
-  if (!variant) {
-    throw new Error(`"variant" is missing! \n${usage}\n`)
-  }
-  if (!env) {
-    throw new Error(`"env" is missing! \n${usage}\n`)
-  }
-
-  return releaseApp(variant, env)
 }

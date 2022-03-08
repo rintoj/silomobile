@@ -153,7 +153,7 @@ export function Button<T>(props: ButtonProps<T>) {
           </>
         ) : null}
         <Text fontSize='normal' style={contentStyle as any}>{` ${children} `}</Text>
-        {loading ? (
+        {rightIcon && loading ? (
           <>
             <View style={[s.pa1]} />
             <ActivityIndicator size='small' color={color as any} />

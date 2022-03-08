@@ -202,7 +202,7 @@ enum IssueType {
   revert,
 }
 
-function sortByTitle(issue1: GitHubIssue, issue2: GitHubIssue) {
+function sortByTitle(issue1: GitHubIssue, issue2: GitHubIssue): number {
   const [type1] = issue1?.title?.split(':')
   const [type2] = issue2?.title?.split(':')
   const issueType1 = IssueType[type1 as any]
@@ -253,9 +253,10 @@ export class GitHubApi {
     return type === GitHubIssueType.PullRequest ? !!issue.pull_request : !issue.pull_request
   }
 
-  async fetchIssues({ since, type, state, sort, merged }: FetchOptions = {}): Promise<
-    GitHubIssue[]
-  > {
+  async fetchIssues(
+    { since, type, state, sort, merged }: FetchOptions = {},
+    sortBy = sortByTitle,
+  ): Promise<GitHubIssue[]> {
     const args = [
       merged ? 'q=is:merged' : undefined,
       since ? `since=${since}` : undefined,
@@ -285,7 +286,7 @@ export class GitHubApi {
     return issues
       .filter(issue => this.filterIssueByType(issue, type))
       .filter(issue => issue.user.login !== 'dependabot[bot]')
-      .sort(sortByTitle)
+      .sort(sortBy)
   }
 
   async fetchReleases() {

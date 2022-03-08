@@ -9,11 +9,16 @@ function showUsage() {
 
   ${chalk.green('create')} ${chalk.yellow('component')} ${chalk.grey('<name>')}
   ${chalk.green('create')} ${chalk.yellow('feature')} ${chalk.grey('<name>')}
+  ${chalk.green('release')} ${chalk.yellow('minor/patch')} ${chalk.grey('--dry-run')}
+  ${chalk.green('deploy')} ${chalk.yellow('--platform=ios/android')} ${chalk.yellow(
+    '--environment=dev/prod',
+  )} ${chalk.grey('--allow-dirty')}
+  ${chalk.green('current-release')}
 
   `)
 }
 
-function run() {
+async function run() {
   const argv = minimist(process.argv.slice(2))
 
   const [command, ...args] = argv._
@@ -22,7 +27,7 @@ function run() {
     if (!command) {
       return showUsage()
     }
-    require(`./${command}`).default(...args)
+    await require(`./${command}`).default(argv, ...args)
   } catch (e: any) {
     if (/Cannot find module/.test(e.message)) {
       console.error(chalk.red(`Invalid command: ${command}`))
