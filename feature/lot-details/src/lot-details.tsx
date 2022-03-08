@@ -8,6 +8,13 @@ interface Props {
 }
 
 export function LotDetails({ lotId, onPurchaseOrderTap }: Props) {
-  const { data: lot } = useLotQuery({ lotId })
-  return <LotDetailsView lot={lot} onPurchaseOrderTap={onPurchaseOrderTap} />
+  const { data: lot, isLoading, error } = useLotQuery({ lotId })
+  return (
+    <LotDetailsView
+      lot={lot}
+      loading={isLoading}
+      error={error}
+      onPurchaseOrderTap={onPurchaseOrderTap}
+    />
+  )
 }

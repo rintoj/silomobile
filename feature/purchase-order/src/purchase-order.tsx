@@ -15,14 +15,23 @@ interface Props {
 
 export function PurchaseOrder({ id, onOrderItemTap }: Props) {
   const { user } = useAuth()
-  const { data: purchaseOrder } = usePurchaseOrderQuery({
+  const {
+    data: purchaseOrder,
+    isLoading,
+    error,
+  } = usePurchaseOrderQuery({
     purchaseOrderID: id,
     accountID: user?.accountID,
   })
   return (
     <ScrollView style={styles} showsVerticalScrollIndicator={false}>
       <Stack fill>
-        <PurchaseOrderView order={purchaseOrder} onOrderItemTap={onOrderItemTap} />
+        <PurchaseOrderView
+          loading={isLoading}
+          error={error}
+          order={purchaseOrder}
+          onOrderItemTap={onOrderItemTap}
+        />
       </Stack>
       <Spacer size='x-large' />
     </ScrollView>

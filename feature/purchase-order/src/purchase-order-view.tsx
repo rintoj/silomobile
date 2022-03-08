@@ -1,10 +1,10 @@
-import { Button } from '@silo-component/button'
+import { DataView } from '@silo-component/data-view'
 import { Text } from '@silo-component/text'
+import { ReceivePoButton } from '@silo-feature/receive-po'
 import { COLOR_X } from '@silo-feature/theme'
 import { format } from 'date-fns'
 import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
-import { COLOR } from 'native-x-theme'
 import React from 'react'
 import LocationIcon from './images/location.svg'
 import { LotList } from './lot-list'
@@ -12,16 +12,17 @@ import { PurchaseOrder, PurchaseOrderStatus } from './use-purchase-order-query'
 
 interface Props {
   order?: PurchaseOrder
-  onReceiveTap?: () => void
+  loading?: boolean
+  error?: Error | null
   onOrderItemTap?: (orderID?: number) => void
 }
 
-export function PurchaseOrderView({ order, onReceiveTap, onOrderItemTap }: Props) {
+export function PurchaseOrderView({ order, loading, error, onOrderItemTap }: Props) {
   const [vendor] = order?.sellers ?? []
   const receivedOn = format(new Date(order?.deliveredAt ?? 0), 'MMM dd, yyyy - h:mmaaa')
 
   return (
-    <Stack alignTop>
+    <DataView fill isLoading={loading} error={error} alignTop data={order}>
       <Spacer size='x-small' />
       <Stack fillHorizontal horizontal padding='vertical:small'>
         <Stack fill padding='horizontal:normal'>
@@ -47,8 +48,8 @@ export function PurchaseOrderView({ order, onReceiveTap, onOrderItemTap }: Props
         </Stack>
       </Stack>
       <Spacer size='xx-small' />
-      <Stack fillHorizontal horizontal padding='vertical:small'>
-        <Stack fill padding='horizontal:normal'>
+      <Stack fillHorizontal horizontal padding={['vertical:small', 'horizontal:normal']}>
+        <Stack fill>
           <Stack horizontal alignMiddle>
             <Text textColor={COLOR_X.ACCENT2} fontSize='large'>
               Location
@@ -60,23 +61,11 @@ export function PurchaseOrderView({ order, onReceiveTap, onOrderItemTap }: Props
             {order?.salesRep?.city}
           </Text>
         </Stack>
-        <Stack fill padding='horizontal:normal'>
+        <Spacer size='x-small' />
+        <Stack fill>
           <Stack fill alignRight>
             {order?.status === PurchaseOrderStatus.PENDING ? (
-              <Button
-                rounded={false}
-                size='small'
-                width={145}
-                height={43}
-                backgroundColor={COLOR.TRANSPARENT}
-                border
-                borderRadius='large'
-                borderColor={COLOR.ACCENT}
-                textColor={COLOR.ACCENT}
-                onTap={onReceiveTap}
-              >
-                Receive PO
-              </Button>
+              <ReceivePoButton orderID={order.id} />
             ) : (
               <>
                 <Text textColor={COLOR_X.ACCENT2} alignRight>
@@ -93,6 +82,6 @@ export function PurchaseOrderView({ order, onReceiveTap, onOrderItemTap }: Props
       <Spacer size='small' />
       <Spacer size='x-small' />
       <LotList orders={order?.orderItems} onOrderItemTap={onOrderItemTap} />
-    </Stack>
+    </DataView>
   )
 }

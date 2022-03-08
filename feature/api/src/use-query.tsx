@@ -10,7 +10,7 @@ export type QueryOptions<TQueryFnData, TError, TData, TQueryKey extends ReactQue
 export function useQuery<
   TQueryFnData = unknown,
   TData = TQueryFnData,
-  TError = unknown,
+  TError = Error | null,
   TQueryKey extends ReactQuery.QueryKey = ReactQuery.QueryKey,
 >(
   url: string,
