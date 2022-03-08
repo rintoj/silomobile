@@ -130,7 +130,7 @@ android {
     ndkVersion rootProject.ext.ndkVersion
 
     compileSdkVersion rootProject.ext.compileSdkVersion
-
+    flavorDimensions "silo"
     defaultConfig {
         applicationId "com.usesilo.mobile.stage"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -138,6 +138,22 @@ android {
         versionCode 1
         versionName "1.0"
         missingDimensionStrategy 'react-native-camera', 'general'
+    }
+    productFlavors {
+        stage {
+            minSdkVersion rootProject.ext.minSdkVersion
+            applicationId 'com.usesilo.mobile.stage'
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            resValue "string", "build_config_package", "com.usesilo.mobile.stage"
+            dimension "silo"
+        }
+        prod {
+            minSdkVersion rootProject.ext.minSdkVersion
+            applicationId 'com.usesilo.mobile.prod'
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            resValue "string", "build_config_package", "com.usesilo.mobile.stage"
+            dimension "silo"
+        }
     }
     dexOptions {
       javaMaxHeapSize "4g"
