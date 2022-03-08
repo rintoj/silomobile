@@ -256,9 +256,17 @@ export default async function deployApp({
     }
 
     // checkout a version if prod
-    if (context.environment === Environment.PROD) {
+    if (!allowDirty && context.environment === Environment.PROD) {
       await runCommand(commands.git.checkoutTag(context.currentVersion))
     }
+
+    await Promise.all(
+      commands.linkDirs.map(async dir => {
+        await runCommand(
+          `ln -sfv ${paths.rootDir}/node_modules/${dir} ${paths.reactNative}/node_modules/${dir}`,
+        )
+      }),
+    )
 
     // do code push
     if (context.deployment === DeploymentType.PUSH) {
@@ -268,7 +276,8 @@ export default async function deployApp({
 
     // release binary
     if (context.deployment === DeploymentType.BINARY) {
-      const command = `${commands.fastlane[platform]} version:${context.appVersion} identifier:${context.appIdentifier}`
+      const isProd = context.environment === Environment.PROD
+      const command = `${commands.fastlane[platform]} version:${context.appVersion} identifier:${context.appIdentifier} isProd:${isProd}`
       await runCommand(command, paths[platform])
     }
 
