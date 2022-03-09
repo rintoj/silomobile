@@ -8,6 +8,7 @@ import { COLOR_X } from '@silo-feature/theme'
 import { useOpenClose } from '@silo/util'
 import { CloseIcon } from 'native-x-icon'
 import { Spacer } from 'native-x-spacer'
+import { Spinner } from 'native-x-spinner'
 import { Stack } from 'native-x-stack'
 import { Tappable } from 'native-x-tappable'
 import { COLOR, useTheme } from 'native-x-theme'
@@ -15,7 +16,6 @@ import React, { useCallback } from 'react'
 import { StatusBar } from 'react-native'
 import { RootStackParamList } from '../navigation/root-stack'
 import QRCodeIcon from './qr-code-icon.svg'
-import { Spinner } from 'native-x-spinner'
 
 export function ScanLoginModal({ navigation: { goBack } }: StackScreenProps<RootStackParamList>) {
   const { getColor } = useTheme()
