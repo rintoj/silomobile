@@ -8,6 +8,7 @@ import { COLOR } from 'native-x-theme'
 import React, { useCallback } from 'react'
 import { KeyboardAvoidingView, ScrollView, StatusBar } from 'react-native'
 import SplashScreen from 'react-native-splash-screen'
+import { AppBanner } from './app-banner'
 
 const styles = {
   container: { flex: 1 },
@@ -20,8 +21,8 @@ export function LoginScreen() {
     <Background onLoad={hideSplashScreen}>
       <Screen backgroundColor={COLOR.TRANSPARENT} withSafeArea>
         <StatusBar barStyle='light-content' backgroundColor='#192820' animated />
-        <ScrollView>
-          <KeyboardAvoidingView behavior='position' style={styles.container}>
+        <ScrollView keyboardShouldPersistTaps='handled'>
+          <KeyboardAvoidingView style={styles.container} behavior='position'>
             <Stack fill alignCenter padding='normal'>
               <Spacer size='large' />
               <Logo />
@@ -30,6 +31,7 @@ export function LoginScreen() {
             </Stack>
           </KeyboardAvoidingView>
         </ScrollView>
+        <AppBanner />
       </Screen>
     </Background>
   )

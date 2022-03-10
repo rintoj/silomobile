@@ -10,6 +10,7 @@ export interface FrontendConfig {
 
 export interface App {
   urlScheme: string
+  publicURL: string
 }
 
 export interface API {
