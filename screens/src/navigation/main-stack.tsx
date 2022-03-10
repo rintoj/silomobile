@@ -6,18 +6,21 @@ import { COLOR } from 'native-x-theme'
 import React from 'react'
 import { LoginScreen } from '../login/login-screen'
 import { appScreens, MainStackParamList, Screens } from './screens'
-
+import { NavBar } from '@silo-feature/nav-bar'
+import { AppHeader } from '@silo-feature/app-header'
 const { mainScreens, publicScreens } = appScreens
 const { Navigator, Screen, Group } = createBottomTabNavigator<MainStackParamList>()
-const navigatorOptions: BottomTabNavigationOptions = {
-  tabBarStyle: { display: 'none' },
-  headerShown: false,
-}
+const navigatorOptions: BottomTabNavigationOptions = {}
+const renderHeader = () => <AppHeader />
 
 export function MainStack() {
   const { state } = useAuth()
   const [updateApp] = useCodePush()
-  const mainScreenOptions: any = React.useMemo(() => ({ tabBarStyle: { display: 'none' } }), [])
+  const mainScreenOptions: any = React.useMemo(() => ({ header: renderHeader }), [])
+  const publicScreenOptions: any = React.useMemo(
+    () => ({ tabBarStyle: { display: 'none' }, headerShown: false }),
+    [],
+  )
   const publicNavigatorScreens = React.useMemo(
     () =>
       Object.keys(publicScreens).map(screen => (
@@ -44,12 +47,13 @@ export function MainStack() {
   return (
     <Stack fill backgroundColor={COLOR.PRIMARY}>
       <Navigator
+        tabBar={NavBar}
         initialRouteName={Screens.Login}
         screenOptions={navigatorOptions}
         backBehavior='history'
       >
         <Group screenOptions={mainScreenOptions}>{mainMenuNavigatorScreens}</Group>
-        <Group>{publicNavigatorScreens}</Group>
+        <Group screenOptions={publicScreenOptions}>{publicNavigatorScreens}</Group>
       </Navigator>
     </Stack>
   )
