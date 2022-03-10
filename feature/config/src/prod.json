@@ -2,7 +2,7 @@
   "env": "prod",
   "app": {
     "urlScheme": "usesilo://",
-    "publicURL":"https://usesilo.com"
+    "publicURL": "https://usesilo.com"
   },
   "api": {
     "version": "1.0.0",
