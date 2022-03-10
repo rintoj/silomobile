@@ -1,13 +1,13 @@
 import { BottomTabNavigationOptions, createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { AppHeader } from '@silo-feature/app-header'
 import { AuthState, useAuth } from '@silo-feature/auth'
 import { useCodePush } from '@silo-feature/code-push'
+import { NavBar } from '@silo-feature/nav-bar'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
 import { LoginScreen } from '../login/login-screen'
 import { appScreens, MainStackParamList, Screens } from './screens'
-import { NavBar } from '@silo-feature/nav-bar'
-import { AppHeader } from '@silo-feature/app-header'
 const { mainScreens, publicScreens } = appScreens
 const { Navigator, Screen, Group } = createBottomTabNavigator<MainStackParamList>()
 const navigatorOptions: BottomTabNavigationOptions = {}

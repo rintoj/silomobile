@@ -3,9 +3,9 @@ import { THEMES } from '@silo-feature/theme'
 import { THEME, ThemeProvider } from 'native-x-theme'
 import React from 'react'
 import { StatusBar } from 'react-native'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { RootStack } from './navigation/root-stack'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 const queryClient = new QueryClient()
 
