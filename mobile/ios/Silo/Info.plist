@@ -43,6 +43,8 @@
 	<string>Need access to photo library to allow you to pick photos with barcodes</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+  <key>ITSAppUsesNonExemptEncryption</key>
+  <false/>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

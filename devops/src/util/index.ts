@@ -1,4 +1,4 @@
 export * from './file-paths'
-export * from './github-api'
+export * from './github'
 export * from './run-command'
 export * from './write-file-with-template'
