@@ -10,11 +10,11 @@ import { StatusBar } from 'react-native'
 
 export function HomeScreen() {
   return (
-    <Screen withSafeArea={false}>
+    <Screen>
       <StatusBar barStyle='light-content' backgroundColor='#235039' animated />
       <Stack fill backgroundColor={COLOR.PRIMARY}>
         <Stack alignCenter fill padding='normal' backgroundColor={COLOR_X.PAGE}>
-          <Spacer size='small' />
+          <Spacer size='large' />
           <Text fill fontSize='large' textColor={COLOR.TERTIARY} semiBold>
             Incoming
           </Text>
