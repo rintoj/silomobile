@@ -11,6 +11,7 @@ export enum AuthState {
 export interface AuthContextType {
   user?: User
   signIn: (email: string, password: string) => void
+  signInWithToken: (token: string) => void
   signOut?: () => void
   loading?: boolean
   error?: Error | null

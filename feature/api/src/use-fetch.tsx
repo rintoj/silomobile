@@ -28,10 +28,12 @@ export function useFetch<TVariables>(
         },
         ...(variables && method !== HttpMethod.GET ? { body: JSON.stringify(variables) } : {}),
       })
-
       if (!response.ok) {
-        const error = await response.json()
-        throw new Error(error?.message ?? 'Request failed. Please try again')
+        const error =
+          response.headers.get('content-type') === 'application/json'
+            ? await response.json()
+            : { message: await response.text() }
+        throw new Error(error?.message ?? 'Request failed')
       }
 
       return response.json()

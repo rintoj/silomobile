@@ -1,7 +1,8 @@
 {
   "env": "dev",
   "app": {
-    "urlScheme": "usesilo-dev://"
+    "urlScheme": "usesilo-dev://",
+    "publicURL": "https://stage.usesilo.com"
   },
   "api": {
     "version": "1.0.0",
