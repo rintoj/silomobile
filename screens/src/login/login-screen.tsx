@@ -11,6 +11,8 @@ import { KeyboardAvoidingView, ScrollView, StatusBar } from 'react-native'
 import SplashScreen from 'react-native-splash-screen'
 import { Modals } from '../navigation/modals'
 import { RootStackParamList } from '../navigation/root-stack'
+import { AppBanner } from './app-banner'
+
 const styles = {
   container: { flex: 1 },
 }
@@ -25,8 +27,8 @@ export function LoginScreen({ navigation }: StackScreenProps<RootStackParamList>
     <Background onLoad={hideSplashScreen}>
       <Screen backgroundColor={COLOR.TRANSPARENT} withSafeArea>
         <StatusBar barStyle='light-content' backgroundColor='#192820' animated />
-        <ScrollView>
-          <KeyboardAvoidingView behavior='position' style={styles.container}>
+        <ScrollView keyboardShouldPersistTaps='handled'>
+          <KeyboardAvoidingView style={styles.container} behavior='position'>
             <Stack fill alignCenter padding='normal'>
               <Spacer size='large' />
               <Logo />
@@ -35,6 +37,7 @@ export function LoginScreen({ navigation }: StackScreenProps<RootStackParamList>
             </Stack>
           </KeyboardAvoidingView>
         </ScrollView>
+        <AppBanner />
       </Screen>
     </Background>
   )
