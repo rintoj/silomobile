@@ -38,7 +38,16 @@ export function MainStack() {
   }, [updateApp])
 
   if (state !== AuthState.AUTHORIZED) {
-    return <LoginScreen />
+    return (
+      <Navigator
+        initialRouteName={Screens.Login}
+        screenOptions={navigatorOptions}
+        backBehavior='history'
+      >
+        <Screen name={Screens.Login} component={LoginScreen} />
+        <Group>{publicNavigatorScreens}</Group>
+      </Navigator>
+    )
   }
 
   return (

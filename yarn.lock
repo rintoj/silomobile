@@ -1687,6 +1687,11 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-native-base64@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@types/react-native-base64/-/react-native-base64-0.2.0.tgz#c934e7c3cd549d4613bbfa7929a6845ab07a20af"
+  integrity sha512-5kUtS7Kf8Xl4zEwbqLITEuQReQTby4UOGfnsEeBFJEVmUfT+ygOv/Qmv0v6El0iV1eDhXS+/0i7CGR9d3/nRSA==
+
 "@types/react-native@^0.66.15":
   version "0.66.15"
   resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.66.15.tgz#d332d82b04635adabbd8e1976f9547ce8662300b"
@@ -7412,6 +7417,11 @@ react-native-app-bg-color@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/react-native-app-bg-color/-/react-native-app-bg-color-0.2.0.tgz#59c0754986fa4296468a4204dafd3e9cfc4f0914"
   integrity sha512-TbpQa7x7kQ6+pXuGKenCVrt58RR3074BMz0JjWR8wV2i4D0FazfE/CUkJx+UiyuMxg+6cO+CbmwrOuG36AMKEw==
+
+react-native-base64@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-base64/-/react-native-base64-0.2.1.tgz#3d0e73a649c4c0129f7b7695d3912456aebae847"
+  integrity sha512-eHgt/MA8y5ZF0aHfZ1aTPcIkDWxza9AaEk4GcpIX+ZYfZ04RcaNahO+527KR7J44/mD3efYfM23O2C1N44ByWA==
 
 react-native-camera@^4.2.1:
   version "4.2.1"

@@ -1,3 +1,4 @@
+import type { StackScreenProps } from '@react-navigation/stack'
 import { Background } from '@silo-component/background'
 import { Screen } from '@silo-component/screen'
 import { LoginForm } from '@silo-feature/login-form'
@@ -8,13 +9,17 @@ import { COLOR } from 'native-x-theme'
 import React, { useCallback } from 'react'
 import { KeyboardAvoidingView, ScrollView, StatusBar } from 'react-native'
 import SplashScreen from 'react-native-splash-screen'
-
+import { Modals } from '../navigation/modals'
+import { RootStackParamList } from '../navigation/root-stack'
 const styles = {
   container: { flex: 1 },
 }
 
-export function LoginScreen() {
+export function LoginScreen({ navigation }: StackScreenProps<RootStackParamList>) {
   const hideSplashScreen = useCallback(() => SplashScreen.hide(), [])
+  const signInWithCode = () => {
+    navigation.navigate(Modals.ScanLogin)
+  }
 
   return (
     <Background onLoad={hideSplashScreen}>
@@ -26,7 +31,7 @@ export function LoginScreen() {
               <Spacer size='large' />
               <Logo />
               <Spacer />
-              <LoginForm />
+              <LoginForm onScanLoginTap={signInWithCode} />
             </Stack>
           </KeyboardAvoidingView>
         </ScrollView>

@@ -1,11 +1,15 @@
-import { NavigationContainer } from '@react-navigation/native'
+import { NavigationContainer, NavigatorScreenParams } from '@react-navigation/native'
 import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack'
 import React from 'react'
 import { MainStack } from './main-stack'
-import { modals } from './modals'
-import { Screens } from './screens'
+import { ModalParamList, modals } from './modals'
+import { MainStackParamList, Screens } from './screens'
 
-const { Navigator, Screen, Group } = createStackNavigator()
+export type RootStackParamList = {
+  [Screens.Main]: NavigatorScreenParams<MainStackParamList>
+} & ModalParamList
+
+const { Navigator, Screen, Group } = createStackNavigator<RootStackParamList>()
 const screenOptions: StackNavigationOptions = {
   headerShown: false,
   cardStyle: { backgroundColor: 'transparent' },
@@ -17,7 +21,7 @@ const screenOptions: StackNavigationOptions = {
 export function RootStack() {
   const modalScreens = React.useMemo(
     () =>
-      Object.keys(modals).map(name => (
+      Object.keys(modals).map((name: any) => (
         <Screen key={name} name={name} component={modals[name].screen} />
       )),
     [],
