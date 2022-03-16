@@ -2,12 +2,15 @@ import base64 from 'react-native-base64'
 
 export enum QRCodeType {
   PurchaseOrder = 'PO',
+  SalesOrder = 'SO',
   Lot = 'LT',
   AUTH = 'AUTH',
 }
 
 function isValidType(type?: string) {
-  return [QRCodeType.PurchaseOrder, QRCodeType.Lot].includes(type?.trim().toUpperCase() as any)
+  return [QRCodeType.PurchaseOrder, QRCodeType.Lot, QRCodeType.SalesOrder].includes(
+    type?.trim().toUpperCase() as any,
+  )
 }
 function isValidId(id?: string) {
   return id?.match(/[0-9]+/)?.length
