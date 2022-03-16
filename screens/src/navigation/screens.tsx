@@ -15,6 +15,8 @@ export enum Screens {
   OutgoingOrdersTab = 'OUTGOING_ORDERS_TAB',
   InventoryTab = 'INVENTORY_TAB',
   NetworkingTab = 'NETWORKING_TAB',
+  InventoryHome = 'INVENTORY_HOME',
+  SalesOrder = 'SALES_ORDER',
 }
 
 export type MainStackParamList = {

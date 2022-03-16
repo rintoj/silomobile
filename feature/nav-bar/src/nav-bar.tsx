@@ -50,7 +50,7 @@ export function NavBar({ state, descriptors, navigation }: BottomTabBarProps) {
     const route = state.routes.find(({ name }) => name === screenName) as any
     const event = navigation.emit({
       type: 'tabPress',
-      target: route.key,
+      target: route?.key,
       canPreventDefault: true,
     })
     if (!isActive && !event.defaultPrevented) {
