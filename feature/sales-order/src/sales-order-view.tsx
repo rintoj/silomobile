@@ -5,9 +5,9 @@ import { format } from 'date-fns'
 import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import React from 'react'
+import { LotList } from '../../purchase-order/src/lot-list'
 import LocationIcon from './images/location.svg'
 import { SalesOrderType, TransportMethod } from './use-sales-order-query'
-import { LotList } from '../../purchase-order/src/lot-list'
 
 interface Props {
   order?: SalesOrderType
