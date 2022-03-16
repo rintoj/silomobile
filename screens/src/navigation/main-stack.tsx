@@ -44,7 +44,7 @@ export function MainStack() {
     return (
       <Navigator
         initialRouteName={Screens.Login}
-        screenOptions={navigatorOptions}
+        screenOptions={publicScreenOptions}
         backBehavior='history'
       >
         <Screen name={Screens.Login} component={LoginScreen} />

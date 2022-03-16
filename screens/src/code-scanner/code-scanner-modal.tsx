@@ -24,10 +24,13 @@ export function CodeScannerModal() {
     (code: ScannedQRCode) => {
       switch (code.type) {
         case QRCodeType.PurchaseOrder:
-          navigate(Screens.PurchaseOrder, code)
+          navigate(Screens.HomeTab, { screen: Screens.PurchaseOrder, params: code })
           break
         case QRCodeType.Lot:
-          navigate(Screens.LotDetails, code)
+          navigate(Screens.HomeTab, { screen: Screens.LotDetails, params: code })
+          break
+        case QRCodeType.SalesOrder:
+          navigate(Screens.InventoryTab, { screen: Screens.SalesOrder, params: code })
           break
         default:
           break
