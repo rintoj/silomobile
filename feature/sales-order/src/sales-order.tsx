@@ -4,7 +4,6 @@ import React from 'react'
 import { ScrollView } from 'react-native'
 import { SalesOrderView } from './sales-order-view'
 import { useSalesOrderQuery } from './use-sales-order-query'
-
 const styles = { flex: 1 }
 
 interface Props {

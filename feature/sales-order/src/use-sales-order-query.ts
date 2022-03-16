@@ -25,7 +25,7 @@ export interface SalesOrderType {
   orderTotal: number
   remainingBalance: number
   costAdjustments: any[]
-  items: Item[]
+  items: OrderItem[]
   deliveryRoute: any
   sendNotification: boolean
   sendInvite: boolean
@@ -154,7 +154,7 @@ export interface Location {
   isDefaultShipping: boolean
 }
 
-export interface Item {
+export interface OrderItem {
   inventoryID: number
   productID: number
   unitID: number

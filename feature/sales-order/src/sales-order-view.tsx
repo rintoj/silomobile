@@ -5,8 +5,8 @@ import { format } from 'date-fns'
 import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import React from 'react'
-import { LotList } from '../../purchase-order/src/lot-list'
 import LocationIcon from './images/location.svg'
+import { LotList } from './lot-list'
 import { SalesOrderType, TransportMethod } from './use-sales-order-query'
 
 interface Props {
@@ -76,8 +76,7 @@ export function SalesOrderView({ order, loading, error, onOrderItemTap }: Props)
       </Stack>
       <Spacer size='small' />
       <Spacer size='x-small' />
-      {/* TODO: Reusing lot list from purchase order screens. Waiting for designs to get finalized.*/}
-      <LotList orders={order?.items} onOrderItemTap={onOrderItemTap} />
+      <LotList orders={order?.items} onLotTap={onOrderItemTap} />
     </DataView>
   )
 }
