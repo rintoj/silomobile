@@ -68,7 +68,7 @@ export function LotItemView({ order, onLotTap }: Props) {
         <Stack alignRight width={60}>
           <Text textColor={COLOR_X.ACCENT2}>Qty</Text>
           <Text textColor={COLOR_X.ACCENT3} fontSize='small'>
-            {order?.total}
+            {order?.quantity}
           </Text>
         </Stack>
         <Spacer size='small' />
