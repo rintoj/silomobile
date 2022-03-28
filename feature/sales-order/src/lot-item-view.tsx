@@ -50,6 +50,11 @@ export function LotItemView({ order, onLotTap }: Props) {
             <Text textColor={COLOR_X.ACCENT4}>Lot</Text>
           </Stack>
           <Stack>
+            {order?.traces.length === 0 ? (
+              <Text alignRight textColor={COLOR_X.ACCENT7}>
+                Unlotted
+              </Text>
+            ) : null}
             {order?.traces.map(trace => (
               <Tappable key={trace.id} data={trace} onTap={onLotItemTap}>
                 <Text textColor={COLOR_X.ACCENT3} fontSize='small' alignRight>
