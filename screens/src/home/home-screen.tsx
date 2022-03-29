@@ -20,7 +20,6 @@ export function HomeScreen({ navigation }: StackScreenProps<any>) {
         <Stack alignCenter fill backgroundColor={COLOR_X.PAGE}>
           <Spacer size='large' />
           <PurchaseOrders onSelect={navigateToPurchaseOrderDetails} />
-          <Spacer size='large' />
         </Stack>
       </Stack>
     </Screen>

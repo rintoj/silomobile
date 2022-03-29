@@ -39,7 +39,12 @@ export function PurchaseOrderList({ orders, loading, error, onSelect }: Props) {
         data={orders}
         emptyMessage={<EmptySilosView />}
       >
-        <FlatList data={orders} ListHeaderComponent={<Header />} renderItem={renderItem} />
+        <FlatList
+          data={orders}
+          renderItem={renderItem}
+          ListHeaderComponent={<Header />}
+          ListFooterComponent={<Spacer size='large' />}
+        />
       </DataView>
     </Stack>
   )
