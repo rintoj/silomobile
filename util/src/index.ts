@@ -1,3 +1,4 @@
+export * from './capitalize'
 export * from './get-device-id'
 export * from './is-emulator'
 export * from './platform'

@@ -6,13 +6,19 @@ import { Tappable } from 'native-x-tappable'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
 import LotIcon from './images/lot-icon.svg'
-import { OrderItem } from './use-sales-order-query'
+import { OrderItem, Trace } from './use-sales-order-query'
 interface Props {
   order?: OrderItem
   onLotTap?: (lotID: number) => void
 }
+
 export function LotItemView({ order, onLotTap }: Props) {
-  const lots = order?.traces.map(trace => trace.parentIDs).flat()
+  const onLotItemTap = (trace: Trace) => {
+    const [lotID] = trace.parentIDs.flat()
+    if (lotID) {
+      onLotTap?.(lotID)
+    }
+  }
   return (
     <Stack fillHorizontal backgroundColor={COLOR.PRIMARY}>
       <Stack
@@ -20,29 +26,39 @@ export function LotItemView({ order, onLotTap }: Props) {
         alignMiddle
         horizontal
         padding='horizontal:normal'
-        backgroundColor={COLOR.TERTIARY}
+        backgroundColor={COLOR_X.ACCENT6}
       />
       <Spacer size='xx-small' />
       <Stack fillHorizontal horizontal padding='vertical:small'>
         <Spacer size='small' />
         <Stack fill>
-          <Text textColor={COLOR_X.ACCENT2}>Item</Text>
-          <Text textColor={COLOR_X.ACCENT3}>
-            {order?.productName} - {order?.quantity} {order?.unit?.name} - {order?.label?.name}
+          <Text textColor={COLOR_X.ACCENT3} fontSize='small'>
+            {order?.productName}
+          </Text>
+          <Text textColor={COLOR_X.ACCENT3} fontSize='x-small'>
+            {order?.quantity} {order?.unit?.name}
+          </Text>
+          <Text textColor={COLOR_X.ACCENT3} fontSize='x-small'>
+            {order?.label?.name}
           </Text>
         </Stack>
         <Spacer size='x-small' />
-        <Stack alignRight width={60}>
+        <Stack alignRight width={120}>
           <Stack horizontal>
             <LotIcon width={16} />
             <Spacer size='xx-small' />
             <Text textColor={COLOR_X.ACCENT4}>Lot</Text>
           </Stack>
           <Stack>
-            {lots?.map(lot => (
-              <Tappable key={lot} data={lot} onTap={onLotTap}>
-                <Text textColor={COLOR_X.ACCENT2} fontSize='large'>
-                  {lot}
+            {order?.traces.length === 0 ? (
+              <Text alignRight textColor={COLOR_X.ACCENT7}>
+                Unlotted
+              </Text>
+            ) : null}
+            {order?.traces.map(trace => (
+              <Tappable key={trace.id} data={trace} onTap={onLotItemTap}>
+                <Text textColor={COLOR_X.ACCENT3} fontSize='small' alignRight>
+                  {trace.lotNumber} ({Math.abs(trace.quantity)})
                 </Text>
               </Tappable>
             ))}
@@ -50,9 +66,9 @@ export function LotItemView({ order, onLotTap }: Props) {
         </Stack>
         <Spacer size='x-small' />
         <Stack alignRight width={60}>
-          <Text textColor={COLOR_X.ACCENT2}>Total u</Text>
-          <Text textColor={COLOR_X.ACCENT2} fontSize='large'>
-            {order?.total}
+          <Text textColor={COLOR_X.ACCENT2}>Qty</Text>
+          <Text textColor={COLOR_X.ACCENT3} fontSize='small'>
+            {order?.quantity}
           </Text>
         </Stack>
         <Spacer size='small' />
