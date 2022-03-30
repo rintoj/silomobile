@@ -37,7 +37,7 @@ export function PurchaseOrderView({ order, loading, error, onOrderItemTap }: Pro
         <Stack fill alignRight padding='horizontal:normal'>
           <Text textColor={COLOR_X.ACCENT2}>Vendor Invoice #</Text>
           <Text textColor={COLOR_X.ACCENT3} fontSize='large'>
-            {order?.salesOrderInvoiceNumber || ''}
+            {order?.customerInvoiceNumber || ''}
           </Text>
           <Spacer size='small' />
           <Spacer size='xx-small' />
