@@ -9,8 +9,8 @@ import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
-import { InventoryStackParamList } from '../inventory/inventory-stack'
 import { Screens } from '../navigation/screens'
+import { OutgoingOrdersStackParamList } from './outgoing-orders-stack'
 import SalesOrderIcon from './so.svg'
 
 type SalesOrderParamList = {
@@ -19,7 +19,7 @@ type SalesOrderParamList = {
 
 export function SalesOrderScreen({
   navigation: { push },
-}: StackScreenProps<InventoryStackParamList>) {
+}: StackScreenProps<OutgoingOrdersStackParamList>) {
   const { params } = useRoute<RouteProp<SalesOrderParamList>>()
   const { id } = params ?? {}
   const navigateToLotDetails = React.useCallback(
