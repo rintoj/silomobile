@@ -57,6 +57,9 @@ function Header() {
       <Text fill fontSize='x-large' textColor={COLOR_X.ACCENT3}>
         Incoming
       </Text>
+
+      <Spacer size='small' />
+      <Text textColor={COLOR_X.ACCENT2}>List of POs</Text>
     </Stack>
   )
 }
