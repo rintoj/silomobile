@@ -30,7 +30,7 @@ export function CodeScannerModal() {
           navigate(Screens.HomeTab, { screen: Screens.LotDetails, params: code })
           break
         case QRCodeType.SalesOrder:
-          navigate(Screens.InventoryTab, { screen: Screens.SalesOrder, params: code })
+          navigate(Screens.OutgoingOrdersTab, { screen: Screens.SalesOrder, params: code })
           break
         default:
           break
