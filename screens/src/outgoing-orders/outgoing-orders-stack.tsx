@@ -9,8 +9,8 @@ import React from 'react'
 import SplashScreen from 'react-native-splash-screen'
 import { LotDetailsScreen } from '../lot-details/lot-details-screen'
 import { Screens } from '../navigation/screens'
-import { SalesOrderScreen } from './sales-order-screen'
 import { OutgoingOrdersHomeScreen } from './outgoing-orders-home'
+import { SalesOrderScreen } from './sales-order-screen'
 
 const { Navigator, Screen } = createStackNavigator()
 
