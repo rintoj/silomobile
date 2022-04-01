@@ -1,20 +1,42 @@
-import { Screen } from '@silo-component/screen'
-import { Text } from '@silo-component/text'
-import { COLOR_X } from '@silo-feature/theme'
-import { Spacer } from 'native-x-spacer'
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
+import {
+  createStackNavigator,
+  StackNavigationOptions,
+  TransitionPresets,
+} from '@react-navigation/stack'
 import { Stack } from 'native-x-stack'
-import { COLOR } from 'native-x-theme'
 import React from 'react'
+import SplashScreen from 'react-native-splash-screen'
+import { LotDetailsScreen } from '../lot-details/lot-details-screen'
+import { Screens } from '../navigation/screens'
+import { SalesOrderScreen } from '../sales-order/sales-order-screen'
+import { OutgoingOrdersHomeScreen } from './outgoing-orders-home'
+
+const { Navigator, Screen } = createStackNavigator()
+
+const screenOptions: StackNavigationOptions = {
+  headerShown: false,
+  animationEnabled: true,
+  ...TransitionPresets.SlideFromRightIOS,
+}
+
+export type OutgoingOrdersStackParamList = {
+  [Screens.OutgoingOrdersHome]: undefined
+  [Screens.SalesOrder]: { id: number }
+  [Screens.LotDetails]: { id: number }
+}
 
 export function OutgoingOrdersStack() {
+  const tabBarHeight = useBottomTabBarHeight()
+  React.useEffect(() => SplashScreen.hide(), [])
   return (
-    <Screen withSafeArea>
-      <Stack alignCenter fill padding='normal' backgroundColor={COLOR_X.PAGE}>
-        <Spacer size='large' />
-        <Text fill fontSize='large' textColor={COLOR.TERTIARY} semiBold>
-          Outgoing
-        </Text>
-      </Stack>
-    </Screen>
+    <Stack fill>
+      <Navigator screenOptions={screenOptions}>
+        <Screen name={Screens.OutgoingOrdersHome} component={OutgoingOrdersHomeScreen} />
+        <Screen name={Screens.SalesOrder} component={SalesOrderScreen} />
+        <Screen name={Screens.LotDetails} component={LotDetailsScreen} />
+      </Navigator>
+      <Stack height={tabBarHeight} />
+    </Stack>
   )
 }
