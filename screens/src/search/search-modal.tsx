@@ -1,10 +1,10 @@
 import { useNavigation } from '@react-navigation/native'
+import { SearchIcon } from '@silo-component/icons'
 import { Text } from '@silo-component/text'
 import { TextInput } from '@silo-component/text-input'
 import { TopSheet } from '@silo-component/top-sheet'
 import { COLOR_X } from '@silo-feature/theme'
 import { useOpenClose } from '@silo/util'
-import { SearchIcon } from 'native-x-icon'
 import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import { Tappable } from 'native-x-tappable'
@@ -47,7 +47,7 @@ export function SearchModal() {
               backgroundColor={COLOR.DIVIDER}
               rightIcon={
                 <Tappable onTap={onSearchTap}>
-                  <SearchIcon color={COLOR.TERTIARY} />
+                  <SearchIcon />
                 </Tappable>
               }
             />

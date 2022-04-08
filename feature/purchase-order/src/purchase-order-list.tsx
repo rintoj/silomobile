@@ -1,7 +1,7 @@
 import { DataView } from '@silo-component/data-view'
+import { FilterIcon, SearchIcon } from '@silo-component/icons'
 import { Text } from '@silo-component/text'
 import { COLOR_X } from '@silo-feature/theme'
-import { FilterIcon, SearchIcon } from 'native-x-icon'
 import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import { Tappable } from 'native-x-tappable'

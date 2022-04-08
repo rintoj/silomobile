@@ -1,16 +1,15 @@
 import { useNavigation } from '@react-navigation/native'
 import { BottomSheet } from '@silo-component/bottom-sheet'
+import { CalendarIcon, FilterIcon, LocationIcon } from '@silo-component/icons'
 import { Text } from '@silo-component/text'
 import { TextInput } from '@silo-component/text-input'
 import { COLOR_X } from '@silo-feature/theme'
 import { useOpenClose } from '@silo/util'
-import { FilterIcon } from 'native-x-icon'
 import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React, { useEffect } from 'react'
-import CalendarIcon from './calendar-icon.svg'
-import LocationIcon from './location-icon.svg'
+
 export function FiltersModal() {
   const [visible, open] = useOpenClose(true)
   const { goBack } = useNavigation()
@@ -24,11 +23,12 @@ export function FiltersModal() {
       <Stack fill padding='horizontal:large' alignLeft>
         <Spacer />
         <Stack horizontal alignCenter fillHorizontal>
-          <FilterIcon color={COLOR_X.ACCENT5} />
+          <FilterIcon />
           <Spacer size='small' />
-          <Text alignCenter textColor={COLOR_X.ACCENT5}>
+          <Text semiBold alignCenter textColor={COLOR_X.ACCENT5}>
             Select filters
           </Text>
+          <Spacer size='small' />
         </Stack>
         <Spacer />
 
