@@ -10,17 +10,16 @@ import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
 import { Screens } from '../navigation/screens'
+import { OutgoingOrdersStackParamList } from './outgoing-orders-stack'
 import SalesOrderIcon from './so.svg'
 
 type SalesOrderParamList = {
   [Screens.SalesOrder]: { id: number }
 }
 
-type StackParamList = {
-  [Screens.LotDetails]: { id: number }
-}
-
-export function SalesOrderScreen({ navigation: { push } }: StackScreenProps<StackParamList>) {
+export function SalesOrderScreen({
+  navigation: { push },
+}: StackScreenProps<OutgoingOrdersStackParamList>) {
   const { params } = useRoute<RouteProp<SalesOrderParamList>>()
   const { id } = params ?? {}
   const navigateToLotDetails = React.useCallback(
