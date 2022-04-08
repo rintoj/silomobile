@@ -1,5 +1,5 @@
-import { TextInput, TextInputProps } from '@silo-component/text-input'
 import { useBottomSheetInternal } from '@gorhom/bottom-sheet'
+import { TextInput, TextInputProps } from '@silo-component/text-input'
 import React, { memo, Ref, useCallback } from 'react'
 import { TextInput as RNTextInput } from 'react-native'
 
