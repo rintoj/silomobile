@@ -7,9 +7,11 @@ interface Props {
   from?: Date
   to?: Date
   onSelect?: (id: number) => void
+  onSearchIconTap?: () => void
+  onFilterIconTap?: () => void
 }
 
-export function PurchaseOrders({ from, to, onSelect }: Props) {
+export function PurchaseOrders({ from, to, onSelect, onSearchIconTap, onFilterIconTap }: Props) {
   const { user } = useAuth()
   const { data, isLoading, error } = usePurchaseOrderSearchQuery({
     userID: user?.userID,
@@ -23,6 +25,8 @@ export function PurchaseOrders({ from, to, onSelect }: Props) {
       orders={data?.purchaseOrders}
       error={error}
       onSelect={onSelect}
+      onSearchIconTap={onSearchIconTap}
+      onFilterIconTap={onFilterIconTap}
     />
   )
 }
