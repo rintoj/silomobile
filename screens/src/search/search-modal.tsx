@@ -11,13 +11,31 @@ import { Tappable } from 'native-x-tappable'
 import { COLOR } from 'native-x-theme'
 import React, { useEffect } from 'react'
 import { Modal } from 'react-native'
+import { Picker } from '@silo-component/picker'
 import { Screens } from '../navigation/screens'
 
 export function SearchModal() {
   const [searchKey, setSearchKey] = React.useState<string>('')
-  const [searchBy] = React.useState<string>('id')
+  const [searchBy, setSearchBy] = React.useState<string>('id')
   const [visible, open, close] = useOpenClose(true)
   const { navigate, goBack } = useNavigation<any>()
+  const searchFields = React.useMemo(
+    () => [
+      {
+        label: 'Order number',
+        value: 'id',
+      },
+      {
+        label: 'Purchase order number',
+        value: 'purchaseOrderNumber',
+      },
+      {
+        label: 'Invoice number',
+        value: 'customerInvoiceNumber',
+      },
+    ],
+    [],
+  )
   const onSearchTap = () => {
     close()
     navigate({ name: Screens.Home, params: { [searchBy]: searchKey }, merge: true })
@@ -39,7 +57,25 @@ export function SearchModal() {
         <Stack fill padding='normal' backgroundColor={COLOR_X.PAGE}>
           <Spacer fill />
           <Text alignCenter>Search by order, invoice, or PO ID</Text>
-          <Spacer size='small' />
+          <Spacer />
+          <Stack
+            fillHorizontal
+            border
+            height={48}
+            alignMiddle
+            borderColor={COLOR.TERTIARY}
+            backgroundColor={COLOR.DIVIDER}
+            borderRadius='large'
+            padding='horizontal:normal'
+          >
+            <Picker
+              placeholder='Search by'
+              value={searchBy}
+              onChange={setSearchBy}
+              items={searchFields}
+            />
+          </Stack>
+          <Spacer />
           <Stack
             fillHorizontal
             border
@@ -50,6 +86,7 @@ export function SearchModal() {
           >
             <TextInput
               fill
+              height={44}
               padding='none'
               placeholder='Type order #'
               placeholderColor={COLOR.TERTIARY}
