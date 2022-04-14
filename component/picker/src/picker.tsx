@@ -16,6 +16,7 @@ interface Props {
 
 export function Picker({ value, items, onChange, placeholder }: Props) {
   const { getColor } = useTheme()
+  const placeholderValue = React.useMemo(() => ({ label: placeholder, value: null }), [placeholder])
   const fontStyles = React.useMemo(
     () => ({ fontFamily: 'DM Sans', color: getColor(COLOR.SECONDARY) }),
     [getColor],
@@ -35,8 +36,7 @@ export function Picker({ value, items, onChange, placeholder }: Props) {
   return (
     <RNPickerSelect
       value={value}
-      key='value'
-      placeholder={placeholder}
+      placeholder={placeholderValue}
       useNativeAndroidPickerStyle={false}
       onValueChange={onChange}
       items={items}
