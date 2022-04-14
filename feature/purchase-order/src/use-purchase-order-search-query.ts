@@ -60,7 +60,7 @@ export function usePurchaseOrderSearchQuery({
   }
 
   if (customerInvoiceNumber) {
-    params.append('customerInvoiceNumber', customerInvoiceNumber)
+    params.append('customerInvoiceNumbers', customerInvoiceNumber)
   }
 
   if (startDate) {
