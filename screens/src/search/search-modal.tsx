@@ -14,20 +14,21 @@ import { Modal } from 'react-native'
 import { Screens } from '../navigation/screens'
 
 export function SearchModal() {
-  const [searchKey, setSearchKey] = React.useState<string>()
+  const [searchKey, setSearchKey] = React.useState<string>('')
   const [searchBy] = React.useState<string>('id')
   const [visible, open, close] = useOpenClose(true)
   const { navigate, goBack } = useNavigation<any>()
   const onSearchTap = () => {
     close()
+    navigate({ name: Screens.Home, params: { [searchBy]: searchKey }, merge: true })
   }
+
   const onClose = () => {
-    if (!searchKey?.length) {
+    if (visible) {
       goBack()
-    } else {
-      navigate({ name: Screens.Home, params: { [searchBy]: searchKey }, merge: true })
     }
   }
+
   useEffect(() => {
     open()
   }, [open])
@@ -58,7 +59,7 @@ export function SearchModal() {
               onChangeText={setSearchKey}
               rightIcon={
                 <Tappable onTap={onSearchTap}>
-                  <SearchIcon />
+                  <SearchIcon color={searchKey.length > 0 ? COLOR.TERTIARY : COLOR.DISABLED} />
                 </Tappable>
               }
             />
