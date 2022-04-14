@@ -11,21 +11,30 @@ import { Tappable } from 'native-x-tappable'
 import { COLOR } from 'native-x-theme'
 import React, { useEffect } from 'react'
 import { Modal } from 'react-native'
+import { Screens } from '../navigation/screens'
 
 export function SearchModal() {
+  const [searchKey, setSearchKey] = React.useState<string>()
+  const [searchBy] = React.useState<string>('id')
   const [visible, open, close] = useOpenClose(true)
-  const { goBack } = useNavigation()
+  const { navigate, goBack } = useNavigation<any>()
   const onSearchTap = () => {
     close()
   }
-
+  const onClose = () => {
+    if (!searchKey?.length) {
+      goBack()
+    } else {
+      navigate({ name: Screens.Home, params: { [searchBy]: searchKey }, merge: true })
+    }
+  }
   useEffect(() => {
     open()
   }, [open])
 
   return (
     <Modal visible transparent>
-      <TopSheet visible={visible} onClose={goBack}>
+      <TopSheet visible={visible} onClose={onClose}>
         <Stack fill padding='normal' backgroundColor={COLOR_X.PAGE}>
           <Spacer fill />
           <Text alignCenter>Search by order, invoice, or PO ID</Text>
@@ -45,6 +54,8 @@ export function SearchModal() {
               placeholderColor={COLOR.TERTIARY}
               borderColor={COLOR.ACCENT}
               backgroundColor={COLOR.DIVIDER}
+              value={searchKey}
+              onChangeText={setSearchKey}
               rightIcon={
                 <Tappable onTap={onSearchTap}>
                   <SearchIcon />
