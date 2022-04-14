@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import { SearchIcon } from '@silo-component/icons'
+import { Picker } from '@silo-component/picker'
 import { Text } from '@silo-component/text'
 import { TextInput } from '@silo-component/text-input'
 import { TopSheet } from '@silo-component/top-sheet'
@@ -11,7 +12,6 @@ import { Tappable } from 'native-x-tappable'
 import { COLOR } from 'native-x-theme'
 import React, { useEffect } from 'react'
 import { Modal } from 'react-native'
-import { Picker } from '@silo-component/picker'
 import { Screens } from '../navigation/screens'
 
 export function SearchModal() {
