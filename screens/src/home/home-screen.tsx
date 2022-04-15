@@ -14,14 +14,23 @@ import { Screens } from '../navigation/screens'
 type HomeScreenParamList = {
   [Screens.Home]: {
     id?: string
+    startDate?: string
+    endDate?: string
+    locationId?: string
     customerInvoiceNumber?: string
     purchaseOrderNumber?: string
   }
 }
 
+const ONE_MONTH_AGO = new Date(Date.now() - 60 * 60 * 24 * 30 * 1000)
+const TODAY = new Date()
+
 export function HomeScreen({ navigation }: StackScreenProps<any>) {
+  const [fromDate, setFromDate] = React.useState(ONE_MONTH_AGO)
+  const [toDate, setToDate] = React.useState(TODAY)
   const { params } = useRoute<RouteProp<HomeScreenParamList>>()
-  const { id, customerInvoiceNumber, purchaseOrderNumber } = params ?? {}
+  const { id, locationId, customerInvoiceNumber, purchaseOrderNumber, startDate, endDate } =
+    params ?? {}
 
   const navigateToPurchaseOrderDetails = (orderId: number) => {
     navigation.navigate(Screens.HomeTab, { screen: Screens.PurchaseOrder, params: { id: orderId } })
@@ -36,6 +45,18 @@ export function HomeScreen({ navigation }: StackScreenProps<any>) {
     navigation.navigate(Screens.Home)
   }
 
+  React.useEffect(() => {
+    if (startDate) {
+      setFromDate(new Date(startDate))
+    }
+  }, [startDate])
+
+  React.useEffect(() => {
+    if (endDate) {
+      setToDate(new Date(endDate))
+    }
+  }, [endDate])
+
   return (
     <Screen>
       <StatusBar barStyle='light-content' backgroundColor='#235039' animated />
@@ -44,6 +65,9 @@ export function HomeScreen({ navigation }: StackScreenProps<any>) {
           <Spacer size='large' />
           <PurchaseOrders
             id={id}
+            to={toDate}
+            from={fromDate}
+            locationId={locationId}
             customerInvoiceNumber={customerInvoiceNumber}
             purchaseOrderNumber={purchaseOrderNumber}
             onSelect={navigateToPurchaseOrderDetails}

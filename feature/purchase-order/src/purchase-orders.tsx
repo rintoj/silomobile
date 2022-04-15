@@ -9,6 +9,7 @@ interface Props {
   purchaseOrderNumber?: string
   from?: Date
   to?: Date
+  locationId?: string
   onSelect?: (id: number) => void
   onSearchIconTap?: () => void
   onClearSearchTap?: () => void
@@ -17,19 +18,21 @@ interface Props {
 
 export function PurchaseOrders({
   id,
-  purchaseOrderNumber,
-  customerInvoiceNumber,
-  from,
   to,
+  from,
   onSelect,
-  onSearchIconTap,
+  locationId,
   onClearSearchTap,
   onFilterIconTap,
+  onSearchIconTap,
+  purchaseOrderNumber,
+  customerInvoiceNumber,
 }: Props) {
   const { user } = useAuth()
   const { data, isLoading, error } = usePurchaseOrderSearchQuery({
     id,
     userID: user?.userID,
+    locationId,
     purchaseOrderNumber,
     customerInvoiceNumber,
     startDate: from,
