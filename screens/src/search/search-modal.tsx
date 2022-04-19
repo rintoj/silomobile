@@ -13,8 +13,17 @@ import { COLOR } from 'native-x-theme'
 import React, { useEffect } from 'react'
 import { Modal } from 'react-native'
 import { Screens } from '../navigation/screens'
+import { useRoute, RouteProp } from '@react-navigation/core'
+import { Modals } from '../navigation/modals'
+
+type SearchModalParamList = {
+  [Modals.Search]: {
+    target?: Screens
+  }
+}
 
 export function SearchModal() {
+  const { params } = useRoute<RouteProp<SearchModalParamList>>()
   const [searchKey, setSearchKey] = React.useState<string>('')
   const [searchBy, setSearchBy] = React.useState<string>('id')
   const [visible, open, close] = useOpenClose(true)
@@ -31,14 +40,16 @@ export function SearchModal() {
       },
       {
         label: 'Invoice number',
-        value: 'customerInvoiceNumber',
+        value: 'invoiceNumber',
       },
     ],
     [],
   )
   const onSearchTap = () => {
     close()
-    navigate({ name: Screens.Home, params: { [searchBy]: searchKey }, merge: true })
+    if (params.target) {
+      navigate({ name: params.target, params: { [searchBy]: searchKey }, merge: true })
+    }
   }
 
   const onClose = () => {

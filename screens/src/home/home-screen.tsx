@@ -14,20 +14,20 @@ import { Screens } from '../navigation/screens'
 type HomeScreenParamList = {
   [Screens.Home]: {
     id?: string
-    customerInvoiceNumber?: string
+    invoiceNumber?: string
     purchaseOrderNumber?: string
   }
 }
 
 export function HomeScreen({ navigation }: StackScreenProps<any>) {
   const { params } = useRoute<RouteProp<HomeScreenParamList>>()
-  const { id, customerInvoiceNumber, purchaseOrderNumber } = params ?? {}
+  const { id, invoiceNumber, purchaseOrderNumber } = params ?? {}
 
   const navigateToPurchaseOrderDetails = (orderId: number) => {
     navigation.navigate(Screens.HomeTab, { screen: Screens.PurchaseOrder, params: { id: orderId } })
   }
   const navigateToSearch = () => {
-    navigation.navigate(Modals.Search)
+    navigation.navigate(Modals.Search, { target: Screens.Home })
   }
   const navigateToFilters = () => {
     navigation.navigate(Modals.Filters)
@@ -44,7 +44,7 @@ export function HomeScreen({ navigation }: StackScreenProps<any>) {
           <Spacer size='large' />
           <PurchaseOrders
             id={id}
-            customerInvoiceNumber={customerInvoiceNumber}
+            customerInvoiceNumber={invoiceNumber}
             purchaseOrderNumber={purchaseOrderNumber}
             onSelect={navigateToPurchaseOrderDetails}
             onClearSearchTap={clearSearchParams}
