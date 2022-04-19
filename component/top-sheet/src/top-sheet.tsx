@@ -14,7 +14,7 @@ interface Props {
 }
 
 const HEADER_HEIGHT = 20
-const CONTAINER_HEIGHT = 220
+const CONTAINER_HEIGHT = 300
 const styles = StyleSheet.create({
   backdrop: { backgroundColor: '#00000030' },
   contentContainer: {
@@ -155,8 +155,8 @@ export function TopSheet({ visible, children, onClose }: Props) {
   }, [collapse, expand, visible])
 
   return (
-    <View style={[StyleSheet.absoluteFillObject, styles.backdrop]}>
-      <View style={[StyleSheet.absoluteFill, {}]} onTouchStart={collapse} />
+    <View style={[StyleSheet.absoluteFillObject]}>
+      <View style={[StyleSheet.absoluteFill, styles.backdrop]} onTouchStart={collapse} />
       <Animated.View
         ref={scrollRef}
         style={[

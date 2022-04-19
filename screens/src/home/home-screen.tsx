@@ -1,3 +1,4 @@
+import { RouteProp, useRoute } from '@react-navigation/core'
 import type { StackScreenProps } from '@react-navigation/stack'
 import { Screen } from '@silo-component/screen'
 import { PurchaseOrders } from '@silo-feature/purchase-order'
@@ -10,15 +11,29 @@ import { StatusBar } from 'react-native'
 import { Modals } from '../navigation/modals'
 import { Screens } from '../navigation/screens'
 
+type HomeScreenParamList = {
+  [Screens.Home]: {
+    id?: string
+    customerInvoiceNumber?: string
+    purchaseOrderNumber?: string
+  }
+}
+
 export function HomeScreen({ navigation }: StackScreenProps<any>) {
-  const navigateToPurchaseOrderDetails = (id: number) => {
-    navigation.navigate(Screens.HomeTab, { screen: Screens.PurchaseOrder, params: { id } })
+  const { params } = useRoute<RouteProp<HomeScreenParamList>>()
+  const { id, customerInvoiceNumber, purchaseOrderNumber } = params ?? {}
+
+  const navigateToPurchaseOrderDetails = (orderId: number) => {
+    navigation.navigate(Screens.HomeTab, { screen: Screens.PurchaseOrder, params: { id: orderId } })
   }
   const navigateToSearch = () => {
     navigation.navigate(Modals.Search)
   }
   const navigateToFilters = () => {
     navigation.navigate(Modals.Filters)
+  }
+  const clearSearchParams = () => {
+    navigation.navigate(Screens.Home)
   }
 
   return (
@@ -28,7 +43,11 @@ export function HomeScreen({ navigation }: StackScreenProps<any>) {
         <Stack alignCenter fill backgroundColor={COLOR_X.PAGE}>
           <Spacer size='large' />
           <PurchaseOrders
+            id={id}
+            customerInvoiceNumber={customerInvoiceNumber}
+            purchaseOrderNumber={purchaseOrderNumber}
             onSelect={navigateToPurchaseOrderDetails}
+            onClearSearchTap={clearSearchParams}
             onSearchIconTap={navigateToSearch}
             onFilterIconTap={navigateToFilters}
           />

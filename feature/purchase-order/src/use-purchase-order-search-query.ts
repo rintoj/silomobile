@@ -1,7 +1,10 @@
 import { useQuery } from '@silo-feature/api'
 
 interface SearchRequest {
+  id?: string
   userID?: number
+  purchaseOrderNumber?: string
+  customerInvoiceNumber?: string
   startDate?: Date
   endDate?: Date
 }
@@ -32,13 +35,32 @@ interface PurchaseOrderSearchResponse {
   purchaseOrders: Array<PurchaseOrderSearchResult>
 }
 
-export function usePurchaseOrderSearchQuery({ userID, startDate, endDate }: SearchRequest) {
+export function usePurchaseOrderSearchQuery({
+  id,
+  purchaseOrderNumber,
+  customerInvoiceNumber,
+  userID,
+  startDate,
+  endDate,
+}: SearchRequest) {
   const params = new URLSearchParams('')
   params.append('sortType', 'ID')
   params.append('sortDirection', 'desc')
 
   if (userID) {
     params.append('userIDs', userID.toString())
+  }
+
+  if (id) {
+    params.append('ids', id)
+  }
+
+  if (purchaseOrderNumber) {
+    params.append('purchaseOrderNumber', purchaseOrderNumber)
+  }
+
+  if (customerInvoiceNumber) {
+    params.append('customerInvoiceNumbers', customerInvoiceNumber)
   }
 
   if (startDate) {
@@ -51,7 +73,7 @@ export function usePurchaseOrderSearchQuery({ userID, startDate, endDate }: Sear
 
   return useQuery<PurchaseOrderSearchResponse>(
     `/purchase_orders?${params.toString()}`,
-    'purchaseOrders',
+    `purchaseOrders:${id}:${purchaseOrderNumber}:${customerInvoiceNumber}`,
     {
       enabled: !!userID,
     },

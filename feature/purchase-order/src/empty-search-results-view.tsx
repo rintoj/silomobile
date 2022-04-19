@@ -5,14 +5,14 @@ import { COLOR } from 'native-x-theme'
 import React from 'react'
 import PlaceHolderIcon from './images/placeholder.svg'
 
-export function EmptySilosView() {
+export function EmptySearchResultsView() {
   return (
-    <Stack fill alignCenter alignMiddle>
+    <Stack fill alignMiddle alignCenter>
       <Stack fillHorizontal alignCenter padding='large'>
         <PlaceHolderIcon />
         <Spacer />
         <Text fontSize='normal' alignCenter fill textColor={COLOR.TERTIARY}>
-          Scan any Silo label by pressing the button below
+          No orders found
         </Text>
       </Stack>
       <Spacer size='x-large' />
