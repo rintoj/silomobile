@@ -2,8 +2,8 @@ import { Text } from '@silo-component/text'
 import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
-import PlaceholderIcon from './images/placeholder.svg'
 import React from 'react'
+import PlaceholderIcon from './images/placeholder.svg'
 
 export function EmptyView() {
   return (
