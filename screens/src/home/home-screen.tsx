@@ -40,7 +40,7 @@ export function HomeScreen({ navigation }: StackScreenProps<any>) {
     navigation.navigate(Modals.Search, { target: Screens.Home })
   }
   const navigateToFilters = () => {
-    navigation.navigate(Modals.Filters)
+    navigation.navigate(Modals.Filters, { target: Screens.Home })
   }
   const clearSearchParams = () => {
     navigation.navigate(Screens.Home)
