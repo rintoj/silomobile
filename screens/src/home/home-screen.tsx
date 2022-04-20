@@ -14,6 +14,7 @@ import { Screens } from '../navigation/screens'
 type HomeScreenParamList = {
   [Screens.Home]: {
     id?: string
+    invoiceNumber?: string
     startDate?: string
     endDate?: string
     locationId?: string
@@ -36,7 +37,7 @@ export function HomeScreen({ navigation }: StackScreenProps<any>) {
     navigation.navigate(Screens.HomeTab, { screen: Screens.PurchaseOrder, params: { id: orderId } })
   }
   const navigateToSearch = () => {
-    navigation.navigate(Modals.Search)
+    navigation.navigate(Modals.Search, { target: Screens.Home })
   }
   const navigateToFilters = () => {
     navigation.navigate(Modals.Filters)

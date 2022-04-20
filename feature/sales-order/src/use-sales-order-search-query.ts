@@ -1,6 +1,9 @@
 import { useQuery } from '@silo-feature/api'
 
 interface SearchRequest {
+  id?: string
+  purchaseOrderNumber?: string
+  invoiceNumber?: string
   userID?: number
   startDate?: Date
   endDate?: Date
@@ -32,10 +35,29 @@ interface SalesOrderSearchResponse {
   salesOrders: Array<SalesOrderSearchResult>
 }
 
-export function useSalesOrderSearchQuery({ userID, startDate, endDate }: SearchRequest) {
+export function useSalesOrderSearchQuery({
+  userID,
+  id,
+  invoiceNumber,
+  purchaseOrderNumber,
+  startDate,
+  endDate,
+}: SearchRequest) {
   const params = new URLSearchParams('')
   params.append('order', 'ID')
   params.append('sortDirection', 'desc')
+
+  if (id) {
+    params.append('salesOrderID', id)
+  }
+
+  if (purchaseOrderNumber) {
+    params.append('customerPONumber', purchaseOrderNumber)
+  }
+
+  if (invoiceNumber) {
+    params.append('invoiceNumber', invoiceNumber)
+  }
 
   if (userID) {
     params.append('userID', userID.toString())
@@ -51,7 +73,7 @@ export function useSalesOrderSearchQuery({ userID, startDate, endDate }: SearchR
 
   return useQuery<SalesOrderSearchResponse>(
     `/seller/sales_orders/search?${params.toString()}`,
-    'SalesOrders',
+    `salesOrders:${id}:${purchaseOrderNumber}:${invoiceNumber}`,
     {
       enabled: !!userID,
     },

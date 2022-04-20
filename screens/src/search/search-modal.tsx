@@ -1,3 +1,4 @@
+import { RouteProp, useRoute } from '@react-navigation/core'
 import { useNavigation } from '@react-navigation/native'
 import { SearchIcon } from '@silo-component/icons'
 import { Picker } from '@silo-component/picker'
@@ -12,9 +13,17 @@ import { Tappable } from 'native-x-tappable'
 import { COLOR } from 'native-x-theme'
 import React, { useEffect } from 'react'
 import { Modal } from 'react-native'
+import { Modals } from '../navigation/modals'
 import { Screens } from '../navigation/screens'
 
+type SearchModalParamList = {
+  [Modals.Search]: {
+    target?: Screens
+  }
+}
+
 export function SearchModal() {
+  const { params } = useRoute<RouteProp<SearchModalParamList>>()
   const [searchKey, setSearchKey] = React.useState<string>('')
   const [searchBy, setSearchBy] = React.useState<string>('id')
   const [visible, open, close] = useOpenClose(true)
@@ -31,14 +40,16 @@ export function SearchModal() {
       },
       {
         label: 'Invoice number',
-        value: 'customerInvoiceNumber',
+        value: 'invoiceNumber',
       },
     ],
     [],
   )
   const onSearchTap = () => {
     close()
-    navigate({ name: Screens.Home, params: { [searchBy]: searchKey }, merge: true })
+    if (params.target) {
+      navigate({ name: params.target, params: { [searchBy]: searchKey }, merge: true })
+    }
   }
 
   const onClose = () => {
