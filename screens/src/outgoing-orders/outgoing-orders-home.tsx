@@ -11,9 +11,15 @@ import { StatusBar } from 'react-native'
 import { Modals } from '../navigation/modals'
 import { Screens } from '../navigation/screens'
 
+const ONE_MONTH_AGO = new Date(Date.now() - 60 * 60 * 24 * 30 * 1000)
+const TODAY = new Date()
+
 type OutgoingOrdersHomeParamList = {
   [Screens.Home]: {
     id?: string
+    startDate?: string
+    endDate?: string
+    locationId?: string
     invoiceNumber?: string
     purchaseOrderNumber?: string
   }
@@ -21,12 +27,14 @@ type OutgoingOrdersHomeParamList = {
 
 export function OutgoingOrdersHomeScreen({ navigation }: StackScreenProps<any>) {
   const { params } = useRoute<RouteProp<OutgoingOrdersHomeParamList>>()
-  const { id, invoiceNumber, purchaseOrderNumber } = params ?? {}
+  const [fromDate, setFromDate] = React.useState(ONE_MONTH_AGO)
+  const [toDate, setToDate] = React.useState(TODAY)
+  const { id, invoiceNumber, purchaseOrderNumber, startDate, endDate, locationId } = params ?? {}
   const navigateToSearch = () => {
     navigation.navigate(Modals.Search, { target: Screens.OutgoingOrdersHome })
   }
   const navigateToFilters = () => {
-    navigation.navigate(Modals.Filters)
+    navigation.navigate(Modals.Filters, { target: Screens.OutgoingOrdersHome })
   }
   const clearSearchParams = () => {
     navigation.navigate(Screens.OutgoingOrdersHome)
@@ -39,6 +47,18 @@ export function OutgoingOrdersHomeScreen({ navigation }: StackScreenProps<any>) 
     })
   }
 
+  React.useEffect(() => {
+    if (startDate) {
+      setFromDate(new Date(startDate))
+    }
+  }, [startDate])
+
+  React.useEffect(() => {
+    if (endDate) {
+      setToDate(new Date(endDate))
+    }
+  }, [endDate])
+
   return (
     <Screen>
       <StatusBar barStyle='light-content' backgroundColor='#235039' animated />
@@ -47,6 +67,9 @@ export function OutgoingOrdersHomeScreen({ navigation }: StackScreenProps<any>) 
           <Spacer size='large' />
           <SalesOrders
             id={id}
+            from={fromDate}
+            to={toDate}
+            locationId={locationId}
             onSelect={navigateToSalesOrderDetails}
             invoiceNumber={invoiceNumber}
             purchaseOrderNumber={purchaseOrderNumber}

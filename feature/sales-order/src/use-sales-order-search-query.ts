@@ -2,6 +2,7 @@ import { useQuery } from '@silo-feature/api'
 
 interface SearchRequest {
   id?: string
+  locationId?: string
   purchaseOrderNumber?: string
   invoiceNumber?: string
   userID?: number
@@ -38,6 +39,7 @@ interface SalesOrderSearchResponse {
 export function useSalesOrderSearchQuery({
   userID,
   id,
+  locationId,
   invoiceNumber,
   purchaseOrderNumber,
   startDate,
@@ -71,9 +73,13 @@ export function useSalesOrderSearchQuery({
     params.append('end', endDate.toISOString())
   }
 
+  if (locationId) {
+    params.append('locationID', locationId)
+  }
+
   return useQuery<SalesOrderSearchResponse>(
     `/seller/sales_orders/search?${params.toString()}`,
-    `salesOrders:${id}:${purchaseOrderNumber}:${invoiceNumber}`,
+    `salesOrders:${id}:${purchaseOrderNumber}:${invoiceNumber}:${startDate}:${endDate}:${locationId}`,
     {
       enabled: !!userID,
     },

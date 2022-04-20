@@ -2,21 +2,20 @@ import { Text } from '@silo-component/text'
 import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
-import PlaceholderIcon from './images/placeholder.svg'
 import React from 'react'
+import PlaceHolderIcon from './images/placeholder.svg'
 
-export function EmptyView() {
+export function EmptySearchResultsView() {
   return (
-    <Stack fill>
-      <Spacer fill />
+    <Stack fill alignMiddle alignCenter>
       <Stack fillHorizontal alignCenter padding='large'>
-        <PlaceholderIcon />
+        <PlaceHolderIcon />
         <Spacer />
         <Text fontSize='normal' alignCenter fill textColor={COLOR.TERTIARY}>
-          Scan any Silo label by pressing the button below
+          No orders found
         </Text>
       </Stack>
-      <Spacer fill />
+      <Spacer size='x-large' />
     </Stack>
   )
 }

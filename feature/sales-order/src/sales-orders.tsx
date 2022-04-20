@@ -9,6 +9,7 @@ interface Props {
   purchaseOrderNumber?: string
   from?: Date
   to?: Date
+  locationId?: string
   onSelect?: (id: number) => void
   onSearchIconTap?: () => void
   onClearSearchTap?: () => void
@@ -21,6 +22,7 @@ export function SalesOrders({
   purchaseOrderNumber,
   from,
   to,
+  locationId,
   onSelect,
   onSearchIconTap,
   onClearSearchTap,
@@ -34,6 +36,7 @@ export function SalesOrders({
     userID: user?.userID,
     startDate: from,
     endDate: to,
+    locationId,
   })
 
   return (
