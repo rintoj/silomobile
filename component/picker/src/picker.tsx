@@ -18,7 +18,7 @@ export function Picker({ value, items, onChange, placeholder }: Props) {
   const { getColor } = useTheme()
   const placeholderValue = React.useMemo(() => ({ label: placeholder, value: null }), [placeholder])
   const fontStyles = React.useMemo(
-    () => ({ fontFamily: 'DM Sans', color: getColor(COLOR.SECONDARY) }),
+    () => ({ fontSize: 16, fontFamily: 'DM Sans', color: getColor(COLOR.SECONDARY) }),
     [getColor],
   )
   const pickerStyle = React.useMemo(

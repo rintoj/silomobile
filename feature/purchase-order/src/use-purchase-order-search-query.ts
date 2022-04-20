@@ -5,6 +5,7 @@ interface SearchRequest {
   userID?: number
   purchaseOrderNumber?: string
   customerInvoiceNumber?: string
+  locationId?: string
   startDate?: Date
   endDate?: Date
 }
@@ -42,6 +43,7 @@ export function usePurchaseOrderSearchQuery({
   userID,
   startDate,
   endDate,
+  locationId,
 }: SearchRequest) {
   const params = new URLSearchParams('')
   params.append('sortType', 'ID')
@@ -63,6 +65,10 @@ export function usePurchaseOrderSearchQuery({
     params.append('customerInvoiceNumbers', customerInvoiceNumber)
   }
 
+  if (locationId) {
+    params.append('locationID', locationId)
+  }
+
   if (startDate) {
     params.append('fulfilledByStart', startDate.toISOString())
   }
@@ -73,7 +79,7 @@ export function usePurchaseOrderSearchQuery({
 
   return useQuery<PurchaseOrderSearchResponse>(
     `/purchase_orders?${params.toString()}`,
-    `purchaseOrders:${id}:${purchaseOrderNumber}:${customerInvoiceNumber}`,
+    `purchaseOrders:${id}:${purchaseOrderNumber}:${customerInvoiceNumber}:${locationId}:${startDate}:${endDate}`,
     {
       enabled: !!userID,
     },

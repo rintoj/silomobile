@@ -79,12 +79,7 @@ export function SearchModal() {
             borderRadius='large'
             padding='horizontal:normal'
           >
-            <Picker
-              placeholder='Search by'
-              value={searchBy}
-              onChange={setSearchBy}
-              items={searchFields}
-            />
+            <Picker value={searchBy} onChange={setSearchBy} items={searchFields} />
           </Stack>
           <Spacer />
           <Stack
@@ -100,11 +95,14 @@ export function SearchModal() {
               height={44}
               padding='none'
               placeholder='Type order #'
+              autoFocus
               placeholderColor={COLOR.TERTIARY}
               borderColor={COLOR.ACCENT}
               backgroundColor={COLOR.DIVIDER}
               value={searchKey}
               onChangeText={setSearchKey}
+              returnKeyType='search'
+              onSubmitEditing={onSearchTap}
               rightIcon={
                 <Tappable onTap={onSearchTap}>
                   <SearchIcon color={searchKey.length > 0 ? COLOR.TERTIARY : COLOR.DISABLED} />
