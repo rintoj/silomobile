@@ -61,7 +61,7 @@ export function SalesOrderView({ order, loading, error, onOrderItemTap }: Props)
             <Spacer size='xx-small' />
             <LocationIcon />
           </Stack>
-          <Text textColor={COLOR_X.ACCENT3}>{item?.traces[0]?.parentLotLocation.name}</Text>
+          <Text textColor={COLOR_X.ACCENT3}>{item?.traces[0]?.parentLotLocation?.name}</Text>
         </Stack>
         <Spacer size='x-small' />
         <Stack fill>
