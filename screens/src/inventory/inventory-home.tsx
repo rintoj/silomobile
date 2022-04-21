@@ -1,6 +1,6 @@
 import type { StackScreenProps } from '@react-navigation/stack'
 import { Screen } from '@silo-component/screen'
-import { Inventory } from '@silo-feature/inventory'
+import { InventoryList } from '@silo-feature/inventory'
 import { COLOR_X } from '@silo-feature/theme'
 import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
@@ -23,7 +23,7 @@ export function InventoryHome({ navigation: { push } }: StackScreenProps<Invento
     <Screen withSafeArea>
       <Stack alignCenter fill backgroundColor={COLOR_X.PAGE}>
         <Spacer size='large' />
-        <Inventory onLotSelect={navigateToLotDetailsScreen} />
+        <InventoryList onLotSelect={navigateToLotDetailsScreen} />
       </Stack>
     </Screen>
   )

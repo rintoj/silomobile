@@ -6,7 +6,7 @@ import { useInventoryQuery } from './use-inventory-query'
 interface Props {
   onLotSelect?: (id: number) => void
 }
-export function Inventory({ onLotSelect }: Props) {
+export function InventoryList({ onLotSelect }: Props) {
   const { user } = useAuth()
   const { data, isLoading, error } = useInventoryQuery({ userID: user?.userID })
 
