@@ -1,12 +1,12 @@
 import { Text } from '@silo-component/text'
-import { Stack } from 'native-x-stack'
-import React from 'react'
-import { InventoryType } from './use-inventory-query'
-import { Spacer } from 'native-x-spacer'
-import LotIcon from './images/lot-icon.svg'
-import { COLOR } from 'native-x-theme'
 import { COLOR_X } from '@silo-feature/theme'
 import { ArrowForwardIcon } from 'native-x-icon'
+import { Spacer } from 'native-x-spacer'
+import { Stack } from 'native-x-stack'
+import { COLOR } from 'native-x-theme'
+import React from 'react'
+import LotIcon from './images/lot-icon.svg'
+import { InventoryType } from './use-inventory-query'
 
 interface Props {
   inventory: InventoryType

@@ -7,9 +7,9 @@ import {
 import { Stack } from 'native-x-stack'
 import React from 'react'
 import SplashScreen from 'react-native-splash-screen'
+import { LotDetailsScreen } from '../lot-details/lot-details-screen'
 import { Screens } from '../navigation/screens'
 import { InventoryHome } from './inventory-home'
-import { LotDetailsScreen } from '../lot-details/lot-details-screen'
 
 const { Navigator, Screen } = createStackNavigator()
 
