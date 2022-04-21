@@ -9,6 +9,7 @@ import React from 'react'
 import SplashScreen from 'react-native-splash-screen'
 import { Screens } from '../navigation/screens'
 import { InventoryHome } from './inventory-home'
+import { LotDetailsScreen } from '../lot-details/lot-details-screen'
 
 const { Navigator, Screen } = createStackNavigator()
 
@@ -20,6 +21,7 @@ const screenOptions: StackNavigationOptions = {
 
 export type InventoryStackParamList = {
   [Screens.InventoryHome]: undefined
+  [Screens.LotDetails]: { id: number }
 }
 
 export function InventoryStack() {
@@ -29,6 +31,7 @@ export function InventoryStack() {
     <Stack fill>
       <Navigator screenOptions={screenOptions}>
         <Screen name={Screens.InventoryHome} component={InventoryHome} />
+        <Screen name={Screens.LotDetails} component={LotDetailsScreen} />
       </Navigator>
       <Stack height={tabBarHeight} />
     </Stack>
