@@ -7,6 +7,7 @@ import RNPrint from 'react-native-print'
 import { getPurchaseOrderLabel } from './label-templates'
 import { PurchaseOrderView } from './purchase-order-view'
 import { usePurchaseOrderQuery } from './use-purchase-order-query'
+import { format } from 'date-fns'
 
 const styles = { flex: 1 }
 
@@ -29,7 +30,10 @@ export function PurchaseOrder({ id, onOrderItemTap }: Props) {
   const printLabel = async () => {
     const { purchaseOrderNumber, shipAfter } = purchaseOrder ?? {}
     if (purchaseOrderNumber && shipAfter) {
-      const html = getPurchaseOrderLabel(purchaseOrderNumber, shipAfter)
+      const html = getPurchaseOrderLabel(
+        purchaseOrderNumber,
+        format(new Date(shipAfter), 'MM-dd-yyyy'),
+      )
       await RNPrint.print({ html, isLandscape: true })
     }
   }
