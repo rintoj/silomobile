@@ -1,4 +1,5 @@
 import { useAuth } from '@silo-feature/auth'
+import { format } from 'date-fns'
 import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import React from 'react'
@@ -7,7 +8,6 @@ import RNPrint from 'react-native-print'
 import { getPurchaseOrderLabel } from './label-templates'
 import { PurchaseOrderView } from './purchase-order-view'
 import { usePurchaseOrderQuery } from './use-purchase-order-query'
-import { format } from 'date-fns'
 
 const styles = { flex: 1 }
 
