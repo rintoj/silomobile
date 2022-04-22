@@ -30,11 +30,9 @@ export interface PurchaseOrder {
   remainingBalance?: number
   orderItems?: OrderItem[]
   costAdjustments?: any
-  inlineExpenses?: any
   deliveryRoute?: any
   transportMethod?: number
-  notes?: any[]
-  files?: any
+  photos?: any
   deliveredAt?: string
   submittedTime?: string
   shipAfter?: string
@@ -45,10 +43,10 @@ export interface PurchaseOrder {
   signedOffBy?: string
   sendEmail?: boolean
   exportedAt?: any
+  editableVendor?: boolean
   hasLotActivity?: boolean
   creditOrderSummaries?: any[]
   creditingPurchaseOrderID?: any
-  creditingPurchaseOrderNumber?: any
   autoApplyCredit?: boolean
   isAutoReceived?: boolean
   isFactored?: boolean
@@ -57,8 +55,8 @@ export interface PurchaseOrder {
 }
 
 interface SalesRep {
-  userID?: string
-  accountID?: string
+  userID?: number
+  accountID?: number
   isClaimed?: boolean
   isDisabled?: any
   isCore?: boolean
@@ -73,7 +71,7 @@ interface SalesRep {
   city?: string
   state?: string
   post?: string
-  netD?: string
+  netD?: number
   relationshipStatus?: string
   customerCode?: string
   supplierCode?: string
@@ -93,9 +91,9 @@ interface SalesRep {
   vanityName?: string
   email?: string
   isRegistered?: boolean
-  availableCreditBalance?: string
-  availableCreditBalanceCents?: string
-  defaultLocationID?: string
+  availableCreditBalance?: number
+  availableCreditBalanceCents?: number
+  defaultLocationID?: number
   settings?: Settings
 }
 
@@ -113,7 +111,7 @@ interface Settings {
 }
 
 interface Seller {
-  id?: string
+  id?: number
   name?: string
   shippingAddress?: ShippingAddress
   billingAddress?: BillingAddress
@@ -129,13 +127,13 @@ interface BillingAddress {
 }
 
 interface SalesContact {
-  userID?: string
+  userID?: number
   isClaimed?: boolean
   isDisabled?: any
   isCore?: any
   isPaymentApprover?: boolean
   name?: string
-  netD?: string
+  netD?: number
   relationshipStatus?: string
   customerCode?: string
   supplierCode?: string
@@ -150,52 +148,52 @@ interface SalesContact {
   isServicesVendor?: any
   contacts?: any
   statementDeliveryMethod?: any
-  availableCreditBalance?: string
-  availableCreditBalanceCents?: string
+  availableCreditBalance?: number
+  availableCreditBalanceCents?: number
 }
 
 interface Payment {
-  methodID?: string
+  methodID?: number
   type?: string
   isVerified?: boolean
   isDefault?: boolean
   brand?: string
   bank?: string
   last4?: string
-  expMonth?: string
-  expYear?: string
+  expMonth?: number
+  expYear?: number
   status?: string
 }
 
 export interface OrderItem {
-  inventoryID?: string
-  productID?: string
-  unitID?: string
+  inventoryID?: number
+  productID?: number
+  unitID?: number
   isOrganic?: boolean
-  labelID?: string
+  labelID?: number
   labelName?: string
   countryOfOrigin?: string
-  quantity?: string
-  price?: string
+  quantity?: number
+  price?: number
   margin?: Margin
   priceSheetItem?: any
-  orderItemID?: string
-  salesOrderID?: string
-  purchaseOrderID?: string
+  orderItemID?: number
+  salesOrderID?: number
+  purchaseOrderID?: number
   status?: string
-  total?: string
+  total?: number
   productName?: string
-  sellerID?: string
+  sellerID?: number
   sellerName?: string
   unit?: Unit
   unitName?: string
-  assignedQuantity?: string
+  assignedQuantity?: number
   inventoryIsMerged?: boolean
-  mergeTargetID?: string
+  mergeTargetID?: number
   inventoryIsDeleted?: boolean
   automatched?: boolean
   outOfStock?: boolean
-  increment?: string
+  increment?: number
   isRefunded?: boolean
   replaceable?: boolean
   autoReplace?: boolean
@@ -204,69 +202,69 @@ export interface OrderItem {
   labeled?: boolean
   constraints?: any
   label?: Label
-  requestedLabelID?: string
+  requestedLabelID?: number
   requestedLabel?: any
   sku?: string
   traces?: Trace[]
   adjustmentType?: any
   isSplit?: boolean
-  splitTargetID?: string
-  creditingOrderItemID?: string
+  splitTargetID?: number
+  creditingOrderItemID?: number
   skipBreakEvenPriceSheetAndPriceGuidance?: boolean
-  returnedQuantity?: string
+  returnedQuantity?: number
   displayIndex?: any
   uuid?: string
 }
 
 interface Margin {
-  min?: string
+  min?: number
   max?: any
   minType?: string
   maxType?: string
 }
 
 interface Unit {
-  id?: string
+  id?: number
   name?: string
-  price?: string
+  price?: number
   isOrganic?: boolean
   createdAt?: string
-  quantityDenominator?: string
-  quantityNumerator?: string
+  quantityDenominator?: number
+  quantityNumerator?: number
   measure?: string
   packaging?: string
-  increment?: string
+  increment?: number
 }
 
 interface Label {
-  id?: string
-  accountID?: string
+  id?: number
+  accountID?: number
   name?: string
 }
 
 interface Trace {
-  id?: string
-  locationID?: string
-  inventoryID?: string
-  orderID?: string
-  salesOrderID?: string
+  id?: number
+  locationID?: number
+  inventoryID?: number
+  orderID?: number
+  salesOrderID?: number
   assignedSOs?: any
-  orderItemID?: string
+  orderItemID?: number
   isInbound?: boolean
-  providerID?: string
+  providerID?: number
   providerName?: string
   customerName?: any
   timestamp?: string
   closedAt?: any
   sku?: any
-  originID?: string
+  originID?: number
   origin?: Origin
   countryOfOrigin?: string
-  internalLabelID?: string
+  internalLabelID?: number
   lotNumber?: string
   packDate?: any
-  quantity?: string
-  remainingQuantity?: string
+  quantity?: number
+  remainingQuantity?: number
   type?: string
   note?: string
   gs1?: string
@@ -275,15 +273,15 @@ interface Trace {
   margin?: any
   parentIDs?: any
   childIDs?: any
-  averageProfit?: string
+  averageProfit?: number
   isMerged?: boolean
   repackSourceLotID?: any
   repackSourceQuantity?: any
-  orderItemPriceRatio?: string
+  orderItemPriceRatio?: number
 }
 
 interface Origin {
-  id?: string
+  id?: number
   country?: string
 }
 
