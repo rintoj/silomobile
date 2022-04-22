@@ -7,7 +7,7 @@ export enum PurchaseOrderStatus {
 }
 
 export interface PurchaseOrder {
-  status?: string
+  status?: PurchaseOrderStatus
   id: number
   locationID?: number
   orderID?: number
