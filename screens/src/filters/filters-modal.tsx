@@ -1,3 +1,4 @@
+import { RouteProp, useRoute } from '@react-navigation/core'
 import { useNavigation } from '@react-navigation/native'
 import { BottomSheet } from '@silo-component/bottom-sheet'
 import { Button } from '@silo-component/button'
@@ -11,13 +12,21 @@ import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React, { useEffect } from 'react'
+import { Modals } from '../navigation/modals'
 import { Screens } from '../navigation/screens'
 import { useLocationsQuery } from './use-locations-query'
 
 const ONE_MONTH_AGO = new Date(Date.now() - 60 * 60 * 24 * 30 * 1000)
 const TODAY = new Date()
 
+type FilterModalParamList = {
+  [Modals.Filters]: {
+    target?: Screens
+  }
+}
+
 export function FiltersModal() {
+  const { params } = useRoute<RouteProp<FilterModalParamList>>()
   const [visible, open] = useOpenClose(true)
   const { navigate, goBack } = useNavigation<any>()
   const { data } = useLocationsQuery()
@@ -33,11 +42,11 @@ export function FiltersModal() {
 
   const onTapFilterResults = React.useCallback(() => {
     navigate({
-      name: Screens.Home,
+      name: params?.target ?? Screens.Home,
       params: { startDate: startDate.toISOString(), endDate: endDate.toISOString(), locationId },
       merge: true,
     })
-  }, [endDate, locationId, navigate, startDate])
+  }, [endDate, locationId, navigate, params?.target, startDate])
 
   useEffect(() => {
     open()

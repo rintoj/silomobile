@@ -9,6 +9,7 @@ import { Tappable } from 'native-x-tappable'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
 import { FlatList } from 'react-native'
+import { EmptySearchResultsView } from './empty-search-results-view'
 import { EmptyView } from './empty-view'
 import { SalesOrderListItemView } from './sales-order-list-item-view'
 import { SalesOrderSearchResult } from './use-sales-order-search-query'
@@ -57,8 +58,14 @@ export function SalesOrderList({
   )
   return (
     <Stack fill>
-      {!orders ? renderHeader() : null}
-      <DataView fill isLoading={loading} error={error} data={orders} emptyMessage={<EmptyView />}>
+      {!orders?.length ? renderHeader() : null}
+      <DataView
+        fill
+        isLoading={loading}
+        error={error}
+        data={orders}
+        emptyMessage={searchActive ? <EmptySearchResultsView /> : <EmptyView />}
+      >
         <FlatList
           data={orders}
           renderItem={renderItem}
