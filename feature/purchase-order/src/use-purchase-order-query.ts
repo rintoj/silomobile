@@ -14,6 +14,8 @@ export interface PurchaseOrder {
   customerInvoiceNumber?: string
   customerBOLNumber?: string
   salesOrderInvoiceNumber?: number
+  purchaseOrderNumber?: number
+  shippingReferenceNumber?: any
   buyerID?: number
   userID?: number
   salesRep?: SalesRep
@@ -22,6 +24,8 @@ export interface PurchaseOrder {
   chargeStatus?: string
   paymentStatus?: string
   orderTotal?: number
+  orderInlineExpenseTotal?: number
+  orderSubTotal?: number
   payThroughSilo?: boolean
   remainingBalance?: number
   orderItems?: OrderItem[]

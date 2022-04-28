@@ -8,6 +8,7 @@ import { Stack } from 'native-x-stack'
 import React from 'react'
 import LocationIcon from './images/location.svg'
 import { LotList } from './lot-list'
+import { PurchaseOrderActions } from './purchase-order-actions'
 import { PurchaseOrder, PurchaseOrderStatus } from './use-purchase-order-query'
 
 interface Props {
@@ -15,9 +16,18 @@ interface Props {
   loading?: boolean
   error?: Error | null
   onOrderItemTap?: (orderID?: number) => void
+  onAddQCTap?: () => void
+  onPrintLabelTap?: () => void
 }
 
-export function PurchaseOrderView({ order, loading, error, onOrderItemTap }: Props) {
+export function PurchaseOrderView({
+  order,
+  loading,
+  error,
+  onOrderItemTap,
+  onAddQCTap,
+  onPrintLabelTap,
+}: Props) {
   const [vendor] = order?.sellers ?? []
   const receivedOn = format(new Date(order?.deliveredAt ?? 0), 'MMM dd, yyyy - h:mmaaa')
 
@@ -80,7 +90,8 @@ export function PurchaseOrderView({ order, loading, error, onOrderItemTap }: Pro
         </Stack>
       </Stack>
       <Spacer size='small' />
-      <Spacer size='x-small' />
+      <PurchaseOrderActions onAddQCTap={onAddQCTap} onPrintLabelTap={onPrintLabelTap} />
+      <Spacer />
       <LotList orders={order?.orderItems} onOrderItemTap={onOrderItemTap} />
     </DataView>
   )

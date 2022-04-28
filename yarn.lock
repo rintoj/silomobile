@@ -7598,6 +7598,11 @@ react-native-popup-menu@^0.15.11:
   resolved "https://registry.yarnpkg.com/react-native-popup-menu/-/react-native-popup-menu-0.15.12.tgz#386852f4245f8d661a5003776989b9b55c9ce381"
   integrity sha512-33zMqHW+7rt5m2Bgg7xM8jy1guIdUCE8qJfznYYNRlIt4+fJX/rDcwmJIrkSGrvfhlhhEaG3otW6h25uFZLFfg==
 
+react-native-print@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/react-native-print/-/react-native-print-0.10.0.tgz#803b28592c1605d2bdba80fc909fcdbced0d069f"
+  integrity sha512-jXFIeTLiQeC9rTduRjMGXWzGEaslx69U64tsw851+v2fbfNwn4SP53uEIhCCc0ly3VxGCFxseafrZjfuMyVXNg==
+
 react-native-qrcode-scanner@^1.5.5:
   version "1.5.5"
   resolved "https://registry.yarnpkg.com/react-native-qrcode-scanner/-/react-native-qrcode-scanner-1.5.5.tgz#0d20101712715da108742a2bbbd0397569031b01"
