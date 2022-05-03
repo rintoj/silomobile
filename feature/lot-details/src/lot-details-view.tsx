@@ -9,6 +9,7 @@ import { COLOR } from 'native-x-theme'
 import React from 'react'
 import LocationIcon from './images/location-icon.svg'
 import PurchaseOrderIcon from './images/po-icon.svg'
+import { LotActions } from './lot-actions'
 import { SummaryTile } from './summary-tile'
 import { Lot } from './use-lot-query'
 
@@ -17,16 +18,23 @@ interface Props {
   loading?: boolean
   error?: Error | null
   onPurchaseOrderTap?: (id?: number) => void
+  onAddExpenseTap?: (id?: number) => void
 }
 
-export function LotDetailsView({ lot, loading, error, onPurchaseOrderTap }: Props) {
+export function LotDetailsView({
+  lot,
+  loading,
+  error,
+  onPurchaseOrderTap,
+  onAddExpenseTap,
+}: Props) {
   const ageInInventory = Math.floor(
     (Date.now() - new Date(lot?.fulfillmentDate ?? 0).getTime()) / (1000 * 60 * 60 * 24),
   )
 
   return (
     <DataView data={lot} fill isLoading={loading} error={error}>
-      <Spacer size='xx-small' />
+      <LotActions onAddExpenseTap={onAddExpenseTap} />
       <Stack fillHorizontal horizontal padding='vertical:small'>
         <Stack fill padding='horizontal:normal'>
           <Text textColor={COLOR_X.ACCENT2}>Vendor</Text>

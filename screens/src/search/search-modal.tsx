@@ -65,39 +65,29 @@ export function SearchModal() {
   return (
     <Modal visible transparent>
       <TopSheet visible={visible} onClose={onClose}>
-        <Stack fill padding='normal' backgroundColor={COLOR_X.PAGE}>
+        <Stack fill padding='horizontal:large' backgroundColor={COLOR_X.PAGE}>
           <Spacer fill />
           <Text alignCenter>Search by order, invoice, or PO ID</Text>
           <Spacer />
-          <Stack
-            fillHorizontal
-            border
-            height={48}
-            alignMiddle
-            borderColor={COLOR.TERTIARY}
-            backgroundColor={COLOR.DIVIDER}
-            borderRadius='large'
-            padding='horizontal:normal'
-          >
-            <Picker value={searchBy} onChange={setSearchBy} items={searchFields} />
-          </Stack>
+
+          <Picker value={searchBy} onChange={setSearchBy} items={searchFields} />
           <Spacer />
           <Stack
             fillHorizontal
             border
-            borderColor={COLOR.ACCENT}
+            borderColor={COLOR.TERTIARY}
             backgroundColor={COLOR.DIVIDER}
-            borderRadius='large'
+            borderRadius='normal'
             padding='horizontal:normal'
           >
             <TextInput
               fill
-              height={44}
+              height={42}
               padding='none'
               placeholder='Type order #'
               autoFocus
               placeholderColor={COLOR.TERTIARY}
-              borderColor={COLOR.ACCENT}
+              borderColor={COLOR.TRANSPARENT}
               backgroundColor={COLOR.DIVIDER}
               value={searchKey}
               onChangeText={setSearchKey}

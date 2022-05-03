@@ -5,9 +5,10 @@ import { useLotQuery } from './use-lot-query'
 interface Props {
   lotId: number
   onPurchaseOrderTap?: (id?: number) => void
+  onAddExpenseTap?: () => void
 }
 
-export function LotDetails({ lotId, onPurchaseOrderTap }: Props) {
+export function LotDetails({ lotId, onPurchaseOrderTap, onAddExpenseTap }: Props) {
   const { data: lot, isLoading, error } = useLotQuery({ lotId })
   return (
     <LotDetailsView
@@ -15,6 +16,7 @@ export function LotDetails({ lotId, onPurchaseOrderTap }: Props) {
       loading={isLoading}
       error={error}
       onPurchaseOrderTap={onPurchaseOrderTap}
+      onAddExpenseTap={onAddExpenseTap}
     />
   )
 }
