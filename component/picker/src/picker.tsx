@@ -1,9 +1,9 @@
+import { Text } from '@silo-component/text'
+import { Spacer } from 'native-x-spacer'
+import { Stack } from 'native-x-stack'
 import { COLOR, useTheme } from 'native-x-theme'
 import React from 'react'
 import RNPickerSelect from 'react-native-picker-select'
-import { Spacer } from 'native-x-spacer'
-import { Text } from '@silo-component/text'
-import { Stack } from 'native-x-stack'
 
 type PickerItem = {
   label: string
