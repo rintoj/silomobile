@@ -15,15 +15,16 @@ const styles = {
 }
 
 interface Props {
-  value: Date
-  onChange: (value: Date) => void
+  value?: Date
+  onChange?: (value: Date) => void
 }
 
-export function DatePicker({ value, onChange }: Props) {
+export function DatePicker({ value = new Date(), onChange }: Props) {
   const [isOpen, open, close] = useOpenClose()
+  const date = typeof value === 'string' ? new Date(value) : value
   const onConfirm = React.useCallback(
-    (date: Date) => {
-      onChange(date)
+    (_date: Date) => {
+      onChange?.(_date)
       close()
     },
     [close, onChange],
@@ -36,13 +37,13 @@ export function DatePicker({ value, onChange }: Props) {
           horizontal
           fillHorizontal
           border
-          borderColor={COLOR.ACCENT}
+          borderColor={COLOR.TERTIARY}
           backgroundColor={COLOR.DIVIDER}
           borderRadius='normal'
           padding={['horizontal:normal', 'vertical:normal']}
         >
           <Stack fill>
-            <Text fill>{format(value, 'MM-dd-yyyy')}</Text>
+            <Text fill>{format(date, 'MM-dd-yyyy')}</Text>
           </Stack>
           <Stack>
             <CalendarIcon />
@@ -50,7 +51,7 @@ export function DatePicker({ value, onChange }: Props) {
         </Stack>
       </Tappable>
       <RNDatePicker
-        date={value}
+        date={date}
         modal
         mode='date'
         maximumDate={new Date()}
