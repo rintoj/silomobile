@@ -9,6 +9,7 @@ import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React, { useCallback } from 'react'
+import { Modals } from '../navigation/modals'
 import { Screens } from '../navigation/screens'
 import LotIcon from './lot-icon.svg'
 
@@ -17,7 +18,7 @@ type LotDetailsParamList = {
 }
 
 export function LotDetailsScreen() {
-  const { push } = useNavigation<any>()
+  const { navigate, push } = useNavigation<any>()
   const { params } = useRoute<RouteProp<LotDetailsParamList>>()
   const { id } = params ?? {}
   const navigateToPurchaseOrderScreen = useCallback(
@@ -28,6 +29,10 @@ export function LotDetailsScreen() {
     },
     [push],
   )
+
+  const openAddExpenseModal = useCallback(() => {
+    navigate(Modals.AddLotExpense, { lotId: id })
+  }, [id, navigate])
 
   return (
     <Screen withSafeArea backgroundColor={COLOR.PRIMARY}>
@@ -43,7 +48,11 @@ export function LotDetailsScreen() {
         </Stack>
       </PageHeader>
       <Stack fill backgroundColor={COLOR_X.PAGE} padding='vertical:x-small'>
-        <LotDetails lotId={id} onPurchaseOrderTap={navigateToPurchaseOrderScreen} />
+        <LotDetails
+          lotId={id}
+          onPurchaseOrderTap={navigateToPurchaseOrderScreen}
+          onAddExpenseTap={openAddExpenseModal}
+        />
       </Stack>
     </Screen>
   )

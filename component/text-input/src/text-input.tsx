@@ -62,6 +62,7 @@ function TextInputComponent(props: TextInputProps, ref?: React.Ref<any>) {
     onChangeText,
     rounded = false,
     disabled,
+    borderColor,
     error,
     password,
     fill = true,
@@ -85,9 +86,14 @@ function TextInputComponent(props: TextInputProps, ref?: React.Ref<any>) {
       ? COLOR.TERTIARY
       : textInputProps.textColor ?? COLOR.SECONDARY
 
-  const borderColor = hasError ? errorColorName : COLOR.TRANSPARENT
+  const inputBorderColor = hasError ? errorColorName : borderColor ? borderColor : COLOR.TERTIARY
   const { getColor, getTextColor } = useTheme()
-  const containerStyle = useContainerStyle({ ...props, backgroundColor, borderColor, padding })
+  const containerStyle = useContainerStyle({
+    ...props,
+    backgroundColor,
+    borderColor: inputBorderColor,
+    padding,
+  })
   const textContainerInputStyle = useContainerStyle({ padding })
   const textInputStyle = [...useTextStyle({ textColor }), { fontFamily: 'DM Sans' }]
   const transparentColor = getColor?.(COLOR.TRANSPARENT)

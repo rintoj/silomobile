@@ -10,7 +10,6 @@ import { COLOR_X } from '@silo-feature/theme'
 import { useOpenClose } from '@silo/util'
 import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
-import { COLOR } from 'native-x-theme'
 import React, { useEffect } from 'react'
 import { Modals } from '../navigation/modals'
 import { Screens } from '../navigation/screens'
@@ -81,23 +80,12 @@ export function FiltersModal() {
           Location
         </Text>
         <Spacer size='x-small' />
-        <Stack
-          fillHorizontal
-          border
-          height={44}
-          alignMiddle
-          borderColor={COLOR.ACCENT}
-          backgroundColor={COLOR.DIVIDER}
-          borderRadius='normal'
-          padding='horizontal:normal'
-        >
-          <Picker
-            items={locations}
-            value={locationId}
-            onChange={setLocationId}
-            placeholder='Select a location'
-          />
-        </Stack>
+        <Picker
+          items={locations}
+          value={locationId}
+          onChange={setLocationId}
+          placeholder='Select a location'
+        />
         <Spacer />
         <Stack fillHorizontal>
           <Button height={48} rounded={false} onTap={onTapFilterResults}>
