@@ -3,8 +3,8 @@ import { CodeScannerModal } from '../code-scanner/code-scanner-modal'
 import { ScanLoginModal } from '../code-scanner/scan-login-modal'
 import { FiltersModal } from '../filters/filters-modal'
 import { AddLotExpenseModal } from '../lot-details/add-lot-expense-modal'
-import { SearchModal } from '../search/search-modal'
 import { AddQCModal } from '../qc/add-qc-modal'
+import { SearchModal } from '../search/search-modal'
 
 export enum Modals {
   CodeScanner = 'CODE_SCANNER',

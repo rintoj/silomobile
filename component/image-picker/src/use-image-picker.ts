@@ -38,7 +38,9 @@ export function useImagePicker(): [
       if (asset) {
         if (asset.uri && asset.width && asset.height) {
           setResponse({ uri: asset.uri, width: asset.width, height: asset.height })
-        } else setError(new Error(`Couldn't get the selected image.`))
+        } else {
+          setError(new Error("Couldn't get the selected image."))
+        }
       }
       if (errorCode || errorMessage) {
         errorCode ? onCameraPermissionDenied() : setError(new Error(errorMessage))
