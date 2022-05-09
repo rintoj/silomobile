@@ -110,6 +110,7 @@ function TextInputComponent(props: TextInputProps, ref?: React.Ref<any>) {
           width ? { width } : undefined,
           height ? { height } : undefined,
           styles.innerContainer,
+          props.multiline ? [s.itemsStart, s.pv2] : [s.itemsCenter],
           containerStyle,
         ]}
       >
