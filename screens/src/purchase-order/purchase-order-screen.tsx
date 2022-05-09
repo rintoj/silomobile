@@ -9,6 +9,7 @@ import { Spacer } from 'native-x-spacer'
 import { Stack } from 'native-x-stack'
 import { COLOR } from 'native-x-theme'
 import React from 'react'
+import { Modals } from '../navigation/modals'
 import { Screens } from '../navigation/screens'
 import PurchaseOrderIcon from './po.svg'
 
@@ -17,7 +18,7 @@ type PurchaseOrderParamList = {
 }
 
 export function PurchaseOrderScreen() {
-  const { push } = useNavigation<any>()
+  const { navigate, push } = useNavigation<any>()
   const { params } = useRoute<RouteProp<PurchaseOrderParamList>>()
   const { id } = params ?? {}
 
@@ -25,6 +26,9 @@ export function PurchaseOrderScreen() {
     (orderID?: number) => push(Screens.LotDetails, { id: orderID }),
     [push],
   )
+
+  const openAddQCModal = React.useCallback(() => navigate(Modals.AddQC, { id }), [id, navigate])
+
   return (
     <Screen withSafeArea>
       <Stack fill backgroundColor={COLOR_X.PAGE}>
@@ -39,7 +43,7 @@ export function PurchaseOrderScreen() {
             </Text>
           </Stack>
         </PageHeader>
-        <PurchaseOrder id={id} onOrderItemTap={navigateToLotDetails} />
+        <PurchaseOrder id={id} onOrderItemTap={navigateToLotDetails} onAddQCTap={openAddQCModal} />
       </Stack>
     </Screen>
   )

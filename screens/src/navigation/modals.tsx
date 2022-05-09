@@ -4,6 +4,7 @@ import { ScanLoginModal } from '../code-scanner/scan-login-modal'
 import { FiltersModal } from '../filters/filters-modal'
 import { AddLotExpenseModal } from '../lot-details/add-lot-expense-modal'
 import { SearchModal } from '../search/search-modal'
+import { AddQCModal } from '../qc/add-qc-modal'
 
 export enum Modals {
   CodeScanner = 'CODE_SCANNER',
@@ -11,6 +12,7 @@ export enum Modals {
   Search = 'SEARCH',
   Filters = 'FILTERS',
   AddLotExpense = 'ADD_LOT_EXPENSE',
+  AddQC = 'ADD_QC',
 }
 
 export type ModalParamList = {
@@ -30,4 +32,5 @@ export const modals: ById<ModalConfigType> = {
   [Modals.Search]: { screen: SearchModal },
   [Modals.Filters]: { screen: FiltersModal },
   [Modals.AddLotExpense]: { screen: AddLotExpenseModal },
+  [Modals.AddQC]: { screen: AddQCModal },
 }

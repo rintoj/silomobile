@@ -14,9 +14,10 @@ const styles = { flex: 1 }
 interface Props {
   id: number
   onOrderItemTap?: (orderID?: number) => void
+  onAddQCTap?: (orderID?: number) => void
 }
 
-export function PurchaseOrder({ id, onOrderItemTap }: Props) {
+export function PurchaseOrder({ id, onOrderItemTap, onAddQCTap }: Props) {
   const { user } = useAuth()
   const {
     data: purchaseOrder,
@@ -45,6 +46,7 @@ export function PurchaseOrder({ id, onOrderItemTap }: Props) {
           loading={isLoading}
           error={error}
           order={purchaseOrder}
+          onAddQCTap={onAddQCTap}
           onOrderItemTap={onOrderItemTap}
           onPrintLabelTap={printLabel}
         />
