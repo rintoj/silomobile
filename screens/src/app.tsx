@@ -1,3 +1,4 @@
+import { ActionSheetProvider } from '@expo/react-native-action-sheet'
 import { AuthProvider } from '@silo-feature/auth'
 import { THEMES } from '@silo-feature/theme'
 import { THEME, ThemeProvider } from 'native-x-theme'
@@ -16,7 +17,9 @@ export function App() {
         <StatusBar barStyle='light-content' backgroundColor='#235039' animated />
         <QueryClientProvider client={queryClient}>
           <AuthProvider>
-            <RootStack />
+            <ActionSheetProvider>
+              <RootStack />
+            </ActionSheetProvider>
           </AuthProvider>
         </QueryClientProvider>
       </ThemeProvider>

@@ -532,7 +532,7 @@ DEPENDENCIES:
   - "react-native-cameraroll (from `../../node_modules/@react-native-community/cameraroll`)"
   - react-native-date-picker (from `../../node_modules/react-native-date-picker`)
   - react-native-get-random-values (from `../../node_modules/react-native-get-random-values`)
-  - react-native-image-picker (from `../../node_modules/react-native-image-picker`)
+  - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-phasset (from `../../node_modules/react-native-phasset`)
   - react-native-print (from `../../node_modules/react-native-print`)
   - react-native-safe-area-context (from `../../node_modules/react-native-safe-area-context`)
@@ -649,7 +649,7 @@ EXTERNAL SOURCES:
   react-native-get-random-values:
     :path: "../../node_modules/react-native-get-random-values"
   react-native-image-picker:
-    :path: "../../node_modules/react-native-image-picker"
+    :path: "../node_modules/react-native-image-picker"
   react-native-phasset:
     :path: "../../node_modules/react-native-phasset"
   react-native-print:
